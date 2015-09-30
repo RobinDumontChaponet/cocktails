@@ -1,145 +1,118 @@
 <?php
 
-require_once('Auth.class.php');
-
 class User {
 	private $id;
 	private $login;
-	private $pwd;
-	private $auth;
+	private $password;
+	private $firstName;
+	private $lastName;
+	private $sex;
+	private $email;
+	private $birthDate;
+	private $address;
+	private $postalCode;
+	private $city;
+	private $phoneNumber;
 
-	public function __construct ($id='', $login='', $pwd='', $auth) {
+	public function __construct ($id='', $login='', $password='', $firstName='', $lastName='', $sex='', $email='', $birthDate='', $address='', $postalCode='', $city='', $phoneNumber='') {
 		$this->id=$id;
 		$this->login=$login;
-		$this->pwd=$pwd;
-		$this->auth=$auth;
+		$this->password=$password;
+		$this->firstName=$firstName;
+		$this->lastName=$lastName;
+		$this->sex=$sex;
+		$this->email=$email;
+		$this->birthDate=$birthDate;
+		$this->address=$address;
+		$this->postalCode=$postalCode;
+		$this->city=$city;
+		$this->phoneNumber=$phoneNumber;
 	}
 
 	public function getId () {
 		return $this->id;
 	}
-	public function getAuth () {
-		return $this->auth;
-	}
 	public function getLogin () {
 		return $this->login;
 	}
-	public function getPwd () {
-		return $this->pwd;
+	public function getPassword () {
+		return $this->password;
 	}
+	public function getFirstName () {
+		return $this->firstName;
+	}
+	public function getLastName () {
+		return $this->lastName;
+	}
+	public function getSex () {
+		return $this->sex;
+	}
+	public function getEmail () {
+		return $this->email;
+	}
+	public function getBirthDate () {
+		return $this->birthDate;
+	}
+	public function getAddress () {
+		return $this->address;
+	}
+	public function getPostalCode () {
+		return $this->postalCode;
+	}
+	public function getCity () {
+		return $this->city;
+	}
+	public function getPhoneNumber () {
+		return $this->phoneNumber;
+	}
+
 
 	public function setId ($id) {
 		$this->id=$id;
 	}
-	public function setAuth ($auth) {
-		$this->auth=$auth;
-	}
 	public function setLogin ($login) {
 		$this->login=$login;
 	}
-	public function setPwd ($pwd) {
-		$this->pwd=$pwd;
+	public function setPassword ($password) {
+		$this->password=$password;
+	}
+	public function getFirstName ($firstName) {
+		$this->firstName=$firstName;
+	}
+	public function getLastName ($lastName) {
+		$this->lastName=$lastName;
+	}
+	public function getSex ($sex) {
+		$this->sex=$sex;
+	}
+	public function getEmail ($email) {
+		$this->email=$email;
+	}
+	public function getBirthDate ($birthDate) {
+		$this->birthDate=$birthDate;
+	}
+	public function getAddress ($address) {
+		$this->address=$address;
+	}
+	public function getPostalCode ($postalCode) {
+		$this->postalCode=$postalCode;
+	}
+	public function getCity ($city) {
+		$this->city=$city;
+	}
+	public function getPhoneNumber ($phoneNumber) {
+		$this->phoneNumber=$phoneNumber;
 	}
 
 	public function __toString () {
-		return 'User [ id : '.$this->id.'; login : '.$this->login.'; auth : '.$this->auth.' ]';
+		return 'User [ id: '.$this->id.'; login: '.$this->login.'; , $firstName:'.$this->firstName.'; $lastName:'.$this->lastName.'; $sex:'.$this->sex.'; $email:'.$this->email.'; $birthDate:'.$this->birthDate.'; $address:'.$this->address.'; $postalCode:'.$this->postalCode.'; $city:'.$this->city.'; $phoneNumber:'.$this->phoneNumber.' ]';
 	}
-}
 
-function createUser ($user) {
-	try {
-		$connect = connect();
-		$statement = $connect->prepare('INSERT INTO user (idAuth, login, pwd) values (?, ?, ?)');
-		$statement->bindParam(1, $user->getAuth()->getId());
-		$statement->bindParam(2, $user->getLogin());
-		$statement->bindParam(3, $user->getPwd());
-		$statement->execute();
 
-		return $connect->lastInsertId();
-	} catch (PDOException $e) {
-		die('Error create user!: ' . $e->getMessage() . '<br/>');
+	public function randomPassword( $length = 8 ) {
+		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:?";
+		$password = substr( str_shuffle( $chars ), 0, $length );
+		return $password;
 	}
-}
-
-function updateUser ($user) {
-	try {
-		$connect = connect();
-		$statement = $connect->prepare('UPDATE user SET idAuth=?, login=?, pwd=? WHERE idUser=?');
-		$statement->bindParam(1, $user->getAuth()->getId());
-		$statement->bindParam(2, $user->getLogin());
-		$statement->bindParam(3, $user->getPwd());
-		$statement->bindParam(4, $user->getId());
-		$statement->execute();
-
-		return $connect->lastInsertId();
-	} catch (PDOException $e) {
-		die('Error update user!: ' . $e->getMessage() . '<br/>');
-	}
-}
-
-function deleteUser ($user) {
-	try {
-		$connect = connect();
-		$statement = $connect->prepare('DELETE FROM user WHERE idUser=?');
-		$statement->bindParam(1, $user->getId());
-		$statement->execute();
-	} catch (PDOException $e) {
-		die('Error delete user!: ' . $e->getMessage() . '<br/>');
-	}
-}
-
-function getUsers () {
-	$users = array();
-	try {
-		$connect = connect();
-		$statement = $connect->prepare('SELECT * FROM user');
-
-		$statement->execute();
-
-		while ($rs = $statement->fetch(PDO::FETCH_OBJ))
-			$users[]=new User($rs->idUser, $rs->login, $rs->pwd, getAuthById($rs->idAuth));
-	} catch (PDOException $e) {
-		die('Error!: ' . $e->getMessage() . '<br/>');
-	}
-	return $users;
-}
-
-function getUserById ($id) {
-	$user = null;
-	try {
-		$connect = connect();
-		$statement = $connect->prepare('SELECT * FROM user where idUser=?');
-		$statement->bindParam(1, $id);
-		$statement->execute();
-
-		if($rs = $statement->fetch(PDO::FETCH_OBJ))
-			$user=new User($rs->idUser, $rs->login, $rs->pwd, getAuthById($rs->idAuth));
-	} catch (PDOException $e) {
-		die('Error!: ' . $e->getMessage() . '<br/>');
-	}
-	return $user;
-}
-
-function getUserByLogin ($login) {
-	$user = null;
-
-	try {
-		$connect = connect();
-		$statement = $connect->prepare('SELECT * FROM user where login=?');
-		$statement->bindParam(1, $login);
-		$statement->execute();
-
-		if($rs = $statement->fetch(PDO::FETCH_OBJ))
-			$user=new User($rs->idUser, $rs->login, $rs->pwd, getAuthById($rs->idAuth));
-	} catch (PDOException $e) {
-		die('Error!: ' . $e->getMessage() . '<br/>');
-	}
-	return $user;
-}
-
-function randomPassword( $length = 8 ) {
-	$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:?";
-	$password = substr( str_shuffle( $chars ), 0, $length );
-	return $password;
 }
 ?>

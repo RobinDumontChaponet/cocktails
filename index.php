@@ -1,16 +1,10 @@
 <?php
-define('CONTROLLERS_INC', dirname(__FILE__).'/controllers/');
-define('MODELS_INC', dirname(__FILE__).'/models/');
-define('VIEWS_INC', dirname(__FILE__).'/views/');
 
-function __autoload($className) {
-    include MODELS_INC.$className.'.class.php';
-}
-
-include_once(dirname(__FILE__).'/includes/dbConnection.inc.php');
+require_once 'conf.inc.php';
+require_once 'SPDO.class.php';
 
 session_start();
-if (!isset($_SESSION['trombiUser']) || $_SESSION['trombiUser']=='') {
+if (!isset($_SESSION['cocktailsUser']) || $_SESSION['cocktailsUser']=='') {
 	header ('Location: connection.php');
 	exit();
 }
@@ -63,8 +57,8 @@ if($matches[1]) {
 <!--[if gt IE 8]><html class="get-ie9" xmlns="http://www.w3.org/1999/xhtml"><![endif]-->
   <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<base href="<?php echo dirname($_SERVER['PHP_SELF']).'/' ?>" />
-    <title><?php echo $title; ?></title>
+	<base href="<?php echo dirname($_SERVER['PHP_SELF']).'/' ?>">
+	<title>Cocktails<?php if(!empty($title)) echo ' | '.$title; ?></title>
 	<meta name="msapplication-TileColor" content="#FFF">
 	<link rel="stylesheet" type="text/css" href="style/reset.min.css">
 	<link rel="stylesheet" type="text/css" href="style/style.css">

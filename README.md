@@ -12,34 +12,34 @@ Une histoire d'utilisateur et de données stockés
 
 
 ## controllers /
-connection.php --> Page used to connect
-home.php          --> Home page
-account.php      --> Manage account
-registration.php --> Register an account
-favorites.php     --> Allows user to see their "favorites"
-cocktails[/?categorie/sub/aliment]
+- connection.php --> Page used to connect
+- home.php          --> Home page
+- account.php      --> Manage account
+- registration.php --> Register an account
+- favorites.php     --> Allows user to see their "favorites"
+- cocktails[/?categorie/sub/aliment]
 
 
 
 ## views /
-connection.php --> Page used to connect
-home.php          --> Home page
-account.php      --> Manage account
-registration.php --> Register an account
-favorites.php     --> Allows user to see their "favorites"
-cocktails[/?categorie/sub/aliment]
+- connection.php --> Page used to connect
+- home.php          --> Home page
+- account.php      --> Manage account
+- registration.php --> Register an account
+- favorites.php     --> Allows user to see their "favorites"
+- cocktails[/?categorie/sub/aliment]
 
 ## data /
-Photos/
-Ex : Black_velvet.jpg, Bloody_mary.jpg
+- Photos/
+  Ex : Black_velvet.jpg, Bloody_mary.jpg
 
 ## models /
-User
-Cocktail
+- User
+- Cocktail
 
 ## includes /
-Donnees.inc.php
-passwordhash.inc.php
+- Donnees.inc.php
+- passwordhash.inc.php
 
 
 

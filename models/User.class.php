@@ -1,6 +1,8 @@
 <?php
 
 class User {
+
+	// Variables
 	private $id;
 	private $login;
 	private $password;
@@ -14,6 +16,7 @@ class User {
 	private $city;
 	private $phoneNumber;
 
+	// Constructors
 	public function __construct ($id='', $login='', $password='', $firstName='', $lastName='', $sex='', $email='', $birthDate='', $address='', $postalCode='', $city='', $phoneNumber='') {
 		$this->id=$id;
 		$this->login=$login;
@@ -29,6 +32,7 @@ class User {
 		$this->phoneNumber=$phoneNumber;
 	}
 
+	// Getters
 	public function getId () {
 		return $this->id;
 	}
@@ -66,7 +70,7 @@ class User {
 		return $this->phoneNumber;
 	}
 
-
+	// Setters
 	public function setId ($id) {
 		$this->id=$id;
 	}
@@ -76,34 +80,35 @@ class User {
 	public function setPassword ($password) {
 		$this->password=$password;
 	}
-	public function getFirstName ($firstName) {
+	public function setFirstName ($firstName) {
 		$this->firstName=$firstName;
 	}
-	public function getLastName ($lastName) {
+	public function setLastName ($lastName) {
 		$this->lastName=$lastName;
 	}
-	public function getSex ($sex) {
+	public function setSex ($sex) {
 		$this->sex=$sex;
 	}
-	public function getEmail ($email) {
+	public function setEmail ($email) {
 		$this->email=$email;
 	}
-	public function getBirthDate ($birthDate) {
+	public function setBirthDate ($birthDate) {
 		$this->birthDate=$birthDate;
 	}
-	public function getAddress ($address) {
+	public function setAddress ($address) {
 		$this->address=$address;
 	}
-	public function getPostalCode ($postalCode) {
+	public function setPostalCode ($postalCode) {
 		$this->postalCode=$postalCode;
 	}
-	public function getCity ($city) {
+	public function setCity ($city) {
 		$this->city=$city;
 	}
-	public function getPhoneNumber ($phoneNumber) {
+	public function setPhoneNumber ($phoneNumber) {
 		$this->phoneNumber=$phoneNumber;
 	}
 
+	// Functions
 	public function __toString () {
 		return 'User [ id: '.$this->id.'; login: '.$this->login.'; , $firstName:'.$this->firstName.'; $lastName:'.$this->lastName.'; $sex:'.$this->sex.'; $email:'.$this->email.'; $birthDate:'.$this->birthDate.'; $address:'.$this->address.'; $postalCode:'.$this->postalCode.'; $city:'.$this->city.'; $phoneNumber:'.$this->phoneNumber.' ]';
 	}

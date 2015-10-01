@@ -1,7 +1,7 @@
 <?php
 
-require_once 'conf.inc.php';
-require_once 'SPDO.class.php';
+require_once 'includes/conf.inc.php';
+require_once 'includes/SPDO.class.php';
 
 session_start();
 if (!isset($_SESSION['cocktailsUser']) || $_SESSION['cocktailsUser']=='') {
@@ -70,7 +70,7 @@ if($matches[1]) {
   </head>
   <body>
     <div id="wrapper">
-	  <?php include_once('menu.inc.php');
+	  <?php include_once('header.inc.php');
 	  echo $inc; ?>
 	</div>
   </body>

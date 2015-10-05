@@ -3,13 +3,13 @@
 /*
  * Architecture-relative
  */
-define('ROOT_PATH', dirname(__FILE__));
+define('ROOT_PATH', dirname(dirname(__FILE__)));
 define('CONTROLLERS_INC', ROOT_PATH.'/controllers/');
 define('MODELS_INC', ROOT_PATH.'/models/');
 define('VIEWS_INC', ROOT_PATH.'/views/');
 define('DATA_PATH', ROOT_PATH.'/data/');
 
-define('SELF', dirname($_SERVER['PHP_SELF']).'/');
+define('SELF', (dirname($_SERVER['PHP_SELF']) == '/' ? '' : dirname($_SERVER['PHP_SELF'])));
 
 /** Autoload **/
 function __autoload($className) {

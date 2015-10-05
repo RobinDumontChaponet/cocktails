@@ -3,7 +3,6 @@
 class User {
 
 	// Variables
-	private $id;
 	private $login;
 	private $password;
 	private $firstName;
@@ -17,8 +16,7 @@ class User {
 	private $phoneNumber;
 
 	// Constructors
-	public function __construct ($id='', $login='', $password='', $firstName='', $lastName='', $sex='', $email='', $birthDate='', $address='', $postalCode='', $city='', $phoneNumber='') {
-		$this->id=$id;
+	public function __construct ($login='', $password='', $firstName='', $lastName='', $sex='', $email='', $birthDate='', $address='', $postalCode='', $city='', $phoneNumber='') {
 		$this->login=$login;
 		$this->password=$password;
 		$this->firstName=$firstName;
@@ -33,9 +31,6 @@ class User {
 	}
 
 	// Getters
-	public function getId () {
-		return $this->id;
-	}
 	public function getLogin () {
 		return $this->login;
 	}
@@ -71,9 +66,6 @@ class User {
 	}
 
 	// Setters
-	public function setId ($id) {
-		$this->id=$id;
-	}
 	public function setLogin ($login) {
 		$this->login=$login;
 	}
@@ -110,7 +102,7 @@ class User {
 
 	// Functions
 	public function __toString () {
-		return 'User [ id: '.$this->id.'; login: '.$this->login.'; , $firstName:'.$this->firstName.'; $lastName:'.$this->lastName.'; $sex:'.$this->sex.'; $email:'.$this->email.'; $birthDate:'.$this->birthDate.'; $address:'.$this->address.'; $postalCode:'.$this->postalCode.'; $city:'.$this->city.'; $phoneNumber:'.$this->phoneNumber.' ]';
+		return 'User [ login: '.$this->login.'; , $firstName:'.$this->firstName.'; $lastName:'.$this->lastName.'; $sex:'.$this->sex.'; $email:'.$this->email.'; $birthDate:'.$this->birthDate.'; $address:'.$this->address.'; $postalCode:'.$this->postalCode.'; $city:'.$this->city.'; $phoneNumber:'.$this->phoneNumber.' ]';
 	}
 
 

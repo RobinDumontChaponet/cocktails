@@ -4,85 +4,71 @@ require_once 'SPDO.class.php';
 require MODELS_INC.'User.class.php';
 
 class UserDAO {
-	public function create ($user) {
+	const tableName = 'User';
+
+	public static function create ($user) {
 		try {
-			$statement = SPDO::getInstance()->prepare('INSERT INTO user (idAuth, login, pwd) values (?, ?, ?)');
-			$statement->bindParam(1, $user->getAuth()->getId());
-			$statement->bindParam(2, $user->getLogin());
-			$statement->bindParam(3, $user->getPwd());
+			$statement = SPDO::getInstance()->prepare('INSERT INTO '.self::tableName.' (login, password) values (?, ?)');
+			$statement->bindParam(1, $user->getLogin());
+			$statement->bindParam(2, $user->getPassword());
 			$statement->execute();
 
 			return $connect->lastInsertId();
 		} catch (PDOException $e) {
-			die('Error create user!: ' . $e->getMessage() . '<br/>');
+			die('Error create User : ' . $e->getMessage() . '<br/>');
 		}
 	}
 
-	public function update ($user) {
+	public static function update ($user) {
 		try {
-			$statement = SPDO::getInstance()->prepare('UPDATE user SET idAuth=?, login=?, pwd=? WHERE idUser=?');
-			$statement->bindParam(1, $user->getAuth()->getId());
+			$statement = SPDO::getInstance()->prepare('UPDATE '.self::tableName.' SET password=? WHERE login=?');
+			$statement->bindParam(1, $user->getPassword());
 			$statement->bindParam(2, $user->getLogin());
-			$statement->bindParam(3, $user->getPwd());
-			$statement->bindParam(4, $user->getId());
 			$statement->execute();
 
 			return $connect->lastInsertId();
 		} catch (PDOException $e) {
-			die('Error update user!: ' . $e->getMessage() . '<br/>');
+			die('Error update User : ' . $e->getMessage() . '<br/>');
 		}
 	}
 
-	public function delete ($user) {
+	public static function delete ($user) {
 		try {
-			$statement = SPDO::getInstance()->prepare('DELETE FROM user WHERE idUser=?');
-			$statement->bindParam(1, $user->getId());
+			$statement = SPDO::getInstance()->prepare('DELETE FROM '.self::tableName.' WHERE login=?');
+			$statement->bindParam(1, $user->getLogin());
 			$statement->execute();
 		} catch (PDOException $e) {
-			die('Error delete user!: ' . $e->getMessage() . '<br/>');
+			die('Error delete User : ' . $e->getMessage() . '<br/>');
 		}
 	}
 
-	public function getAll () {
+	public static function getAll () {
 		$users = array();
 		try {
-			$statement = SPDO::getInstance()->prepare('SELECT * FROM user');
+			$statement = SPDO::getInstance()->prepare('SELECT * FROM '.self::tableName.'');
 
 			$statement->execute();
 
 			while ($rs = $statement->fetch(PDO::FETCH_OBJ))
-				$users[]=new User($rs->idUser, $rs->login, $rs->pwd, getAuthById($rs->idAuth));
+				$users[]=new User($rs->login, $rs->password);
 		} catch (PDOException $e) {
-			die('Error!: ' . $e->getMessage() . '<br/>');
+			die('Error : ' . $e->getMessage() . '<br/>');
 		}
 		return $users;
 	}
 
-	public function getById ($id) {
-		$user = null;
-		try {
-			$statement = SPDO::getInstance()->prepare('SELECT * FROM user where idUser=?');
-			$statement->bindParam(1, $id);
-			$statement->execute();
-
-			if($rs = $statement->fetch(PDO::FETCH_OBJ))
-				$user=new User($rs->idUser, $rs->login, $rs->pwd, getAuthById($rs->idAuth));
-		} catch (PDOException $e) {
-			die('Error!: ' . $e->getMessage() . '<br/>');
-		}
-		return $user;
-	}
-
-	public function getByLogin ($login) {
+	public static function getByLogin ($login) {
 		$user = null;
 
+		var_dump('argh2');
+
 		try {
-			$statement = SPDO::getInstance()->prepare('SELECT * FROM user where login=?');
+			$statement = SPDO::getInstance()->prepare('SELECT * FROM User where login=?');
 			$statement->bindParam(1, $login);
 			$statement->execute();
 
 			if($rs = $statement->fetch(PDO::FETCH_OBJ))
-				$user=new User($rs->idUser, $rs->login, $rs->pwd, getAuthById($rs->idAuth));
+				$user=new User($rs->login, $rs->password);
 		} catch (PDOException $e) {
 			die('Error!: ' . $e->getMessage() . '<br/>');
 		}

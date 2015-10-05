@@ -1,10 +1,10 @@
 <header>
-	<h1><a href="#"><span>Cocktails</span></a></h1>
+	<h1><a href="<?= SELF ?>/"><span>Cocktails</span></a></h1>
 	<nav>
 		<ul>
-			<li><a href="#" ><span>Toutes les recettes</span></a>
+			<li><a href="recipes" ><span>Toutes les recettes</span></a>
 				<ul>
-					<li><a href="#">Mes favoris</a></li>
+					<li><a href="favorites">Mes favoris</a></li>
 				</ul>
 			</li>
 
@@ -13,7 +13,7 @@
 			<?php } else { ?>
 			<li><a href="profile"><?= $_SESSION['cocktailsUser']->getLogin() ?></a>
 				<ul>
-					<li><a href="parameter">Réglages</a></li>
+					<li><a href="settings">Réglages</a></li>
 					<li><a href="logout">Se déconnecter</a></li>
 				</ul>
 			</li>

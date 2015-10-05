@@ -1,7 +1,7 @@
 <?php
 
 /*
-switch ($_SESSION['trombiUser']->getAuth()->getId()) {
+switch ($_SESSION['cocktailsUser']->getAuth()->getId()) {
 	case 0 :
 		include_once(CONTROLLERS_INC.'groups.php');
 	break;

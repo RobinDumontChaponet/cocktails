@@ -16,9 +16,9 @@ class User {
 	private $phoneNumber;
 
 	// Constructors
-	public function __construct ($login='', $password='', $firstName='', $lastName='', $sex='', $email='', $birthDate='', $address='', $postalCode='', $city='', $phoneNumber='') {
+	public function __construct ($login, $password='', $firstName='', $lastName='', $sex='', $email='', $birthDate='', $address='', $postalCode='', $city='', $phoneNumber='') {
 		$this->login=$login;
-		$this->password=$password;
+		$this->password=(empty($password))?self::randomPassword():$password;
 		$this->firstName=$firstName;
 		$this->lastName=$lastName;
 		$this->sex=$sex;

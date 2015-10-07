@@ -8,8 +8,8 @@ class Favorite {
 
 
 	// Constructors
-	public function __construct ($login='', $recipeId='') {
-		$this->login=$login;
+	public function __construct ($user, $recipeId) {
+		$this->login=$user->getLogin();
 		$this->recipeId=$recipeId;
 	}
 
@@ -22,6 +22,9 @@ class Favorite {
 	}
 
 	// Setters
+	public function setUser ($user) {
+		$this->login=$user->getLogin();
+	}
 	public function setLogin ($login) {
 		$this->login=$login;
 	}
@@ -31,7 +34,7 @@ class Favorite {
 
 	// Functions
 	public function __toString () {
-		return 'Favorite [ login: '.$this->login.'; , $recipeId:'.$this->recipeId.' ]';
+		return 'Favorite [ login: '.$this->login.'; recipeId:'.$this->recipeId.' ]';
 	}
 }
 ?>

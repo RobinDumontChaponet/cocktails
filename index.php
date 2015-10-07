@@ -64,9 +64,9 @@ if($matches[1]) {
 <?php echo $script; ?>
 </head>
 <body>
-	<div id="wrapper">
-		<?php include_once('header.part.inc.php');
-		echo $inc; ?>
-	</div>
+<div id="wrapper">
+	<?php include_once('header.part.inc.php');
+	echo $inc.PHP_EOL; ?>
+</div>
 </body>
 </html>

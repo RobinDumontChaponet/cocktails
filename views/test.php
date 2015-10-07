@@ -4,7 +4,8 @@
 
 	<?php
 
-	var_dump($recipes);
+	foreach($recipes as $recipe)
+		echo $recipe.'<br />'.PHP_EOL;
 
 	?>
 

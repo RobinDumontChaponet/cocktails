@@ -2,7 +2,7 @@
 
 require_once MODELS_INC.'RecipeDAO.class.php';
 
-$recipes = RecipeDAO::getByIngredient('Malibu');
+$recipes = RecipeDAO::getAll();
 
 include VIEWS_INC.'recipes.php';
 

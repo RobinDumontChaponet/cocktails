@@ -18,7 +18,7 @@ class FavoriteDAO {
 		try {
 			$statement = SPDO::getInstance()->prepare('INSERT INTO '.self::tableName.' (login, recipeId) values (?, ?)');
 			$statement->bindValue(1, $favorite->getLogin());
-			$statement->bindValue(2, $favorite->getRecipeId());
+			$statement->bindValue(2, $favorite->getRecipe()->getId());
 			$statement->execute();
 
 			return $connect->lastInsertId();
@@ -33,7 +33,7 @@ class FavoriteDAO {
 	public static function update ($favorite) {
 		try {
 			$statement = SPDO::getInstance()->prepare('UPDATE '.self::tableName.' SET recipeId=? WHERE login=?');
-			$statement->bindValue(1, $favorite->getRecipeId());
+			$statement->bindValue(1, $favorite->getRecipe()->getId());
 			$statement->bindValue(2, $favorite->getLogin());
 			$statement->execute();
 
@@ -55,7 +55,7 @@ class FavoriteDAO {
 		try {
 			$statement = SPDO::getInstance()->prepare('DELETE FROM '.self::tableName.' WHERE login=? AND recipeId=?');
 			$statement->bindValue(1, $favorite->getLogin());
-            $statement->bindValue(2, $favorite->getRecipeId());
+            $statement->bindValue(2, $favorite->getRecipe()->getId());
 			$statement->execute();
 		} catch (PDOException $e) {
 			die('Error delete Favorite : ' . $e->getMessage() . '<br/>');
@@ -75,8 +75,10 @@ class FavoriteDAO {
 			$statement = SPDO::getInstance()->prepare('SELECT * FROM '.self::tableName.'');
 			$statement->execute();
 
-			while ($rs = $statement->fetch(PDO::FETCH_OBJ))
-				$favorites[] = new Favorite((object)array('login' => $rs->login), $rs->recipeId);
+			while ($rs = $statement->fetch(PDO::FETCH_OBJ)) {
+				$recipe = RecipeDAO::getById($rs->recipeId);
+				$favorites[] = new Favorite((object)array('login' => $rs->login), $recipe);
+			}
 		} catch (PDOException $e) {
 			die('Error : ' . $e->getMessage() . '<br/>');
 		}
@@ -99,8 +101,10 @@ class FavoriteDAO {
 			$statement->bindValue(1, $user->getLogin());
 			$statement->execute();
 
-			if($rs = $statement->fetch(PDO::FETCH_OBJ))
-				$favorites[] = new Favorite($user, $rs->recipeId);
+			if($rs = $statement->fetch(PDO::FETCH_OBJ)) {
+				$recipe = RecipeDAO::getById($rs->recipeId);
+				$favorites[] = new Favorite($user, $recipe);
+			}
 		} catch (PDOException $e) {
 			die('Error!: ' . $e->getMessage() . '<br/>');
 		}

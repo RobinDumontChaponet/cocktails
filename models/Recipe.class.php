@@ -38,9 +38,22 @@ class Recipe { // This class is just a wrapper to access Recipes (in data/Donnee
 		return $this->getData()['index'];  // @TODO ?
 	}
 
-	// Functions
+	// Methods
 	public function __toString () {
-		return 'Recipe(wrapper) [ ... ]';
+		//return ' Recipe(wrapper) [ title: '.$this->getTitle().'; quantities: '.$this->getQuantities().'; instructions: '.$this->getInstructions().'; ingredients: '.$this->getIngredients().' ] ';
+
+		$str = '<article class="recipe">'.PHP_EOL;
+		$str.= '	<h1>'.$this->getTitle().'</h1>'.PHP_EOL; // Titre
+		$str.= '	<p> Ingrédients : '.$this->getQuantities().'</p>'.PHP_EOL;
+		$str.= '	<p> Préparation : '.$this->getInstructions().'</p>'.PHP_EOL;
+		$str.= '	<p>Index : </p>'.PHP_EOL;
+		$str.= '	<ul>'.PHP_EOL;
+		foreach ($this->getIngredients() as $index)
+				$str.= '		<li><a href="#">'.$index.'</a></li>'.PHP_EOL;
+		$str.= '	</ul>'.PHP_EOL;
+		$str.= '</article>'.PHP_EOL;
+
+		return $str;
 	}
 }
 

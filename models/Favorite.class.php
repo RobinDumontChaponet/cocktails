@@ -4,21 +4,21 @@ class Favorite {
 
 	// Variables
 	private $login;
-	private $recipeId;
+	private $recipe;
 
 
 	// Constructors
-	public function __construct ($user, $recipeId) {
+	public function __construct ($user, $recipe) {
 		$this->login=$user->getLogin();
-		$this->recipeId=$recipeId;
+		$this->recipe=$recipe;
 	}
 
 	// Getters
 	public function getLogin () {
 		return $this->login;
 	}
-	public function getRecipeId () {
-		return $this->recipeId;
+	public function getRecipe () {
+		return $this->recipe;
 	}
 
 	// Setters
@@ -28,13 +28,23 @@ class Favorite {
 	public function setLogin ($login) {
 		$this->login=$login;
 	}
-	public function setRecipeId ($recipeId) {
-		$this->recipeId=$recipeId;
+	public function setRecipe ($recipe) {
+		$this->recipe=$recipe;
 	}
 
-	// Functions
+	// Methods
 	public function __toString () {
-		return 'Favorite [ login: '.$this->login.'; recipeId:'.$this->recipeId.' ]';
+		//return 'Favorite [ login: '.$this->login.'; recipe:'.$this->recipe.' ]';
+
+		$str = '<article class="favorite">'.PHP_EOL;
+		$str.= '		<h1>'.$this->getRecipe()->getTitle().'</h1>'; // Titre
+
+		$str.= '<a href="#" title="">x</a>'.PHP_EOL;
+
+		$str.= '	</article>'.PHP_EOL;
+
+		return $str;
 	}
 }
+
 ?>

@@ -1,7 +1,7 @@
 <?php
 
 require_once 'SPDO.class.php';
-require MODELS_INC.'User.class.php';
+require_once MODELS_INC.'User.class.php';
 
 class UserDAO {
 	const tableName = 'User';
@@ -59,8 +59,6 @@ class UserDAO {
 
 	public static function getByLogin ($login) {
 		$user = null;
-
-		var_dump('argh2');
 
 		try {
 			$statement = SPDO::getInstance()->prepare('SELECT * FROM User where login=?');

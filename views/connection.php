@@ -16,5 +16,5 @@
 			<!--<br /><a href="#" title="mot de passe oublié ?">mot de passe oublié ?</a>-->
 		<?php } ?>
 		</fieldset>
-</form>
+	</form>
 </div>

@@ -8,12 +8,20 @@ class UserDAO {
 
 	public static function create ($user) {
 		try {
-			$statement = SPDO::getInstance()->prepare('INSERT INTO '.self::tableName.' (login, password) values (?, ?)');
+			$statement = SPDO::getInstance()->prepare('INSERT INTO '.self::tableName.' (login, password, firstName, lastName, sex, email, birthDate, address, postalCode, city, phoneNumber ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
 			$statement->bindParam(1, $user->getLogin());
 			$statement->bindParam(2, $user->getPassword());
+			$statement->bindParam(3, $user->getFirstName());
+			$statement->bindParam(4, $user->getLastName());
+			$statement->bindParam(5, $user->getSex());
+			$statement->bindParam(6, $user->getEmail());
+			$statement->bindParam(7, $user->getBirthDate());
+			$statement->bindParam(8, $user->getAddress());
+			$statement->bindParam(9, $user->getPostalCode());
+			$statement->bindParam(10, $user->getCity());
+			$statement->bindParam(11, $user->getPhoneNumber());
 			$statement->execute();
 
-			return $connect->lastInsertId();
 		} catch (PDOException $e) {
 			die('Error create User : ' . $e->getMessage() . '<br/>');
 		}

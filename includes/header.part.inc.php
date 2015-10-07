@@ -13,7 +13,6 @@
 			<?php } else { ?>
 			<li><a href="profile"><?= $_SESSION['cocktailsUser']->getLogin() ?></a>
 				<ul>
-					<li><a href="settings">Réglages</a></li>
 					<li><a href="logout">Se déconnecter</a></li>
 				</ul>
 			</li>

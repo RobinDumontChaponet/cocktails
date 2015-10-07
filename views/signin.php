@@ -2,6 +2,9 @@
 
 <div>
     <section>
+        <?php if ( $_POST && $errorExistingLogin ) {
+            echo '<p>Ce nom de compte existe déjà</p>';
+        } ?>
         <form method="post">
             <section>
                 <label for="login">Nom d'utilisateur</label>
@@ -28,6 +31,7 @@
 
                 <label for="sex">Sexe</label>
                 <select name="sex">
+                    <option value=''></option>
                     <option value="m">Homme</option>
                     <option value="f">Femme</option>
                 </select>

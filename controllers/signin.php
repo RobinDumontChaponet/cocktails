@@ -1,9 +1,15 @@
 <?php
+if (isset($_SESSION['cocktailsUser'])) // So that a user that is connected cannot create an account without disconnecting first
+	header ('Location: index');
 
 if( $_POST ) {
         if( isset($_POST['login']) && strlen($_POST['login']) >= 5  ) {
         $existingLogin = UserDAO::getByLogin($_POST['login']);
-        var_dump($existingLogin);
+        if( $existingLogin != NULL ) {
+            $errorExistingLogin = true;
+        } else {
+            $errorExistingLogin = false;
+        }
         $login = $_POST['login'];
         $valid['login'] = true;
     } else {
@@ -26,14 +32,14 @@ if( $_POST ) {
 
     if( $valid['login'] && $valid['password'] ) {
         require_once MODELS_INC.'UserDAO.class.php';
-        include('passwordHash.inc.php');
-        $password = create_hash($password);
-        $newUser = new User($login, $password, $_POST['firstName'], $_POST['lastName'], $_POST['sex'], $_POST['email'], $_POST['birthDate'], $_POST['address'], $_POST['postalCode'], $_POST['city'], $_POST['phoneNumber']);
-        //var_dump($newUser);
-        //UserDAO::create($newUser);
-        //header('Location: connection');
+        require_once 'passwordHash.inc.php';
+        if ( !$errorExistingLogin ) {
+            $password = create_hash($password);
+            $newUser = new User($login, $password, $_POST['firstName'], $_POST['lastName'], $_POST['sex'], $_POST['email'], $_POST['birthDate'], $_POST['address'], $_POST['postalCode'], $_POST['city'], $_POST['phoneNumber']);
+            UserDAO::create($newUser);
+            header('Location: connection');
+        }
     }
-
 }
 
 

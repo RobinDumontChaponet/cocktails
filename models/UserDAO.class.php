@@ -74,7 +74,7 @@ class UserDAO {
 			$statement->execute();
 
 			if($rs = $statement->fetch(PDO::FETCH_OBJ))
-				$user=new User($rs->login, $rs->password);
+				$user=new User($rs->login, $rs->password, $rs->firstName, $rs->lastName, $rs->sex, $rs->email, $rs->birthDate, $rs->address, $rs->postalCode, $rs->city, $rs->phoneNumber);
 		} catch (PDOException $e) {
 			die('Error!: ' . $e->getMessage() . '<br/>');
 		}

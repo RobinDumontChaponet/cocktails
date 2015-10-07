@@ -1,4 +1,6 @@
 <?php
+if (isset($_SESSION['cocktailsUser'])) // So that a user that is connected cannot create an account without disconnecting first
+	header ('Location: index');
 
 if( $_POST ) {
         if( isset($_POST['login']) && strlen($_POST['login']) >= 5  ) {

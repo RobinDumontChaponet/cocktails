@@ -6,7 +6,6 @@ class Favorite {
 	private $login;
 	private $recipe;
 
-
 	// Constructors
 	public function __construct ($user, $recipe) {
 		$this->login=$user->getLogin();
@@ -34,7 +33,7 @@ class Favorite {
 
 	// Methods
 	public function __toString () {
-		//return 'Favorite [ login: '.$this->login.'; recipe:'.$this->recipe.' ]';
+		//return ' Favorite(Wrapper) [ login: '.$this->login.'; recipe:'.$this->recipe.' ] ';
 
 		$str = '<article class="favorite">'.PHP_EOL;
 		$str.= '		<h1>'.$this->getRecipe()->getTitle().'</h1>'; // Titre

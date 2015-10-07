@@ -4,12 +4,12 @@
  * Architecture-relative
  */
 define('ROOT_PATH', dirname(dirname(__FILE__)));
+define('SELF', (dirname($_SERVER['PHP_SELF']) == '/' ? '' : dirname($_SERVER['PHP_SELF'])));
 define('CONTROLLERS_INC', ROOT_PATH.'/controllers/');
 define('MODELS_INC', ROOT_PATH.'/models/');
 define('VIEWS_INC', ROOT_PATH.'/views/');
 define('DATA_PATH', ROOT_PATH.'/data/');
-
-define('SELF', (dirname($_SERVER['PHP_SELF']) == '/' ? '' : dirname($_SERVER['PHP_SELF'])));
+define('WEB_DATA', SELF.'data/');
 
 /** Autoload **/
 function __autoload($className) {

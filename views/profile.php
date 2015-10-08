@@ -15,8 +15,8 @@
             <option value="f" <?php if ($user->getSex() == 'f') { echo 'selected'; }?>>Femme</option>
         </select>
 
-        <label for="mail">Adresse mail</label>
-        <input type="text" name="mail" placeholder="mail" value=<?php echo $user->getEmail(); ?>>
+        <label for="email">Adresse mail</label>
+        <input type="text" name="email" placeholder="mail" value=<?php echo $user->getEmail(); ?>>
 
 		<label for="birthDate">Date de naissance</label>
         <input type="date" name="birthDate" value=<?php echo $user->getBirthDate(); ?>>

@@ -29,12 +29,19 @@ class UserDAO {
 
 	public static function update ($user) {
 		try {
-			$statement = SPDO::getInstance()->prepare('UPDATE '.self::tableName.' SET password=? WHERE login=?');
+			$statement = SPDO::getInstance()->prepare('UPDATE '.self::tableName.' SET password=?, firstName=?, lastName=?, sex=?, email=?, birthDate=?, address=?, postalCode=?, city=?, phoneNumber=?  WHERE login=?');
 			$statement->bindParam(1, $user->getPassword());
-			$statement->bindParam(2, $user->getLogin());
+			$statement->bindParam(2, $user->getFirstName());
+			$statement->bindParam(3, $user->getLastName());
+			$statement->bindParam(4, $user->getSex());
+			$statement->bindParam(5, $user->getEmail());
+			$statement->bindParam(6, $user->getBirthDate());
+			$statement->bindParam(7, $user->getAddress());
+			$statement->bindParam(8, $user->getPostalCode());
+			$statement->bindParam(9, $user->getCity());
+			$statement->bindParam(10, $user->getPhoneNumber());
+			$statement->bindParam(11, $user->getLogin());
 			$statement->execute();
-
-			return $connect->lastInsertId();
 		} catch (PDOException $e) {
 			die('Error update User : ' . $e->getMessage() . '<br/>');
 		}

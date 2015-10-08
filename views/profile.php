@@ -1,4 +1,4 @@
-<!--meta title="Votre profil"-->
+<!--meta title="Profil"-->
 
 <div id="content">
 	<form method="post">

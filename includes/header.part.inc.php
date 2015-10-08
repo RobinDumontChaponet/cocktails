@@ -1,12 +1,9 @@
 <header>
 	<h1><a href="<?= SELF ?>/"><span>Cocktails</span></a></h1>
-	<nav>
+	<nav id="menu">
 		<ul>
-			<li><a href="recipes" ><span>Toutes les recettes</span></a>
-				<ul>
-					<li><a href="favorites">Mes favoris</a></li>
-				</ul>
-			</li>
+			<li><a href="recipes" ><span>Toutes les recettes</span></a></li>
+			<li><a href="favorites">Mes favoris</a></li>
 
 			<?php if(empty($_SESSION['cocktailsUser'])) { ?>
 			<li><a href="connection"><span>Se connecter</span></a></li>

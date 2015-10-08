@@ -44,8 +44,10 @@ if( $_POST ) {
         $user->setPhoneNumber($_POST['phoneNumber']);
         $modified = true;
     }
-    UserDAO::update($user);
-    header ('Location: profile');
+    if( $modified ) {
+        UserDAO::update($user);
+        header ('Location: profile');
+    }
 }
 
 include(VIEWS_INC.'profile.php');

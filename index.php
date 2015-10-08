@@ -15,7 +15,7 @@ function get_include_contents($filename) {
 }
 
 if(empty($_GET['requ']))
-	$_GET['requ']='index';
+	$_GET['requ']='recipes';
 
 if(is_file(CONTROLLERS_INC.$_GET['requ'].'.php'))
 	$inc = get_include_contents(CONTROLLERS_INC.$_GET['requ'].'.php');
@@ -56,7 +56,7 @@ if($matches[1]) {
 <title>Cocktails<?php if(!empty($title)) echo ' | '.$title; ?></title>
 <meta name="msapplication-TileColor" content="#FFF">
 <link rel="stylesheet" type="text/css" href="style/reset.min.css">
-<link rel="stylesheet" type="text/css" href="style/style.css">
+<link rel="stylesheet" type="text/css" href="style/style.combined.css">
 <?php echo $link; ?>
 <!--[if lt IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <script type="text/javascript" src="script/polyShims.js"></script>

@@ -37,7 +37,7 @@ if( $_POST ) {
             $password = create_hash($password);
             $newUser = new User($login, $password, $_POST['firstName'], $_POST['lastName'], $_POST['sex'], $_POST['email'], $_POST['birthDate'], $_POST['address'], $_POST['postalCode'], $_POST['city'], $_POST['phoneNumber']);
             UserDAO::create($newUser);
-            header('Location: connection');
+            header('Location: login');
         }
     }
 }

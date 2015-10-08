@@ -6,7 +6,7 @@
 			<li><a href="favorites">Mes favoris</a></li>
 
 		<?php if(empty($_SESSION['cocktailsUser'])) { ?>
-			<li <?= ($_GET['requ']=='connection')?' class="active" ':'' ?>><a href="connection"><span>Se connecter</span></a></li>
+			<li <?= ($_GET['requ']=='login')?' class="active" ':'' ?>><a href="login"><span>Se connecter</span></a></li>
 		<?php } else { ?>
 			<li<?= ($_GET['requ']=='profile')?' class="active" ':'' ?> id="userLi" class="sub"><a href="profile"><?= $_SESSION['cocktailsUser']->getLogin() ?></a>
 				<ul>

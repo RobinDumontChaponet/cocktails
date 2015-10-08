@@ -16,7 +16,7 @@ if (isset($_SESSION['cocktailsUser']) && get_class($_SESSION['cocktailsUser']) !
 	header ('Location: index');
 elseif (isset($_POST['submit'])) {
 	if ($_POST['user']=='' || $_POST['password']=='') $badinput=true;
-	else {
+	elseif(!$bot) {
 		require MODELS_INC.'UserDAO.class.php';
 		require 'validate.transit.inc.php';
 		require 'passwordHash.inc.php';
@@ -35,6 +35,6 @@ elseif (isset($_POST['submit'])) {
 		}
 	}
 }
-include(VIEWS_INC.'connection.php');
+include(VIEWS_INC.'login.php');
 
 ?>

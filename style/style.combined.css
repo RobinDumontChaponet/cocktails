@@ -11,6 +11,7 @@ if(isset($_GET['minify']) || !file_exists('generated/'.basename(__FILE__))) {
 	include('header.part.css');
 	include('wrapper.part.css');
 	include('forms.part.css');
+	include('animations.css');
 	//include('queries.part.css');
 	//include('better-dateinput-polyfill.css');
 

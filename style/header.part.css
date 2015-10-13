@@ -17,7 +17,7 @@ header h1 {
 	padding: 5px 24px;
 }
 
-header a:before {
+header a:before, header a:after {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -36,13 +36,19 @@ a[href="all"]:before {
 header a[href="create"]:before {
 	content: "\f067";
 }
-#searchLi a:before {
+li.recipes a:before {
+	content: "\f00b";
+}
+li.favorites a:before {
+	content: "\f067";
+}
+li.search a:before {
 	content: "\f002";
 }
-#searchLi form, #searchLi span {
+li.search form, li.search span {
 	display: none!important;
 }
-#userLi a:before {
+li.user a:before {
 	content: "\f007";
 }
 a[href="profile"]:before {
@@ -54,7 +60,7 @@ li ul a[href=""]:before {
 li ul a[href="parameter"]:before {
 	content: "\f013"!important;
 }
-li ul a[href="logout"]:before {
+header a[href="login"]:before, li ul a[href="logout"]:before {
 	content: "\f011"!important;
 }
 

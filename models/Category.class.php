@@ -25,20 +25,15 @@ class Category { // This class is just a wrapper to access Recipes (in data/Donn
 	public function getId () {
 		return $this->key;
 	}
-/*
-	public function getTitle () {
-		return $this->getData()['titre'];
+
+
+	public function getSubCategory () {
+		return $this->getData()['sous-categorie'];
 	}
-	public function getQuantities () {
-		return $this->getData()['ingredients'];
+	public function getSuperCategory () {
+		return $this->getData()['super-categorie'];
 	}
-	public function getInstructions () {
-		return $this->getData()['preparation'];
-	}
-	public function getIngredients () {
-		return $this->getData()['index'];  // @TODO ?
-	}
-*/
+
 
 	// Functions
 	public function __toString () {

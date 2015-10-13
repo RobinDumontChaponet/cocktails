@@ -131,7 +131,7 @@ FileETag None
 	Header set X-XSS-Protection "1; mode=block"
 
 	## CSP
-	Header set Content-Security-Policy "script-src 'self'; object-src 'self'"
+	#Header set Content-Security-Policy "script-src 'self'; object-src 'self'"
 	# `mod_headers` cannot match based on the content-type, however,
 	# the `Content-Security-Policy` response header should be send
 	# only for HTML documents and not for the other resources.

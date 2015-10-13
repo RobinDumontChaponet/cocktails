@@ -3,8 +3,10 @@
 - redirect to last page when successfully logged-in ;
 - DAO wrapper and class(es) for "$Hierarchie" ;
 - display cocktails hierarchy ;
+- complete favorites ui/ux ;
 - verifications (and display errors to user) in forms ;
 - install.php ;
+- make profile page more like signin page (maybe ?) ;
 - that's it ?!
 
 ---

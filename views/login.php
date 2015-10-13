@@ -10,7 +10,7 @@
 			<?php if ($badinput===true) echo'<p class="badpass">Identifiant ou mot-de-passe incorrects !</p>';?>
 			<br /><br /><?php /* f****/ ?>
 			<input class="<?= ($badinput!==true)?'ok':'warning' ?>" name="submit" type="submit" value="&#xe60c; connexion" />
-			<a href="signin">Pas de compte ?</a><a href="forgot" rel="forgot_password">Mot de passe oublié ?</a>
+			<a href="signin">Pas de compte ?<br />Inscrivez-vous.</a><a href="forgot" rel="forgot_password">Mot de passe oublié ?</a>
 			<!--<br /><a href="#" title="mot de passe oublié ?">mot de passe oublié ?</a>-->
 		<?php } ?>
 	</form>

@@ -9,7 +9,7 @@
 			echo $favorite.'<br />';
 
 	if (!isset($_SESSION['cocktailsUser'])) { ?>
-        <p class="notice"><a href="connection">Connectez-vous</a> pour enregistrer vos favoris</p>
+        <p class="notice"><a href="login">Connectez-vous</a> pour enregistrer vos favoris</p>
      <?php } ?>
 
 </div>

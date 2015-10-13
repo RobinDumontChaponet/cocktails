@@ -1,3 +1,15 @@
+# @TODO
+
+- redirect to last page when successfully logged-in ;
+- DAO wrapper and class(es) for "$Hierarchie" ;
+- display cocktails hierarchy ;
+- verifications (and display errors to user) in forms ;
+- install.php ;
+- that's it ?!
+
+---
+
+
 # cocktails
 
 -> Projet PHP L3 <-

@@ -7,7 +7,7 @@ class FavoriteDAO {
 	const tableName = 'favorite';
 
 	/**
-	 * create function. Insert new entry for $favorite un db.
+	 * create function. Insert new entry for $favorite in db.
 	 *
 	 * @access public
 	 * @static
@@ -52,13 +52,15 @@ class FavoriteDAO {
 	 * @return void
 	 */
 	public static function delete ($favorite) {
-		try {
-			$statement = SPDO::getInstance()->prepare('DELETE FROM '.self::tableName.' WHERE login=? AND recipeId=?');
-			$statement->bindValue(1, $favorite->getLogin());
-            $statement->bindValue(2, $favorite->getRecipe()->getId());
-			$statement->execute();
-		} catch (PDOException $e) {
-			die('Error delete Favorite : ' . $e->getMessage() . '<br/>');
+		if(!empty($favorite)) {
+			try {
+				$statement = SPDO::getInstance()->prepare('DELETE FROM '.self::tableName.' WHERE login=? AND recipeId=?');
+				$statement->bindValue(1, $favorite->getLogin());
+	            $statement->bindValue(2, $favorite->getRecipe()->getId());
+				$statement->execute();
+			} catch (PDOException $e) {
+				die('Error delete Favorite : ' . $e->getMessage() . '<br/>');
+			}
 		}
 	}
 
@@ -77,7 +79,7 @@ class FavoriteDAO {
 
 			while ($rs = $statement->fetch(PDO::FETCH_OBJ)) {
 				$recipe = RecipeDAO::getById($rs->recipeId);
-				$favorites[] = new Favorite((object)array('login' => $rs->login), $recipe);
+				$favorites[] = new Favorite($recipe, (object)array('login' => $rs->login));
 			}
 		} catch (PDOException $e) {
 			die('Error : ' . $e->getMessage() . '<br/>');
@@ -103,7 +105,7 @@ class FavoriteDAO {
 
 			if($rs = $statement->fetch(PDO::FETCH_OBJ)) {
 				$recipe = RecipeDAO::getById($rs->recipeId);
-				$favorites[] = new Favorite($user, $recipe);
+				$favorites[] = new Favorite($recipe, $user);
 			}
 		} catch (PDOException $e) {
 			die('Error!: ' . $e->getMessage() . '<br/>');
@@ -120,7 +122,7 @@ class FavoriteDAO {
 	 * @param Favorite Objects Array - $favorites
 	 * @return void
 	 */
-	public static function setUserFavorites ($user, $favorites) {
+	public static function sync ($user, $favorites) {
 		$existingFavorites = self::getByUser($user);
 		foreach($existingFavorites as $favorite) {
 			if(($key = array_search($favorite, $favorites)) === false)
@@ -129,7 +131,35 @@ class FavoriteDAO {
 				unset($favorites[$key]);
 		}
 		foreach($favorites as $favorite) {
+			$favorite->setUser($user);
 			self::create($favorite);
+		}
+	}
+
+
+	public static function add ($recipe) {
+		if(!isset($_SESSION['cocktailsFavorites']))
+			$_SESSION['cocktailsFavorites'] = array();
+
+		$favorite = new Favorite($recipe);
+		$_SESSION['cocktailsFavorites'][] = $favorite;
+
+		self::create($favorite);
+	}
+
+	public static function remove ($recipe) {
+		if(isset($_SESSION['cocktailsFavorites'])) {
+
+			$favorite = null;
+			foreach($_SESSION['cocktailsFavorites'] as $item) {
+				if ($item->getRecipe() == $recipe) {
+					$favorite = $item;
+					break;
+				}
+			}
+			unset($favorite);
+
+			self::delete($favorite);
 		}
 	}
 }

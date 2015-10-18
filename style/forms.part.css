@@ -33,7 +33,7 @@ input, .button, button, select, textarea, input[readonly]:focus {
 	border: 1px solid rgb(175, 175, 175);
 	outline: 0;
 	border-width: 1px;
-	margin: 0 10px 0 0;
+
 	height: 30px;
 	padding: 0;
 	-webkit-box-sizing: content-box;
@@ -231,6 +231,9 @@ dd input[maxlength] {
 	width: auto;
 }
 
+input[readonly] {
+	background: rgba(255, 255, 255, .2);
+}
 
 .button {
 	width: 200px;
@@ -261,13 +264,6 @@ dd input[maxlength] {
 	cursor: pointer;
 	position: absolute;
 }
-#files_list {
-	font-size: 10px;
-	word-wrap: break-word;
-	word-break: break-all;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
 .button label {
 	box-shadow: none;
 	margin: 0;
@@ -293,22 +289,6 @@ input[type="file"] {
 	position: absolute;
 	left: -1000px;
 	visibility: hidden;
-}
-#files_list input {
-	position: relative;
-	top: 3px;
-	right: 5px;
-	background: url(close.png) no-repeat;
-	-webkit-background-size: contain;
-	-moz-background-size: contain;
-	-ms-background-size: contain;
-	-o-background-size: contain;
-	background-size: contain;
-	border: 0;
-	width: 20px;
-	height: 20px;
-	z-index: 1005;
-	cursor: pointer;
 }
 
 .modal-container {

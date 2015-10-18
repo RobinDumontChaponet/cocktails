@@ -2,10 +2,10 @@
 
 <div id="content">
 	<?php
-	if(empty($favorites))
+	if(empty($_SESSION['cocktailsFavorites']))
 		echo '<p class="sad">Aucune recette enregistrée.</p>';
 	else
-		foreach($favorites as $favorite)
+		foreach($_SESSION['cocktailsFavorites'] as $favorite)
 			echo $favorite.'<br />';
 
 	if (!isset($_SESSION['cocktailsUser'])) { ?>

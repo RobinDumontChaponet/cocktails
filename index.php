@@ -70,3 +70,7 @@ if($matches[1]) {
 </div>
 </body>
 </html>
+<?php
+if($_GET['requ']!='login')
+	$_SESSION['referrer'] = $_GET['requ'];
+?>

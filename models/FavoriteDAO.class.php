@@ -20,8 +20,6 @@ class FavoriteDAO {
 			$statement->bindValue(1, $favorite->getLogin());
 			$statement->bindValue(2, $favorite->getRecipe()->getId());
 			$statement->execute();
-
-			return $connect->lastInsertId();
 		} catch (PDOException $e) {
 			die('Error create Favorite : ' . $e->getMessage() . '<br/>');
 		}
@@ -36,8 +34,6 @@ class FavoriteDAO {
 			$statement->bindValue(1, $favorite->getRecipe()->getId());
 			$statement->bindValue(2, $favorite->getLogin());
 			$statement->execute();
-
-			return $connect->lastInsertId();
 		} catch (PDOException $e) {
 			die('Error update Favorite : ' . $e->getMessage() . '<br/>');
 		}
@@ -79,7 +75,7 @@ class FavoriteDAO {
 
 			while ($rs = $statement->fetch(PDO::FETCH_OBJ)) {
 				$recipe = RecipeDAO::getById($rs->recipeId);
-				$favorites[] = new Favorite($recipe, (object)array('login' => $rs->login));
+				$favorites[$rs->recipeId] = new Favorite($recipe, (object)array('login' => $rs->login));
 			}
 		} catch (PDOException $e) {
 			die('Error : ' . $e->getMessage() . '<br/>');
@@ -103,9 +99,9 @@ class FavoriteDAO {
 			$statement->bindValue(1, $user->getLogin());
 			$statement->execute();
 
-			if($rs = $statement->fetch(PDO::FETCH_OBJ)) {
+			while ($rs = $statement->fetch(PDO::FETCH_OBJ)) {
 				$recipe = RecipeDAO::getById($rs->recipeId);
-				$favorites[] = new Favorite($recipe, $user);
+				$favorites[$rs->recipeId] = new Favorite($recipe, $user);
 			}
 		} catch (PDOException $e) {
 			die('Error!: ' . $e->getMessage() . '<br/>');
@@ -113,8 +109,10 @@ class FavoriteDAO {
 		return $favorites;
 	}
 
+
+/* <NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE> */
 	/**
-	 * setUserFavorites function. Delete Fav in db if not in $favorites and create if not in db
+	 * sync function. Delete Fav in db if not in $favorites and create if not in db
 	 *
 	 * @access public
 	 * @static
@@ -122,6 +120,7 @@ class FavoriteDAO {
 	 * @param Favorite Objects Array - $favorites
 	 * @return void
 	 */
+/*
 	public static function sync ($user, $favorites) {
 		$existingFavorites = self::getByUser($user);
 		foreach($existingFavorites as $favorite) {
@@ -134,33 +133,74 @@ class FavoriteDAO {
 			$favorite->setUser($user);
 			self::create($favorite);
 		}
+
+	}*/
+/* </NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE> */
+
+
+
+/**
+	 * sync function. Push saved Favorites from db to $favorites and create Fav from $favorites if not already in db
+	 *
+	 * @access public
+	 * @static
+	 * @param User object - $user
+	 * @param Favorite Objects Array - $favorites
+	 * @return void
+	 */
+	public static function sync () {
+		$savedFavorites = self::getByUser($_SESSION['cocktailsUser']);
+
+		if(isset($_SESSION['cocktailsFavorites']) && count($_SESSION['cocktailsFavorites']))
+			foreach($_SESSION['cocktailsFavorites'] as $key => $favorite) {
+				if(!isset($savedFavorites[$key])) {
+					$favorite->setUser($_SESSION['cocktailsUser']);
+					self::create($favorite);
+				}
+				$savedFavorites[$key] = $favorite;
+			}
+
+		$_SESSION['cocktailsFavorites'] = $savedFavorites;
 	}
 
 
-	public static function add ($recipe) {
+	public static function addById ($recipeId) {
 		if(!isset($_SESSION['cocktailsFavorites']))
 			$_SESSION['cocktailsFavorites'] = array();
 
-		$favorite = new Favorite($recipe);
-		$_SESSION['cocktailsFavorites'][] = $favorite;
+		if(isset($_SESSION['cocktailsFavorites'][$recipeId]))
+			return false;
 
-		self::create($favorite);
+		$favorite = new Favorite(RecipeDAO::getById($recipeId));
+		$_SESSION['cocktailsFavorites'][$recipeId] = $favorite;
+
+		if(isset($_SESSION['cocktailsUser'])) {
+			$favorite->setUser($_SESSION['cocktailsUser']);
+			self::create($favorite);
+		}
 	}
 
-	public static function remove ($recipe) {
-		if(isset($_SESSION['cocktailsFavorites'])) {
+	public static function removeById ($recipeId) {
+		if(isset($_SESSION['cocktailsFavorites'][$recipeId])) {
+/*			$favorite = null;
 
-			$favorite = null;
 			foreach($_SESSION['cocktailsFavorites'] as $item) {
-				if ($item->getRecipe() == $recipe) {
+				var_dump('argh3');
+				if ($item->getRecipe()->getId() == $recipe->getId()) {
+					var_dump('argh4');
 					$favorite = $item;
 					break;
 				}
 			}
-			unset($favorite);
-
-			self::delete($favorite);
+			$favorite = $_SESSION['cocktailsFavorites'][$recipeId];
+*/
+				self::delete($_SESSION['cocktailsFavorites'][$recipeId]);
+				unset($_SESSION['cocktailsFavorites'][$recipeId]);
 		}
+	}
+
+	public static function isFavorite ($recipe) {
+		return isset($_SESSION['cocktailsFavorites'][$recipe->getId()]);
 	}
 }
 

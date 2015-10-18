@@ -49,7 +49,12 @@ class Recipe { // This class is just a wrapper to access Recipes (in data/Donnee
 
 		$str = '<article class="recipe">'.PHP_EOL;
 		$str.= '	<h1>'.$this->getTitle().'</h1>'.PHP_EOL; // Titre
-		$str.= '	<a href="#" title="J\'aime !">Ajouter aux favoris</a>';
+
+		if(FavoriteDAO::isFavorite($this))
+			$str.= '	<a href="favorites/remove/'.$this->getId().'" title="Je n\'aime plus !">Supprimer des favoris</a>';
+		else
+			$str.= '	<a href="favorites/add/'.$this->getId().'" title="J\'aime !">Ajouter aux favoris</a>';
+
 		$str.= '	<h2> Ingrédients : </h2>'."\n	".'<ul>';
 		foreach(explode('|', $this->getQuantities()) as $quantity)
 			$str.= '<li>'.$quantity.'</li>';

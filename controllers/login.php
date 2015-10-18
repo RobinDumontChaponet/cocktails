@@ -21,14 +21,14 @@ elseif (isset($_POST['submit'])) {
 		require MODELS_INC.'UserDAO.class.php';
 		require 'validate.transit.inc.php';
 		require 'passwordHash.inc.php';
-		$user = UserDAO::getByLogin ($_POST['user']);
+		$user = UserDAO::getByLogin($_POST['user']);
 		if ($user != NULL) {
 			if (empty($user) || !validate_password($_POST['password'] , $user->getPassword())) {
 				$badinput = true;
 				sleep(1);
 			} else {
 				$_SESSION['cocktailsUser'] = $user;
-				$_SESSION['cocktailsFavorites'] = FavoriteDAO::getByUser($user);
+				FavoriteDAO::sync();
 				if(!empty($_SESSION['referrer']) && $_SESSION['referrer']!='login' && $_SESSION['referrer']!='logout')
 					header('Location: '.$_SESSION['referrer']);
 				else

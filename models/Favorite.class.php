@@ -7,8 +7,12 @@ class Favorite {
 	private $recipe;
 
 	// Constructors
-	public function __construct ($recipe, $user) {
-		$this->login=$user->getLogin();
+	public function __construct ($recipe, $user=null) {
+		$this->login=(!empty($user))?$user->getLogin():null;
+		if(gettype($recipe) != 'object')
+			die(' Favorite::__construct : param $recipe type is "'.gettype($recipe).'", expected "object of class Recipe"; ');
+		elseif(get_class($recipe) != 'Recipe')
+			die(' Favorite::__construct : param $recipe class is "'.get_class($recipe).'('.gettype($recipe).')", expected "Recipe(object)"; ');
 		$this->recipe=$recipe;
 	}
 
@@ -38,7 +42,7 @@ class Favorite {
 		$str = '<article class="favorite">'.PHP_EOL;
 		$str.= '		<h1>'.$this->getRecipe()->getTitle().'</h1>'; // Titre
 
-		$str.= '<a href="#" title="">x</a>'.PHP_EOL;
+		$str.= '<a href="favorites/remove/'.$this->getRecipe()->getId().'" title="">x</a>'.PHP_EOL;
 
 		$str.= '	</article>'.PHP_EOL;
 

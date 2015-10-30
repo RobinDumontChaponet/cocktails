@@ -1,7 +1,9 @@
 <?php
 
+namespace Transitive;
+
 /*
- * Architecture-relative
+ * Architecture-related
  */
 define('ROOT_PATH', dirname(dirname(__FILE__)));
 define('SELF', (dirname($_SERVER['PHP_SELF']) == '/' ? '' : dirname($_SERVER['PHP_SELF'])));
@@ -11,11 +13,13 @@ define('VIEWS_INC', ROOT_PATH.'/views/');
 define('DATA_PATH', ROOT_PATH.'/data/');
 define('WEB_DATA', SELF.'data/');
 
-/** Autoload **/
-function __autoload($className) {
-    include MODELS_INC.$className.'.class.php';
-}
 
+/*
+ * Database
+ */
+define('DB_USER', 'cocktail');
+define('DB_PWD', 'cocktail');
+define('DB_NAME', 'cocktails');
 
 
 /*

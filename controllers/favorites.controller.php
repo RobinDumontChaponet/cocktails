@@ -23,6 +23,4 @@ if(isset($_GET['add'])) {
 if (!isset($_SESSION['cocktailsFavorites']))
 	$_SESSION['cocktailsFavorites'] = array();
 
-include(VIEWS_INC.'favorites.php');
-
 ?>

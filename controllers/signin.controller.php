@@ -1,8 +1,9 @@
 <?php
-if (isset($_SESSION['cocktailsUser'])) // So that a user that is connected cannot create an account without disconnecting first
-	header ('Location: index');
 
-if( $_POST ) {
+if(isset($_SESSION['cocktailsUser']))
+	$request->redirect('profile');
+
+if($_POST) {
         if( isset($_POST['login']) && strlen($_POST['login']) >= 5  ) {
         $existingLogin = UserDAO::getByLogin($_POST['login']);
         if( $existingLogin != NULL ) {
@@ -37,12 +38,9 @@ if( $_POST ) {
             $password = create_hash($password);
             $newUser = new User($login, $password, $_POST['firstName'], $_POST['lastName'], $_POST['sex'], $_POST['email'], $_POST['birthDate'], $_POST['address'], $_POST['postalCode'], $_POST['city'], $_POST['phoneNumber']);
             UserDAO::create($newUser);
-            header('Location: login');
+            $request->redirect('login');
         }
     }
 }
-
-
-include(VIEWS_INC.'signin.php');
 
 ?>

@@ -1,7 +1,9 @@
 <?php
 
+//namespace Models;
+use \Transitive\Utils as Utils;
+
 require_once DATA_PATH.'Donnees.inc.php';
-require 'strings.transit.inc.php';
 
 class Recipe { // This class is just a wrapper to access Recipes (in data/Donnees.inc.php) more conveniently and more importantly in the same way as the other Objects !
 
@@ -40,7 +42,7 @@ class Recipe { // This class is just a wrapper to access Recipes (in data/Donnee
 	}
 
 	public function getImagePath () {
-		return WEB_DATA.'Photos/'.post_slug($this->getTitle()).'.jpg';
+		return WEB_DATA.'Photos/'.Utils\Strings::post_slug($this->getTitle()).'.jpg';
 	}
 
 	// Methods

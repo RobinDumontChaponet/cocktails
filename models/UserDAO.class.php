@@ -1,14 +1,18 @@
 <?php
 
-require_once 'SPDO.class.php';
-require_once MODELS_INC.'User.class.php';
+//namespace Models;
+
+use \Transitive\Utils\Database as DB;
+
+//require_once 'DB.class.php';
+//require_once MODELS_INC.'User.class.php';
 
 class UserDAO {
 	const tableName = 'User';
 
 	public static function create ($user) {
 		try {
-			$statement = SPDO::getInstance()->prepare('INSERT INTO '.self::tableName.' (login, password, firstName, lastName, sex, email, birthDate, address, postalCode, city, phoneNumber ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+			$statement = DB::getInstance()->prepare('INSERT INTO '.self::tableName.' (login, password, firstName, lastName, sex, email, birthDate, address, postalCode, city, phoneNumber ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
 			$statement->bindValue(1, $user->getLogin());
 			$statement->bindValue(2, $user->getPassword());
 			$statement->bindValue(3, $user->getFirstName());
@@ -29,7 +33,7 @@ class UserDAO {
 
 	public static function update ($user) {
 		try {
-			$statement = SPDO::getInstance()->prepare('UPDATE '.self::tableName.' SET password=?, firstName=?, lastName=?, sex=?, email=?, birthDate=?, address=?, postalCode=?, city=?, phoneNumber=?  WHERE login=?');
+			$statement = DB::getInstance()->prepare('UPDATE '.self::tableName.' SET password=?, firstName=?, lastName=?, sex=?, email=?, birthDate=?, address=?, postalCode=?, city=?, phoneNumber=?  WHERE login=?');
 			$statement->bindValue(1, $user->getPassword());
 			$statement->bindValue(2, $user->getFirstName());
 			$statement->bindValue(3, $user->getLastName());
@@ -49,7 +53,7 @@ class UserDAO {
 
 	public static function delete ($user) {
 		try {
-			$statement = SPDO::getInstance()->prepare('DELETE FROM '.self::tableName.' WHERE login=?');
+			$statement = DB::getInstance()->prepare('DELETE FROM '.self::tableName.' WHERE login=?');
 			$statement->bindValue(1, $user->getLogin());
 			$statement->execute();
 		} catch (PDOException $e) {
@@ -60,7 +64,7 @@ class UserDAO {
 	public static function getAll () {
 		$users = array();
 		try {
-			$statement = SPDO::getInstance()->prepare('SELECT * FROM '.self::tableName.'');
+			$statement = DB::getInstance()->prepare('SELECT * FROM '.self::tableName.'');
 
 			$statement->execute();
 
@@ -76,7 +80,7 @@ class UserDAO {
 		$user = null;
 
 		try {
-			$statement = SPDO::getInstance()->prepare('SELECT * FROM User where login=?');
+			$statement = DB::getInstance()->prepare('SELECT * FROM User where login=?');
 			$statement->bindParam(1, $login);
 			$statement->execute();
 

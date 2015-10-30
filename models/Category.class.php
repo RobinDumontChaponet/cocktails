@@ -1,5 +1,7 @@
 <?php
 
+//namespace Models;
+
 require_once DATA_PATH.'Donnees.inc.php';
 
 class Category { // This class is just a wrapper to access Recipes (in data/Donnees.inc.php) more conveniently and more importantly in the same way as the other Objects !

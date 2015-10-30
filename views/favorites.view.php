@@ -1,4 +1,8 @@
-<!--meta title="Favoris"-->
+<?php
+
+$view->setTitle('Favoris');
+
+$view->content = function (&$data) { ?>
 
 <div id="content">
 	<?php
@@ -9,7 +13,9 @@
 			echo $favorite.'<br />';
 
 	if (!isset($_SESSION['cocktailsUser'])) { ?>
-        <p class="notice"><a href="login">Connectez-vous</a> pour enregistrer vos favoris</p>
-     <?php } ?>
-
+		<p class="notice"><a href="login">Connectez-vous</a> pour enregistrer vos favoris</p>
+	<?php } ?>
 </div>
+
+<?php
+} ?>

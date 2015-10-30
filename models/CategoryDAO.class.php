@@ -1,6 +1,8 @@
 <?php
 
-require_once MODELS_INC.'Category.class.php';
+//namespace Models;
+
+//require_once MODELS_INC.'Category.class.php';
 
 class CategoryDAO { // This class is just a wrapper to access Recipes (in data/Donnees.inc.php) more conveniently !
 

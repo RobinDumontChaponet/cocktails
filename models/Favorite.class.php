@@ -1,7 +1,8 @@
 <?php
 
-class Favorite {
+//namespace Models;
 
+class Favorite {
 	// Variables
 	private $login;
 	private $recipe;
@@ -12,7 +13,7 @@ class Favorite {
 		if(gettype($recipe) != 'object')
 			die(' Favorite::__construct : param $recipe type is "'.gettype($recipe).'", expected "object of class Recipe"; ');
 		elseif(get_class($recipe) != 'Recipe')
-			die(' Favorite::__construct : param $recipe class is "'.get_class($recipe).'('.gettype($recipe).')", expected "Recipe(object)"; ');
+			die(' Favorite::__construct : param $recipe class is "'.get_class($recipe).'(object)", expected "Recipe(object)"; ');
 		$this->recipe=$recipe;
 	}
 

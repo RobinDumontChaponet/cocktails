@@ -14,18 +14,15 @@ function get_include_contents($filename) {
 
 class View {
 	private $metaTags;
-	//private $scripts;
 	private $scriptTags;
 	private $script;
 	private $linkTags;
-	//private $styleTags;
-	//private $css;
 	private $style;
 	private $title;
 	public $data;
 	public $content;
 
-	public function __construct ($test='argh') {
+	public function __construct () {
 /*
 		$this->metaTags = array();
 		$this->scriptTags = array();
@@ -70,6 +67,7 @@ class View {
 	public function linkScript ($url, $type='text/javascript', $event=null) {
 		$this->addRawScriptTag('<script type="'.$type.'" src="'.$url.'"></script>');
 
+		// @TODO
 		// ... event...
 	}
 	public function addScript ($content) {
@@ -103,6 +101,9 @@ class View {
 		$this->addStyle(get_include_contents($filename));
 	}
 
+	public function getLinkTags () {
+		return $this->linkTags;
+	}
 	public function getStyle () {
 		return $this->style;
 	}
@@ -128,6 +129,23 @@ class View {
 			$content($this->data);
 		} else
 			echo 'default content';
+	}
+	public function displayJson () {
+		ob_start();
+		ob_clean();
+		$this->displayContent();
+		$content = ob_get_clean();
+
+		$array = array(
+			'metasTags' => $this->getMetaTags(),
+			'scripts' => $this->getScripts(),
+			'linkTags' => $this->getLinkTags(),
+			'style' => $this->getStyle(),
+			'title' => $this->getTitle(),
+			'content' => $content
+		);
+
+		echo json_encode($array);
 	}
 }
 

@@ -48,11 +48,7 @@ class FrontController {
 		$this->request = $request;
 	}
 
-	// - Extras_
-
-	public function forceJSon () {
-		// @TODO
-	}
+	// - Other methods_
 
 
 	public function execute () {
@@ -87,12 +83,21 @@ class FrontController {
 		$this->request->getView()->displayContent();
 	}
 
+	public function displayJson () {
+		if(!headers_sent()) {
+			header('Content-Type: application/json');
+		}
+
+		$this->request->getView()->displayJson();
+	}
+
 	public function __toString() {
+		// @TODO
 		return 'Transitive [ vars…_ ] ';
 	}
 
 	function __destruct() {
-		if(headers_sent() && $this->getRequestUrl()!='login')
+		if(session_status()!=PHP_SESSION_NONE && $this->getRequestUrl()!='login')
 			$_SESSION['referrer'] = $this->getRequestUrl();
 	}
 }

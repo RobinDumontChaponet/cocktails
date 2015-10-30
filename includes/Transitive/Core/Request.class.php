@@ -63,6 +63,11 @@ class Request {
 		$this->redirect($this->path);
 	}
 
+	public function goBack () {
+		if(isset($_SESSION['referrer']))
+			$this->redirect($_SESSION['referrer']);
+	}
+
 	public function execute () {
 		function includeController (&$self) {
 			$request = &$self;
@@ -82,6 +87,7 @@ class Request {
 	}
 
 	public function __toString() {
+		// @TODO
 		return 'Request [ vars…_ ] ';
 	}
 }

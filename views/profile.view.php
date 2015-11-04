@@ -54,7 +54,7 @@ form div {
 	border-bottom-right-radius: 4px;
 }');
 
-$view->content = function (&$data) { ?>
+$view->content = function ($data) { ?>
 <div id="content">
 	<form method="post">
 		<div>

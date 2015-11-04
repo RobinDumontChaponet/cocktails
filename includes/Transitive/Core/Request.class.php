@@ -69,7 +69,7 @@ class Request {
 	}
 
 	public function execute () {
-		function includeController (&$self) {
+		function includeController ($self) {
 			$request = &$self;
 			$controller = $self->getController();
 			include $self->getControllerPath();

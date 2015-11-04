@@ -79,8 +79,8 @@ class FrontController {
 	public function printScripts () {
 		$this->request->getView()->printScripts();
 	}
-	public function displayContent () {
-		$this->request->getView()->displayContent();
+	public function displayContent ($key=NULL) {
+		$this->request->getView()->displayContent($key);
 	}
 
 	public function displayJson () {

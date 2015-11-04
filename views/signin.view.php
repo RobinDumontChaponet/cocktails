@@ -55,7 +55,7 @@ form div {
 	border-bottom-right-radius: 4px;
 }');
 
-$view->content = function (&$data) { ?>
+$view->content = function ($data) { ?>
 <div id="content">
 	<?php if ( $_POST && $errorExistingLogin ) {
 		echo '<p>Ce nom de compte existe déjà</p>';

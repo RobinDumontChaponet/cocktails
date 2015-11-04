@@ -2,7 +2,7 @@
 
 $view->setTitle('Favoris');
 
-$view->content = function (&$data) { ?>
+$view->content = function ($data) { ?>
 
 <div id="content">
 	<?php

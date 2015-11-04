@@ -3,7 +3,7 @@
 $view->setTitle('Connexion');
 $view->importStylesheet('style/login.css');
 
-$view->content = function (&$data) { ?>
+$view->content = function ($data) { ?>
 <div id="content">
 	<form action="login" method="post" name="connection">
 		<?php if($data['bot']===true) echo'<p class="mapsitna">Accès interdit !</p>';

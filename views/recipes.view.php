@@ -13,7 +13,7 @@ $view->addStyle('/*
     font-weight: bold;
 }');
 
-$view->content = function (&$data) { ?>
+$view->content = function ($data) { ?>
 
 <div id="content">
 	<?php

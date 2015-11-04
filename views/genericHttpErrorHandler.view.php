@@ -3,7 +3,7 @@
 $view->setTitle(http_response_code());
 $view->linkStylesheet ('style/genericHttpErrorHandler.css');
 
-$view->content = function (&$data) { ?>
+$view->content = function ($data) { ?>
 
 <div id="content">
 	<h1><?php echo http_response_code() ?></h1>

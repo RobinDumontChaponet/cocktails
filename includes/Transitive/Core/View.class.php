@@ -78,7 +78,9 @@ class View {
 	}
 
 	public function getScripts () {
-		return $this->scriptTags;
+		$scripts  = $this->scriptTags;
+		$scripts[]= '<script type="text/javascript">'.$this->script.'</script>';
+		return $scripts;
 	}
 	public function printScripts () {
 		if(isset($this->scriptTags))
@@ -118,15 +120,41 @@ class View {
 	public function getData () {
 		return $this->data;
 	}
-	public function setData (&$data) {
+	public function setData ($data) {
 		$this->data = $data;
 	}
 
+	private function display($content) {
+		switch(gettype($content)) {
+			case 'string' : case 'integer' : case 'double' :
+				echo $content;
+			break;
+			case 'object' :
+				if(get_class($content)=='Closure')
+					$content($this->data);
+				elseif(isset($content->content))
+					echo $content->content;
+			break;
+			default:
+				echo 'wrong view content type';
+		}
+		echo PHP_EOL;
+	}
 
-	public function displayContent () {
+	public function displayContent ($key=NULL) {
 		if(isset($this->content)) {
 			$content = $this->content;
-			$content($this->data);
+
+			if(gettype($content)=='array')
+				if(isset($key)) {
+					if(isset($content[$key]))
+						$this->display($content[$key]);
+				} else
+					foreach($content as $item)
+						$this->display($item);
+			else
+				$this->display($content);
+
 		} else
 			echo 'default content';
 	}
@@ -137,7 +165,7 @@ class View {
 		$content = ob_get_clean();
 
 		$array = array(
-			'metasTags' => $this->getMetaTags(),
+			'metaTags' => $this->getMetaTags(),
 			'scripts' => $this->getScripts(),
 			'linkTags' => $this->getLinkTags(),
 			'style' => $this->getStyle(),

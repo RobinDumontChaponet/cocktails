@@ -1,7 +1,5 @@
 <?php
 
-//namespace Models;
-
 class Favorite {
 	// Variables
 	private $login;

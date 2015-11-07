@@ -1,27 +1,17 @@
 <?php
 
-//namespace Models;
 use \Transitive\Utils as Utils;
 
-require_once DATA_PATH.'Donnees.inc.php';
-
-class Recipe { // This class is just a wrapper to access Recipes (in data/Donnees.inc.php) more conveniently and more importantly in the same way as the other Objects !
-
-	// Variables
-	private $key;
-	public static $data;
+class Recipe extends Wrapper { // This class is just a wrapper to access Recipes (in data/Donnees.inc.php) more conveniently and more importantly in the same way as the other Objects !
 
 	// Helpers
-	public static function getDataAt($key) {
-		return self::$data[$key];
+public static function getDataAt($key) {
+		if(isset(self::$recipesData[$key]))
+			return self::$recipesData[$key];
+		return null;
 	}
 	private function getData() {
 		return self::getDataAt($this->key);
-	}
-
-	// Constructors
-	public function __construct ($key) {
-		$this->key=$key;
 	}
 
 	// Getters
@@ -50,7 +40,7 @@ class Recipe { // This class is just a wrapper to access Recipes (in data/Donnee
 		//return ' Recipe(wrapper) [ title: '.$this->getTitle().'; quantities: '.$this->getQuantities().'; instructions: '.$this->getInstructions().'; ingredients: '.$this->getIngredients().' ] ';
 
 		$str = '<article class="recipe">'.PHP_EOL;
-		$str.= '	<h1>'.$this->getTitle().'</h1>'.PHP_EOL; // Titre
+		$str.= '	<h1>'.$this->getTitle().'</h1>'.PHP_EOL;
 
 		if(FavoriteDAO::isFavorite($this))
 			$str.= '	<a href="favorites/remove/'.$this->getId().'" title="Je n\'aime plus !">Supprimer des favoris</a>';
@@ -77,7 +67,5 @@ class Recipe { // This class is just a wrapper to access Recipes (in data/Donnee
 		return $str;
 	}
 }
-
-Recipe::$data = $Recettes;
 
 ?>

@@ -1,7 +1,5 @@
 <?php
 
-//namespace Models;
-
 //require_once MODELS_INC.'Recipe.class.php';
 
 class RecipeDAO { // This class is just a wrapper to access Recipes (in data/Donnees.inc.php) more conveniently !
@@ -16,7 +14,7 @@ class RecipeDAO { // This class is just a wrapper to access Recipes (in data/Don
 	public static function getAll () {
 		$recipes = array();
 
-		$keys = array_keys(Recipe::$data);
+		$keys = array_keys(Recipe::$recipesData);
 
 		if(!empty($keys))
 			foreach($keys as $key)
@@ -34,7 +32,9 @@ class RecipeDAO { // This class is just a wrapper to access Recipes (in data/Don
 	 * @return Recipe Object
 	 */
 	public static function getById ($id) {
-		return new Recipe($id);
+		if(Recipe::getDataAt($id))
+			return new Recipe($id);
+		return null;
 	}
 
 	/**
@@ -48,9 +48,9 @@ class RecipeDAO { // This class is just a wrapper to access Recipes (in data/Don
 	public static function getByIngredient ($ingredient) {
 		$recipes = array();
 
-		if(!empty(Recipe::$data))
-			foreach(Recipe::$data as $key => $recipeData)
-				if(in_array($ingredient, $recipeData['index']))
+		if(!empty(Recipe::$recipesData))
+			foreach(Recipe::$recipesData as $key => $recipeData)
+				if(in_array($ingredient->getId(), $recipeData['index']))
 					$recipes[] = new Recipe($key);
 
 		return $recipes;

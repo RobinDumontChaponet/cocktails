@@ -269,11 +269,11 @@ FileETag None
 
 #### Traditional rewriting
 	#### Specifics
-
+	RewriteRule ^category/([^/]+) %{ENV:BASE}/index.php?requ=category&id=$1 [NC]
+	RewriteRule ^ingredient/([^/]+) %{ENV:BASE}/index.php?requ=ingredient&id=$1 [NC]
+	RewriteRule ^recipe/([^/]+) %{ENV:BASE}/index.php?requ=recipe&id=$1 [NC]
 	RewriteRule ^favorites/add/([^/]+) %{ENV:BASE}/index.php?requ=favorites&add=$1 [NC]
 	RewriteRule ^favorites/remove/([^/]+) %{ENV:BASE}/index.php?requ=favorites&remove=$1 [NC]
-	#RewriteRule ^specialisation-editer/([^/]+) %{ENV:BASE}/index.php?requ=specialisation-editer&id=$1 [NC]
-	#RewriteRule ^profil-editer/([^/]+) %{ENV:BASE}/index.php?requ=profil-editer&id=$1 [NC]
 
 
 #### Generals

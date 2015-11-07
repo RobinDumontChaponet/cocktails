@@ -9,7 +9,7 @@ require 'transitive/Transitive.inc.php';
 
 session_start();
 
-FrontController::$defaultRequestUrl = 'recipes';
+FrontController::$defaultRequestUrl = 'categories';
 $transit = new FrontController(@$_GET['requ']);
 $transit->execute();
 ?>

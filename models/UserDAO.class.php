@@ -1,7 +1,5 @@
 <?php
 
-//namespace Models;
-
 use \Transitive\Utils\Database as DB;
 
 //require_once 'DB.class.php';

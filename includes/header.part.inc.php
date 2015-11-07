@@ -5,7 +5,7 @@ $requestUrl = $transit->getRequestUrl();
 	<h1><a href="<?= SELF ?>/"><span>Cocktails</span></a></h1>
 	<nav id="menu">
 		<ul>
-			<li class="recipes<?= ($requestUrl=='recipes')?' active ':'' ?>"><a href="recipes"><span>Toutes les recettes</span></a></li>
+			<li class="recipes<?= ($requestUrl=='categories')?' active ':'' ?>"><a href="categories"><span>Les recettes</span></a></li>
 			<li class="favorites<?= ($requestUrl=='favorites')?' active ':'' ?>"><a href="favorites">Mes favoris</a></li>
 
 		<?php if(empty($_SESSION['cocktailsUser'])) { ?>

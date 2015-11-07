@@ -1,12 +1,13 @@
 # @TODO
 
-- [x] redirect to last page when successfully logged-in ;
-- [ ] DAO wrapper and class(es) for "$Hierarchie" ;
 - [ ] display cocktails hierarchy ;
-- [x] complete favorites ui/ux ;
+- [ ] beautification of everything :—) ;
 - [ ] verifications (and display errors to user) in forms ;
 - [ ] install.php ;
-- [ ] make profile page more like signin page (maybe ?) ;
+- [x] redirect to last page when successfully logged-in ;
+- [x] DAO wrapper and class(es) for "$Hierarchie" ;
+- [x] complete favorites ui/ux ;
+- [x] make profile page more like sign-in page (maybe ?) ;
 - that's it ?!
 
 ---
@@ -45,7 +46,7 @@ Une histoire d'utilisateur et de données stockés
 
 ## data /
 - Photos/
-  Ex : Black_velvet.jpg, Bloody_mary.jpg
+  Ex : Black\_velvet.jpg, Bloody\_mary.jpg
 
 ## models /
 - User
@@ -60,6 +61,6 @@ Une histoire d'utilisateur et de données stockés
 
 *En gros* : T'as une catégorie en haut -> plus bas -> plus bas
 Genre : Fruit -> Fruit à Noyau -> Pêche
-(Fruit à noyau est une sous-categorie de Fruit)
-Et depuis pêche, dans le fichier, t'as "super-categorie" qui représente le niveau au dessus : Fruit à Noyau
-Ca permet d'avoir la hierarchie.
+(Fruit à noyau est une sous-catégorie de Fruit)
+Et depuis pêche, dans le fichier, t'as "super-catégorie" qui représente le niveau au dessus : Fruit à Noyau
+Ca permet d'avoir la hiérarchie.

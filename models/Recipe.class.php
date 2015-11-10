@@ -28,7 +28,11 @@ public static function getDataAt($key) {
 		return $this->getData()['preparation'];
 	}
 	public function getIngredients () {
-		return $this->getData()['index'];  // @TODO ?
+		$ingredients = array();
+		foreach($this->getData()['index'] as $index)
+			$ingredients[] = IngredientDAO::getById($index);
+
+		return $ingredients;
 	}
 
 	public function getImagePath () {
@@ -59,8 +63,8 @@ public static function getDataAt($key) {
 
 		$str.= '	</section>';
 		$str.= '	<ul>'.PHP_EOL;
-		foreach ($this->getIngredients() as $index)
-			$str.= '		<li class="tag"><a href="#">'.$index.'</a></li>';
+		foreach ($this->getIngredients() as $ingredient)
+			$str.= '		<li class="tag"><a href="ingredient/'.urlencode($ingredient->getId()).'">'.$ingredient->getLabel().'</a></li>';
 		$str.= '	</ul>'.PHP_EOL;
 		$str.= '</article>'.PHP_EOL;
 

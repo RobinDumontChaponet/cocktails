@@ -1,6 +1,6 @@
 <?php
 
-$view->setTitle('Types de cocktails');
+$view->setTitle('Les recettes : Aliment');
 $view->importStylesheet('style/recipe-hierarchy.css');
 
 $view->content = function ($data) { ?>

@@ -1,6 +1,6 @@
 <?php
 
-$view->setTitle('Recette : ');
+$view->setTitle('Recette : '.((empty($data['recipe']))?$view->data['recipe']->getTitle():''));
 
 $view->content = function ($data) { ?>
 <div id="content">

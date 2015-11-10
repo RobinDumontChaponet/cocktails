@@ -1,6 +1,6 @@
 <?php
 
-$view->setTitle('Ingredient');
+$view->setTitle('Ingredient : '.((empty($data['ingredient']))?$view->data['ingredient']->getLabel():''));
 $view->importStylesheet('style/recipe-hierarchy.css');
 
 $view->content = function ($data) { ?>

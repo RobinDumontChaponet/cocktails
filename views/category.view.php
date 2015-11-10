@@ -1,6 +1,6 @@
 <?php
 
-$view->setTitle('Categorie');
+$view->setTitle('Catégorie : '.((empty($data['category']))?$view->data['category']->getLabel():''));
 $view->importStylesheet('style/recipe-hierarchy.css');
 
 $view->content = function ($data) { ?>

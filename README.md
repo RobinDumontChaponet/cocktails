@@ -1,9 +1,11 @@
 # @TODO
 
-- [ ] display cocktails hierarchy ;
-- [ ] beautification of everything :—) ;
 - [ ] verifications (and display errors to user) in forms ;
+- [ ] beautification of everything :—) ;
+- [ ] code cleaning ;
 - [ ] install.php ;
+- [ ] last (crash)tests ;
+- [x] display cocktails hierarchy ;
 - [x] redirect to last page when successfully logged-in ;
 - [x] DAO wrapper and class(es) for "$Hierarchie" ;
 - [x] complete favorites ui/ux ;

@@ -86,7 +86,7 @@ abstract class Strings {
 	}
 
 	public static function post_slug($str) {
-	    return strtolower(preg_replace(array('#[\\s-]+#', '#[^A-Za-z0-9\. -]+#'), array('-', ''), self::cleanString(urldecode($str))));
+	    return strtolower(preg_replace(array('#[\\s-]+#', '#[^A-Za-z0-9\. _]+#'), array('_', ''), self::cleanString(urldecode($str))));
 	}
 
 	public static function startsWith($haystack, $needle) {

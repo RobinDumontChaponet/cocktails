@@ -1,0 +1,29 @@
+#content h1 .self {
+	position: relative;
+}
+#content h1 .self:before {
+	z-index: 200;
+	content: "";
+	position: absolute;
+	bottom: -8px;
+	left: 50%;
+	margin-left: -10px;
+	border-width: 0 10px 10px;
+	border-style: solid;
+	border-color: #e1e1e1 transparent;
+	display: block;
+	width: 0;
+}
+#content h1 .self:after {
+	z-index: 200;
+	content: "";
+	position: absolute;
+	bottom: -8px;
+	left: 50%;
+	margin-left: -8px;
+	border-width: 0 8px 8px;
+	border-style: solid;
+	border-color: #E8ECDE transparent;
+	display: block;
+	width: 0;
+}

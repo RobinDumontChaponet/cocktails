@@ -1,6 +1,7 @@
 <?php
 
 $view->setTitle('Categorie');
+$view->importStylesheet('style/recipe-hierarchy.css');
 
 $view->content = function ($data) { ?>
 

@@ -17,33 +17,41 @@ class Ingredient extends Wrapper { // This class is just a wrapper to access Ing
 		return $this->key;
 	}
 
-	public function getSubs () {
+	public function getSubsName () {
 		if(isset($this->getData()['sous-categorie']))
 			return $this->getData()['sous-categorie'];
 		return array();
 	}
-	public function getSupers () {
+	public function getSupersName () {
 		if(isset($this->getData()['super-categorie']))
 			return $this->getData()['super-categorie'];
 		return array();
 	}
 
+	public function getHierarchy () {
+		if($s = IngredientDAO::getByChildIngredient($this))
+			return $s[0]->getHierarchy().$s[0]->getLabel().' > ';
+		return '';
+	}
+
 	// Functions
 	public function __toString () {
 		$str = '<article class="ingredient">'.PHP_EOL;
-		$str.= '<h1>'.$this->getLabel().'</h1>';
-		if($subs = $this->getSubs()) {
-			$str.= '<h2>Sous-ingrédients</h2><ul>';
+		$str.= '<h1>'.$this->getHierarchy().'<span class="self">'.$this->getLabel().'</span></h1>';
+
+		$str.= '<section class="content">';
+		if($subs = $this->getSubsName()) {
+			$str.= '<ul title="Sous-ingredients">';
 			foreach($subs as $sub)
 				$str.= '<li><a href="ingredient/'.urlencode($sub).'">'.$sub.'</a></li>';
 			$str.= '</ul>';
 		} elseif($recipes = RecipeDAO::getByIngredient($this)) {
-			$str.= '<h2>Recettes</h2><ul>';
+			$str.= '<ul title="Recettes">';
 			foreach($recipes as $recipe)
 				$str.= '<li><a href="recipe/'.$recipe->getId().'">'.$recipe->getTitle().'</a></li>';
 			$str.= '</ul>';
 		}
-		$str.= '</article>';
+		$str.= '</section></article>';
 
 		return $str;
 	}

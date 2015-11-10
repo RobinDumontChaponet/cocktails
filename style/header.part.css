@@ -40,7 +40,7 @@ li.recipes a:before {
 	content: "\f00b";
 }
 li.favorites a:before {
-	content: "\f067";
+	content: "\f004";
 }
 li.search a:before {
 	content: "\f002";

@@ -20,6 +20,16 @@ class CategoryDAO { // This class is just a wrapper to access Categories (in dat
 		return $categories;
 	}
 
+	public static function getByChildIngredient($child) {
+		$ingredients = array();
+
+		foreach(Ingredient::$hierarchyData as $key => $ingredient)
+			if(isset($ingredient['sous-categorie']) && in_array($child->getLabel(), $ingredient['sous-categorie']))
+				$ingredients[] = new Ingredient($key);
+
+		return $ingredients;
+	}
+
 	/**
 	 * getById function. Get Recipe Object by id in array. In fact it is only to use a more modern and convenient way to access data. For the sake of coherence !
 	 *

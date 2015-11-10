@@ -32,7 +32,7 @@ public static function getDataAt($key) {
 	}
 
 	public function getImagePath () {
-		return WEB_DATA.'Photos/'.Utils\Strings::post_slug($this->getTitle()).'.jpg';
+		return WEB_DATA.'Photos/'.ucfirst(Utils\Strings::post_slug($this->getTitle())).'.jpg';
 	}
 
 	// Methods
@@ -41,27 +41,27 @@ public static function getDataAt($key) {
 
 		$str = '<article class="recipe">'.PHP_EOL;
 		$str.= '	<h1>'.$this->getTitle().'</h1>'.PHP_EOL;
-
 		if(FavoriteDAO::isFavorite($this))
 			$str.= '	<a href="favorites/remove/'.$this->getId().'" title="Je n\'aime plus !">Supprimer des favoris</a>';
 		else
 			$str.= '	<a href="favorites/add/'.$this->getId().'" title="J\'aime !">Ajouter aux favoris</a>';
-
-		$str.= '	<h2> Ingrédients : </h2>'."\n	".'<ul>';
-		foreach(explode('|', $this->getQuantities()) as $quantity)
-			$str.= '<li>'.$quantity.'</li>';
-		$str.= '	</ul>'.PHP_EOL;
-		$str.= '	<h2> Préparation : </h2>'.PHP_EOL;
-		$str.= '	<p>'.$this->getInstructions().'</p>'.PHP_EOL;
-		$str.= '	<h2>Index : </h2>'.PHP_EOL;
-		$str.= '	<ul>'.PHP_EOL;
-		foreach ($this->getIngredients() as $index)
-			$str.= '		<li><a href="#">'.$index.'</a></li>';
-		$str.= '	</ul>'.PHP_EOL;
+		$str.= '	<section class="content">';
 
 		if(file_exists($imagePath = $this->getImagePath()))
-			$str.= '<img src="'.$imagePath.'" alt="" />';
+			$str.= '<figure><img src="'.$imagePath.'" alt="" /></figure>';
 
+		$str.= '		<h2> Ingrédients : </h2>'."\n	".'<ul>';
+		foreach(explode('|', $this->getQuantities()) as $quantity)
+			$str.= '	<li>'.$quantity.'</li>';
+		$str.= '		</ul>'.PHP_EOL;
+		$str.= '		<h2> Préparation : </h2>'.PHP_EOL;
+		$str.= '		<p>'.$this->getInstructions().'</p>'.PHP_EOL;
+
+		$str.= '	</section>';
+		$str.= '	<ul>'.PHP_EOL;
+		foreach ($this->getIngredients() as $index)
+			$str.= '		<li class="tag"><a href="#">'.$index.'</a></li>';
+		$str.= '	</ul>'.PHP_EOL;
 		$str.= '</article>'.PHP_EOL;
 
 		return $str;

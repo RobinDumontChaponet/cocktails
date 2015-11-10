@@ -21,8 +21,20 @@
 }
 
 article, #content li {
+/*
 	background: rgba(253, 253, 253, 0.53);
 	margin: 10px -10px;
+	padding: 10px;
+	border: 1px solid;
+	border-color: #e7e9ed #e6e7ec #e1e2e7;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+*/
+}
+article .content {
+	background: rgba(253, 253, 253, 0.53);
+	margin: 10px 0;
 	padding: 10px;
 	border: 1px solid;
 	border-color: #e7e9ed #e6e7ec #e1e2e7;
@@ -64,23 +76,6 @@ section:first-child, fieldset:first-child {
 }
 fieldset.button:first-child {
 	padding-top: 0;
-}
-h1 + section, h1 + fieldset {
-	margin-top: 15px;
-	padding-top: 15px;
-}
-h1 + section:nth-child(2) {
-	margin-top: 0;
-	padding-top: 15px;
-}
-section:last-child {
-	border-bottom: 0;
-}
-section:nth-child(2n+1) > h2 {
-	margin-top: -10px;
-}
-section:nth-child(2n+1) {
-	background: rgba(240, 242, 245, 0.6);
 }
 
 
@@ -171,4 +166,80 @@ th {
 	font-style: italic;
 	display: inline-block;
 	color: grey;
+}
+
+.tag {
+	float: right;
+	margin-left: 20px;
+	padding: 0 10px 0 12px;
+	background: #F6E7DC;
+	color: #fff;
+	text-decoration: none;
+	-moz-border-radius-bottomright: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	-moz-border-radius-topright: 4px;
+	-webkit-border-top-right-radius: 4px;
+	border-top-right-radius: 4px;
+	position: relative;
+	white-space: nowrap;
+	box-shadow: 0 0 2px rgba(0,0,0,0.2);
+}
+.tag:before {
+	content: "";
+	float: left;
+	position: absolute;
+	top: 50%;
+	left: -12px;
+	width: 0;
+	height: 0;
+	margin-top: -14px;
+	border-color: transparent #F6E7DC transparent transparent;
+	border-style: solid;
+	border-width: 14px 12px 14px 0;
+}
+.tag:after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	margin-top: -2px;
+	left: 0;
+	float: left;
+	width: 4px;
+	height: 4px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	background: #dfc1ac;
+	-moz-box-shadow: -1px -1px 2px #938c87;
+	-webkit-box-shadow: -1px -1px 2px #938c87;
+	box-shadow: -1px -1px 2px #938c87;
+}
+
+figure {
+	float: right;
+	box-shadow: 0 0 20px #f6f9fc;
+	position: relative;
+	z-index: 100;
+	padding: 0;
+	margin: 0 0 0 20px;
+	width: 180px;
+	height: 230px;
+	vertical-align: middle;
+	text-align: center;
+	border: 4px solid #fff;
+	box-shadow: 0 0 4px lightgrey;
+}
+figure figcaption {
+	position: absolute;
+	top: -28px;
+	left: 0;
+	right: 0;
+	color: rgb(179, 179, 179);
+	font-size: 14px
+}
+figure > img {
+	width: 100%;
+	max-height: 100%;
+	display: block;
 }

@@ -46,9 +46,9 @@ public static function getDataAt($key) {
 		$str = '<article class="recipe">'.PHP_EOL;
 		$str.= '	<h1>'.$this->getTitle().'</h1>'.PHP_EOL;
 		if(FavoriteDAO::isFavorite($this))
-			$str.= '	<a href="favorites/remove/'.$this->getId().'" title="Je n\'aime plus !">Supprimer des favoris</a>';
+			$str.= '	<a class="favorite-button remove" href="favorites/remove/'.$this->getId().'" title="Je n\'aime plus !">Supprimer des favoris</a>';
 		else
-			$str.= '	<a href="favorites/add/'.$this->getId().'" title="J\'aime !">Ajouter aux favoris</a>';
+			$str.= '	<a class="favorite-button add" href="favorites/add/'.$this->getId().'" title="J\'aime !">Ajouter aux favoris</a>';
 		$str.= '	<section class="content">';
 
 		if(file_exists($imagePath = $this->getImagePath()))

@@ -39,11 +39,11 @@ class Favorite {
 		//return ' Favorite [ login: '.$this->login.'; recipe:'.$this->recipe.' ] ';
 
 		$str = '<article class="favorite">'.PHP_EOL;
-		$str.= '		<h1>'.$this->getRecipe()->getTitle().'</h1>'; // Titre
+		$str.= '	<a class="favorite-button remove" href="favorites/remove/'.$this->getRecipe()->getId().'" title="Retirer des favoris">Retirer</a>'.PHP_EOL;
 
-		$str.= '<a href="favorites/remove/'.$this->getRecipe()->getId().'" title="">x</a>'.PHP_EOL;
+		$str.= '	<h1><a href="recipe/'.$this->getRecipe()->getId().'" title="Aller à la recette">'.$this->getRecipe()->getTitle().'</a></h1>'; // Titre
 
-		$str.= '	</article>'.PHP_EOL;
+		$str.= '</article>'.PHP_EOL;
 
 		return $str;
 	}

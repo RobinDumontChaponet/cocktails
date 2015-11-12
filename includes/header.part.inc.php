@@ -9,7 +9,7 @@ $requestUrl = $transit->getRequestUrl();
 			<li class="favorites<?= ($requestUrl=='favorites')?' active ':'' ?>"><a href="favorites">Mes favoris</a></li>
 
 		<?php if(empty($_SESSION['cocktailsUser'])) { ?>
-			<li class="login<?= ($requestUrl=='login')?' active ':'' ?>"><a href="login"><span>Se connecter</span></a></li>
+			<li class="user<?= ($requestUrl=='login')?' active ':'' ?>"><a href="login"><span>Se connecter</span></a></li>
 		<?php } else { ?>
 			<li class="user sub<?= ($requestUrl=='profile')?' active ':'' ?>"><a href="profile"><?= $_SESSION['cocktailsUser']->getLogin() ?></a>
 				<ul>

@@ -60,7 +60,7 @@ li ul a[href=""]:before {
 li ul a[href="parameter"]:before {
 	content: "\f013"!important;
 }
-header a[href="login"]:before, li ul a[href="logout"]:before {
+li ul a[href="logout"]:before {
 	content: "\f011"!important;
 }
 

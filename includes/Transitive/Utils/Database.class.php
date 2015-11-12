@@ -7,16 +7,18 @@ class Database {
 	private $PDOInstance = null;
 	private static $instance = null;
 
-	public static $defaultDbHost = 'localhost';
-	public static $defaultDbUser = '';
-	public static $defaultDbPwd = '';
-	public static $defaultDbName = '';
+	public static $dbHost = 'localhost';
+	public static $dbUser = '';
+	public static $dbPwd = '';
+	public static $dbName = '';
+	public static $tablePrefix = '';
+
 
 	function __construct() {
 		$this->PDOInstance = new PDO(
-			'mysql:dbname='.self::$defaultDbName.';host='.self::$defaultDbHost,
-			self::$defaultDbUser,
-			self::$defaultDbPwd,
+			'mysql:dbname='.self::$dbName.';host='.self::$dbHost,
+			self::$dbUser,
+			self::$dbPwd,
 			array(
 				PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
 				PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
@@ -43,9 +45,5 @@ class Database {
 		return $this->PDOInstance->lastInsertId();
 	}
 }
-
-Database::$defaultDbUser = 'cocktail';
-Database::$defaultDbPwd = 'cocktail';
-Database::$defaultDbName = 'cocktails';
 
 ?>

@@ -17,9 +17,10 @@ define('WEB_DATA', SELF.'data/');
 /*
  * Database
  */
-define('DB_USER', 'cocktail');
-define('DB_PWD', 'cocktail');
-define('DB_NAME', 'cocktails');
+Utils\Database::$dbUser = 'cocktail';
+Utils\Database::$dbPwd = 'cocktail';
+Utils\Database::$dbName = 'cocktails';
+Utils\Database::$tablePrefix = '';
 
 
 /*

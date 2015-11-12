@@ -1,59 +1,8 @@
-<!--meta title="Inscription" js="script/passwords.transit.js"-->
 <?php
 
 $view->setTitle('Inscription');
 $view->importScript('script/passwords.transit.js');
-$view->addStyle('
-input, select {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-form div {
-	display: inline-block;
-	vertical-align: top;
-	width: 33%;
-	text-align: center;
-}
-.progress {
-	width: 190px;
-	margin: 0 auto;
-	text-align: center;
-	position: relative;
-	top: -30px;
-	pointer-events: none;
-}
-.progress span {
-	display: block;
-	border-bottom-left-radius: 4px;
-	width: 0;
-	padding: 0;
-	height: 32px;
-	background: rgba(255, 0, 0, .05);
-	border-bottom: 3px solid red;
-
-	-webkit-transition: padding .1s linear;
-	-moz-transition: padding .1s linear;
-	-o-transition: padding .1s linear;
-	transition: padding .1s linear;
-}
-.progress span[data-progress^="4"] {
-	border-bottom-color: lightcoral;
-	background-color: rgba(240, 127, 127, .05);
-}
-.progress span[data-progress^="6"] {
-	border-bottom-color: lightsalmon;
-	background-color: rgba(255, 160, 123, .05);
-}
-.progress span[data-progress^="8"] {
-	border-bottom-color: rgb(255, 210, 0);
-	background-color: rgba(255, 210, 0, .05);
-}
-.progress span[data-progress="100%"] {
-	border-bottom-color: lightgreen;
-	background-color: rgba(146, 238, 146, .15);
-	border-bottom-right-radius: 4px;
-}');
+$view->importStylesheet('style/profile.css');
 
 $view->content = function ($data) { ?>
 <div id="content">

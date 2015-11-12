@@ -4,8 +4,8 @@ namespace Transitive;
 
 use Transitive\Core\FrontController as FrontController;
 
-require 'conf.inc.php';
 require 'transitive/Transitive.inc.php';
+require 'conf.inc.php';
 
 session_start();
 
@@ -23,7 +23,7 @@ $transit->execute();
 <?php $transit->printMetas() ?>
 <base href="<?php echo ((constant('SELF')==NULL)?'/':constant('SELF').'/'); ?>" />
 <?php $transit->printTitle('Cocktails | ') ?>
-<meta name="msapplication-TileColor" content="#FFF">
+<meta name="msapplication-TileColor" content="#D07C5E">
 <link rel="stylesheet" type="text/css" href="style/reset.min.css">
 <link rel="stylesheet" type="text/css" href="style/style.combined.css">
 <?php $transit->printStyle() ?>

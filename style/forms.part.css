@@ -24,10 +24,12 @@ label {
 	top: -2px;
 	padding: 0 5px 0 0;
 }
+/*
 label:after, h4:after {
 	padding-left: 5px;
 	content: ":";
 }
+*/
 
 input, .button, button, select, textarea, input[readonly]:focus {
 	border: 1px solid rgb(175, 175, 175);

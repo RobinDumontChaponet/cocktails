@@ -6,6 +6,9 @@ use \Transitive\Utils\Database as DB;
 
 class FavoriteDAO {
 	const tableName = 'favorite';
+	private static function getTableName () {
+		return DB::$tablePrefix.self::tableName;
+	}
 
 	/**
 	 * create function. Insert new entry for $favorite in db.
@@ -17,7 +20,7 @@ class FavoriteDAO {
 	 */
 	public static function create ($favorite) {
 		try {
-			$statement = DB::getInstance()->prepare('INSERT INTO '.self::tableName.' (login, recipeId) values (?, ?)');
+			$statement = DB::getInstance()->prepare('INSERT INTO '.self::getTableName().' (login, recipeId) values (?, ?)');
 			$statement->bindValue(1, $favorite->getLogin());
 			$statement->bindValue(2, $favorite->getRecipe()->getId());
 			$statement->execute();
@@ -31,7 +34,7 @@ class FavoriteDAO {
 	 */
 	public static function update ($favorite) {
 		try {
-			$statement = DB::getInstance()->prepare('UPDATE '.self::tableName.' SET recipeId=? WHERE login=?');
+			$statement = DB::getInstance()->prepare('UPDATE '.self::getTableName().' SET recipeId=? WHERE login=?');
 			$statement->bindValue(1, $favorite->getRecipe()->getId());
 			$statement->bindValue(2, $favorite->getLogin());
 			$statement->execute();
@@ -51,7 +54,7 @@ class FavoriteDAO {
 	public static function delete ($favorite) {
 		if(!empty($favorite)) {
 			try {
-				$statement = DB::getInstance()->prepare('DELETE FROM '.self::tableName.' WHERE login=? AND recipeId=?');
+				$statement = DB::getInstance()->prepare('DELETE FROM '.self::getTableName().' WHERE login=? AND recipeId=?');
 				$statement->bindValue(1, $favorite->getLogin());
 	            $statement->bindValue(2, $favorite->getRecipe()->getId());
 				$statement->execute();
@@ -71,7 +74,7 @@ class FavoriteDAO {
 	public static function getAll () {
 		$favorites = array();
 		try {
-			$statement = DB::getInstance()->prepare('SELECT * FROM '.self::tableName.'');
+			$statement = DB::getInstance()->prepare('SELECT * FROM '.self::getTableName().'');
 			$statement->execute();
 
 			while ($rs = $statement->fetch(PDO::FETCH_OBJ)) {
@@ -96,7 +99,7 @@ class FavoriteDAO {
 		$favorites = array();
 
 		try {
-			$statement = DB::getInstance()->prepare('SELECT * FROM Favorite where login=?');
+			$statement = DB::getInstance()->prepare('SELECT * FROM '.self::getTableName().' where login=?');
 			$statement->bindValue(1, $user->getLogin());
 			$statement->execute();
 

@@ -108,7 +108,7 @@ a, a:active, a:hover, a:visited {
 .warning:first-child {
 	margin-top: 20%;
 }
-.error {
+.true, .error {
     background-color: rgba(255, 0, 0, 0.5);
     border: 1px solid red;
     border-radius: 10px;
@@ -120,6 +120,19 @@ a, a:active, a:hover, a:visited {
 	-ms-animation: flipInX 1s ease-in-out 0 1;
 	-o-animation: flipInX 1s ease-in-out 0 1;
 	animation: flipInX 1s ease-in-out 0 1;
+}
+.true {
+	background-color: rgba(39, 199, 30, 0.5);
+	border-color: green;
+}
+form .error {
+	border-radius: 15% 0 10% 8px;
+	float: right;
+	padding: 0 .5ch;
+	margin: 0;
+	position: relative;
+	top: 2px;
+	line-height: 1.4em;
 }
 .note {
 	margin: 0 auto!important;

@@ -5,6 +5,7 @@
 - [ ] code cleaning ;
 - [ ] install.php ;
 - [ ] last (crash)tests ;
+- PENSER À REMPLACER "includes/conf.inc.php" par "config.beforeinstall.inc.php" à renommer en "conf.inc.php" !
 - [x] display cocktails hierarchy ;
 - [x] redirect to last page when successfully logged-in ;
 - [x] DAO wrapper and class(es) for "$Hierarchie" ;

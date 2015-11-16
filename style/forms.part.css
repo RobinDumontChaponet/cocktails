@@ -2,6 +2,10 @@ fieldset {
 	border:0;
 }
 
+form dl {
+	margin-bottom: 2em;
+}
+
 legend {
 	text-align: center;
 }

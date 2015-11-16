@@ -8,6 +8,7 @@ class Database {
 	private static $instance = null;
 
 	public static $dbHost = 'localhost';
+	public static $dbPort = '3306';
 	public static $dbUser = '';
 	public static $dbPwd = '';
 	public static $dbName = '';
@@ -16,7 +17,7 @@ class Database {
 
 	function __construct() {
 		$this->PDOInstance = new PDO(
-			'mysql:dbname='.self::$dbName.';host='.self::$dbHost,
+			'mysql:host='.self::$dbHost.';port='.self::$dbPort.';dbname='.self::$dbName,
 			self::$dbUser,
 			self::$dbPwd,
 			array(

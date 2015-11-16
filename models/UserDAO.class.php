@@ -7,10 +7,13 @@ use \Transitive\Utils\Database as DB;
 
 class UserDAO {
 	const tableName = 'User';
+	private static function getTableName () {
+		return DB::$tablePrefix.self::tableName;
+	}
 
 	public static function create ($user) {
 		try {
-			$statement = DB::getInstance()->prepare('INSERT INTO '.self::tableName.' (login, password, firstName, lastName, sex, email, birthDate, address, postalCode, city, phoneNumber ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+			$statement = DB::getInstance()->prepare('INSERT INTO '.self::getTableName().' (login, password, firstName, lastName, sex, email, birthDate, address, postalCode, city, phoneNumber ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
 			$statement->bindValue(1, $user->getLogin());
 			$statement->bindValue(2, $user->getPassword());
 			$statement->bindValue(3, $user->getFirstName());
@@ -31,7 +34,7 @@ class UserDAO {
 
 	public static function update ($user) {
 		try {
-			$statement = DB::getInstance()->prepare('UPDATE '.self::tableName.' SET password=?, firstName=?, lastName=?, sex=?, email=?, birthDate=?, address=?, postalCode=?, city=?, phoneNumber=?  WHERE login=?');
+			$statement = DB::getInstance()->prepare('UPDATE '.self::getTableName().' SET password=?, firstName=?, lastName=?, sex=?, email=?, birthDate=?, address=?, postalCode=?, city=?, phoneNumber=?  WHERE login=?');
 			$statement->bindValue(1, $user->getPassword());
 			$statement->bindValue(2, $user->getFirstName());
 			$statement->bindValue(3, $user->getLastName());
@@ -51,7 +54,7 @@ class UserDAO {
 
 	public static function delete ($user) {
 		try {
-			$statement = DB::getInstance()->prepare('DELETE FROM '.self::tableName.' WHERE login=?');
+			$statement = DB::getInstance()->prepare('DELETE FROM '.self::getTableName().' WHERE login=?');
 			$statement->bindValue(1, $user->getLogin());
 			$statement->execute();
 		} catch (PDOException $e) {
@@ -62,7 +65,7 @@ class UserDAO {
 	public static function getAll () {
 		$users = array();
 		try {
-			$statement = DB::getInstance()->prepare('SELECT * FROM '.self::tableName.'');
+			$statement = DB::getInstance()->prepare('SELECT * FROM '.self::getTableName().'');
 
 			$statement->execute();
 
@@ -78,7 +81,7 @@ class UserDAO {
 		$user = null;
 
 		try {
-			$statement = DB::getInstance()->prepare('SELECT * FROM User where login=?');
+			$statement = DB::getInstance()->prepare('SELECT * FROM '.self::getTableName().' where login=?');
 			$statement->bindParam(1, $login);
 			$statement->execute();
 

@@ -1,13 +1,9 @@
-
 label {
 	position: relative;
 	display: block;
 	margin-top: 1em;
-	font-weight: bold; 
+	font-weight: bold;
 }
-
-
-
 
 form label, form a, form button, form input [type="submit"] {
 	display: block;
@@ -25,6 +21,4 @@ form label, form a, form button, form input [type="submit"] {
 	/*display: inline-block;*/
 	margin-top: 1em;
 	width: 20%;
-
-
 }

@@ -6,8 +6,8 @@ $view->importStylesheet('style/profile.css');
 
 $view->content = function ($data) { ?>
 <div id="content">
-	<?php if ( $_POST && $errorExistingLogin ) {
-		echo '<p>Ce nom de compte existe déjà</p>';
+	<?php/* if ( $_POST && $errorExistingLogin ) {
+		echo '<p>Ce nom de compte existe déjà</p>';*/
 	} ?>
 	<form method="post">
 		<div>

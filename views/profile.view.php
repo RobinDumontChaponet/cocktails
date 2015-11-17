@@ -47,7 +47,7 @@ $view->content = function ($data) { ?>
 
 		<div>
 			<label for="password">Nouveau mot de passe *</label>
-			<input type="password" name="password" id="password" placeholder="5 caractères minimum" required />
+			<input type="password" name="password" id="password" placeholder="5 caractères minimum" />
 			<p class="notice" id="password-notice">Un bon mot de passe doit être suffisamment long. Il doit être composé d’au moins 3 types de caractères différents parmi les quatre types de caractères existants (majuscules, minuscules, chiffres et caractères spéciaux). Il ne devrait pas avoir de lien avec son détenteur (nom, date de naissance)…<br /><a href="http://www.cnil.fr/linstitution/actualite/article/article/securite-comment-construire-un-mot-de-passe-sur-et-gerer-la-liste-de-ses-codes-dacces/" title="Plus d'info sur la CNIL.fr" target="_blank">En savoir plus</a></p>
 		</div>
 

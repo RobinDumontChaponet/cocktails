@@ -1,5 +1,8 @@
 <?php
 
+require_once MODELS_INC.'UserDAO.class.php';
+use Transitive\Utils\Passwords as Passwords;
+
 if(isset($_SESSION['cocktailsUser']))
 	$request->redirect('profile');
 
@@ -32,10 +35,8 @@ if($_POST) {
     }
 
     if( $valid['login'] && $valid['password'] ) {
-        require_once MODELS_INC.'UserDAO.class.php';
-        require_once 'passwordHash.inc.php';
         if ( !$errorExistingLogin ) {
-            $password = create_hash($password);
+            $password = Passwords::create_hash($password);
             $newUser = new User($login, $password, $_POST['firstName'], $_POST['lastName'], $_POST['sex'], $_POST['email'], $_POST['birthDate'], $_POST['address'], $_POST['postalCode'], $_POST['city'], $_POST['phoneNumber']);
             UserDAO::create($newUser);
             $request->redirect('login');

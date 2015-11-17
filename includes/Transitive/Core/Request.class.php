@@ -2,9 +2,6 @@
 
 namespace Transitive\Core;
 
-//require 'transitive/Controller.class.php';
-//require 'transitive/View.class.php';
-
 class Request {
 	private $controllerPath;
 	private $viewPath;

@@ -18,7 +18,7 @@ define('WEB_DATA', SELF.'data/');
  * If the database is not config we go to install script ! *
  *                                                         *
  ***********************************************************/
-header('Location: install.php');
+header('Location: /install.php');
 
 
 /*

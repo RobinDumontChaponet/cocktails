@@ -2,8 +2,6 @@
 
 namespace Transitive\Core;
 
-//require 'transitive/Request.class.php';
-
 if (!function_exists('http_response_code')) {
 	function http_response_code($newcode = NULL) {
 		static $code = 200;

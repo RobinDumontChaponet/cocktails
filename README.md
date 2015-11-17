@@ -3,7 +3,7 @@
 - [ ] verifications (and display errors to user) in forms ;
 - [ ] beautification of everything :—) ;
 - [ ] code cleaning ;
-- [ ] install.php ;
+- [x] install.php ;
 - [ ] last (crash)tests ;
 - PENSER À REMPLACER "includes/conf.inc.php" par "config.beforeinstall.inc.php" à renommer en "conf.inc.php" !
 - [x] display cocktails hierarchy ;

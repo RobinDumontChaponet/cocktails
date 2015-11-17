@@ -2,9 +2,6 @@
 
 use \Transitive\Utils\Database as DB;
 
-//require_once 'DB.class.php';
-//require_once MODELS_INC.'User.class.php';
-
 class UserDAO {
 	const tableName = 'User';
 	private static function getTableName () {

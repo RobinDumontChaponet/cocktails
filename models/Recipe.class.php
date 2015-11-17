@@ -5,7 +5,7 @@ use \Transitive\Utils as Utils;
 class Recipe extends Wrapper { // This class is just a wrapper to access Recipes (in data/Donnees.inc.php) more conveniently and more importantly in the same way as the other Objects !
 
 	// Helpers
-public static function getDataAt($key) {
+	public static function getDataAt($key) {
 		if(isset(self::$recipesData[$key]))
 			return self::$recipesData[$key];
 		return null;

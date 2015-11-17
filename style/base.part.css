@@ -50,28 +50,6 @@ a, a:active, a:hover, a:visited {
   background: #9FCBFD;
 }
 
-:target {
-	position: relative;
-}
-:target:before {
-	position: absolute;
-	content: "";
-	top: 0;
-	right: -46px;
-	bottom: 0;
-	left: -46px;
-	z-index: 111;
-	-webkit-animation: spot ease-in 1;
-	-moz-animation: spot ease-in 1;
-	animation: spot ease-in 1;
-	-webkit-animation-fill-mode: forwards;
-	-moz-animation-fill-mode: forwards;
-	animation-fill-mode: forwards;
-	-webkit-animation-duration: .5s;
-	-moz-animation-duration: .5s;
-	animation-duration: .5s;
-}
-
 .sad, .nc {
 	color: grey;
 }

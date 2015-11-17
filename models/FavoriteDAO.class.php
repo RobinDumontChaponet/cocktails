@@ -2,8 +2,6 @@
 
 use \Transitive\Utils\Database as DB;
 
-//require_once MODELS_INC.'Favorite.class.php';
-
 class FavoriteDAO {
 	const tableName = 'favorite';
 	private static function getTableName () {
@@ -113,37 +111,7 @@ class FavoriteDAO {
 		return $favorites;
 	}
 
-
-/* <NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE> */
 	/**
-	 * sync function. Delete Fav in db if not in $favorites and create if not in db
-	 *
-	 * @access public
-	 * @static
-	 * @param User object - $user
-	 * @param Favorite Objects Array - $favorites
-	 * @return void
-	 */
-/*
-	public static function sync ($user, $favorites) {
-		$existingFavorites = self::getByUser($user);
-		foreach($existingFavorites as $favorite) {
-			if(($key = array_search($favorite, $favorites)) === false)
-				self::delete($favorite);
-			else
-				unset($favorites[$key]);
-		}
-		foreach($favorites as $favorite) {
-			$favorite->setUser($user);
-			self::create($favorite);
-		}
-
-	}*/
-/* </NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE NOPE> */
-
-
-
-/**
 	 * sync function. Push saved Favorites from db to $favorites and create Fav from $favorites if not already in db
 	 *
 	 * @access public

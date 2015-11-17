@@ -1,7 +1,5 @@
 <?php
 
-//require_once MODELS_INC.'Category.class.php';
-
 class IngredientDAO { // This class is just a wrapper to access Recipes (in data/Donnees.inc.php) more conveniently !
 
 	/**

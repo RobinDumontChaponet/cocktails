@@ -1,13 +1,13 @@
 <?php
 
-class IngredientDAO { // This class is just a wrapper to access Recipes (in data/Donnees.inc.php) more conveniently !
+class IngredientDAO { // This class is just a wrapper to access Ingredient Objects (in data/Donnees.inc.php) more conveniently !
 
 	/**
-	 * getAll function. Get all Recipe Objects. In fact it is only to use a more modern and convenient way to access data. For the sake of coherence !
+	 * getAll function. Get all Ingredient Objects. In fact it is only a more modern and convenient way to access data. For the sake of coherence !
 	 *
 	 * @access public
 	 * @static
-	 * @return Recipe Objects Array
+	 * @return Ingredient Objects Array
 	 */
 	public static function getAll () {
 		$ingredients = array();
@@ -42,12 +42,12 @@ class IngredientDAO { // This class is just a wrapper to access Recipes (in data
 	}
 
 	/**
-	 * getById function. Get Recipe Object by id in array. In fact it is only to use a more modern and convenient way to access data. For the sake of coherence !
+	 * getById function. Get Ingredient Object by id in array. In fact it is only a more modern and convenient way to access data. For the sake of coherence !
 	 *
 	 * @access public
 	 * @static
 	 * @param int id - $id
-	 * @return Recipe Object
+	 * @return Ingredient Object
 	 */
 	public static function getById ($id) {
 		if(Ingredient::getDataAt($id))

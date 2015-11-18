@@ -40,19 +40,24 @@ class Ingredient extends Wrapper { // This class is just a wrapper to access Ing
 		$str.= '<h1>'.$this->getHierarchy().'<span class="self">'.$this->getLabel().'</span></h1>';
 
 		$str.= '<section class="content">';
+		$str.= '<div class="subs"><h2>Filtres</h2>';
 		if($subs = $this->getSubsName()) {
-			$str.= '<ul class="subs" title="Sous-ingredients">';
+			$str.= '<ul title="Ingredients">';
 			foreach($subs as $sub)
 				$str.= '<li><a href="ingredient/'.urlencode($sub).'">'.$sub.'</a></li>';
 			$str.= '</ul>';
-		}
+		} else
+			$str.= '<p class="sad">Aucun filtre applicable</p>';
+		$str.= '</div>';
+		$str.= '<div class="recipes"><h2>Recettes</h2>';
 		if($recipes = RecipeDAO::getByIngredient($this)) {
-			$str.= '<h2>Recettes :</h2>';
 			$str.= '<ul title="Recettes">';
 			foreach($recipes as $recipe)
 				$str.= '<li><a href="recipe/'.$recipe->getId().'">'.$recipe->getTitle().'</a></li>';
 			$str.= '</ul>';
-		}
+		} else
+			$str.= '<p class="sad">Aucune recette à afficher.</p>';
+		$str.= '</div>';
 		$str.= '</section></article>';
 
 		return $str;

@@ -46,10 +46,26 @@ class RecipeDAO { // This class is just a wrapper to access Recipes (in data/Don
 	public static function getByIngredient ($ingredient) {
 		$recipes = array();
 
+		if($subs = $ingredient->getSubsName())
+			foreach($subs as $subIngredient)
+				$recipes += self::getByIngredient(new Ingredient($subIngredient));
+
 		if(!empty(Recipe::$recipesData))
 			foreach(Recipe::$recipesData as $key => $recipeData)
 				if(in_array($ingredient->getId(), $recipeData['index']))
-					$recipes[] = new Recipe($key);
+					$recipes[$key] = new Recipe($key);
+
+		return $recipes;
+	}
+
+	public static function getByCategory ($category) {
+		$recipes = array();
+
+
+
+		if($ingredients = IngredientDAO::getByCategory($category))
+			foreach($ingredients as $ingredient)
+				$recipes += self::getByIngredient($ingredient);
 
 		return $recipes;
 	}

@@ -30,15 +30,25 @@ class Category extends Wrapper { // This class is just a wrapper to access cocta
 		$ingredients = IngredientDAO::getByCategory($this);
 
 		$str.= '<section class="content">';
+		$str.= '<div class="subs"><h2>Filtres</h2>';
 		if(empty($ingredients))
-			$str.= '<p class="sad">Aucun ingredient.</p>';
+			$str.= '<p class="sad">Aucun filtre applicable.</p>';
 		else {
-			$str.= '<ul>';
+			$str.= '<ul title="Sous-ingredients">';
 			foreach($ingredients as $ingredient)
 				$str.= '<li><a href="ingredient/'.urlencode($ingredient->getId()).'">'.$ingredient->getLabel().'</a></li>';
 			$str.= '</ul>';
 		}
-
+		$str.= '</div>';
+		$str.= '<div class="recipes"><h2>Recettes</h2>';
+		if($recipes = RecipeDAO::getByCategory($this)) {
+			$str.= '<ul title="Recettes">';
+			foreach($recipes as $recipe)
+				$str.= '<li><a href="recipe/'.$recipe->getId().'">'.$recipe->getTitle().'</a></li>';
+			$str.= '</ul>';
+		} else
+			$str.= '<p class="sad">Aucune recette à afficher.</p>';
+		$str.= '</div>';
 		$str.= '</section></article>';
 
 		return $str;

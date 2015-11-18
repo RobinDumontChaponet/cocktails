@@ -13,11 +13,12 @@ if( $_POST ) {
 	$modified = false;
 	Validation::trimForm(array('firstName', 'lastName', 'sex', 'email', 'birthDate', 'address', 'postalCode', 'city', 'phoneNumber'), $_POST);
 
-	/*Validation::validateForm (array(
-		'firstName' => function($value){ return ($value=='' || (!empty($value)))?true:'Vous devez fournir un prénom'; }
-	), $_POST);*/
+	Validation::validateForm (array(
+		'firstName' => function($value){ return (!Validation::contains_numeric($value))?true:'Un prénom n\'a pas de chiffres ...'; },
+		'lastName' => function($value){ return (!Validation::contains_numeric($value))?true:'Un prénom n\'a pas de chiffres ...'; }//is_valid_phoneNumber
+	), $_POST);
 
-	//if(Validation::isFormValid()) {
+	if(Validation::isFormValid()) {
 		if ($_POST['firstName'] != $user->getFirstName()) {
 			$user->setFirstName($_POST['firstName']);
 			$modified = true;
@@ -56,9 +57,8 @@ if( $_POST ) {
 		}
 		if( $modified ) {
 			UserDAO::update($user);
-			$request->redirect('profile');
 	    }
-	//}
+	}
 }
 
 $controller->data['user'] = &$user;

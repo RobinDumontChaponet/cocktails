@@ -3,6 +3,7 @@
 $view->setTitle('Profil');
 $view->linkScript('script/passwords.transit.js');
 $view->importStylesheet('style/profile.css');
+use Transitive\Utils\Validation as Validation;
 
 $view->content = function ($data) { ?>
 <div id="content">
@@ -18,6 +19,7 @@ $view->content = function ($data) { ?>
 			<input type="text" name="lastName" id="lastName" value="<?= $data['user']->getLastName() ?>"/>
 
 			<label for="firstName">Prénom</label>
+			<?= Validation::invalidMessage('firstName'); ?>
 			<input type="text" name="firstName" id="firstName" value="<?= $data['user']->getFirstName() ?>"/>
 
 			<label for="sex">Sexe</label>

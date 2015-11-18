@@ -21,7 +21,7 @@ $transit->execute();
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <?php $transit->printMetas() ?>
-<base href="<?php echo ((constant('SELF')==NULL)?'/':constant('SELF')); ?>" />
+<base href="<?php echo ((constant('SELF')==NULL)?'/':constant('SELF').'/'); ?>" />
 <?php $transit->printTitle('Cocktails | ') ?>
 <meta name="msapplication-TileColor" content="#D07C5E">
 <link rel="stylesheet" type="text/css" href="style/reset.min.css">

@@ -1,6 +1,7 @@
 <?php
 
 $view->setTitle('Recette : '.((empty($data['recipe']))?$view->data['recipe']->getTitle():''));
+$view->addStyle ('section {min-height: 252px}');
 
 $view->content = function ($data) { ?>
 <div id="content">

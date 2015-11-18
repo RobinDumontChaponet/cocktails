@@ -9,7 +9,7 @@ require 'conf.inc.php';
 
 session_start();
 
-FrontController::$defaultRequestUrl = 'categories';
+FrontController::$defaultRequestUrl = 'all';
 $transit = new FrontController(@$_GET['requ']);
 $transit->execute();
 ?>

@@ -30,7 +30,7 @@ class Ingredient extends Wrapper { // This class is just a wrapper to access Ing
 
 	public function getHierarchy () {
 		if($s = IngredientDAO::getByChildIngredient($this))
-			return $s[0]->getHierarchy().$s[0]->getLabel().' > ';
+			return $s[0]->getHierarchy().'<a href="ingredient/'.$s[0]->getLabel().'">'.$s[0]->getLabel().'</a> > ';
 		return '';
 	}
 

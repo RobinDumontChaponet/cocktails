@@ -16,7 +16,7 @@ $view->content = function ($data) { ?>
 		else {
 			echo '<ul title="Aliments">';
 			foreach($data['categories'] as $category)
-				echo '<li><a href="category/'.$category->getId().'">'.$category->getLabel().'</a></li>';
+				echo '<li><a href="ingredient/'.$category->getLabel().'">'.$category->getLabel().'</a></li>';
 			echo '</ul>';
 		}
 		echo '</div>';

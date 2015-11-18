@@ -35,6 +35,9 @@ class Recipe extends Wrapper { // This class is just a wrapper to access Recipes
 		return $ingredients;
 	}
 
+	public function getPrivateImagePath () {
+		return DATA_PATH.'Photos/'.ucfirst(Utils\Strings::post_slug($this->getTitle())).'.jpg';
+	}
 	public function getImagePath () {
 		return WEB_DATA.'Photos/'.ucfirst(Utils\Strings::post_slug($this->getTitle())).'.jpg';
 	}
@@ -51,8 +54,8 @@ class Recipe extends Wrapper { // This class is just a wrapper to access Recipes
 			$str.= '	<a class="favorite-button add" href="favorites/add/'.$this->getId().'" title="J\'aime !">Ajouter aux favoris</a>';
 		$str.= '	<section class="content">';
 
-		if(file_exists($imagePath = $this->getImagePath()))
-			$str.= '<figure><img src="'.$imagePath.'" alt="" /></figure>';
+		if(file_exists($this->getPrivateImagePath()))
+			$str.= '<figure><img src="'.$this->getImagePath().'" alt="" /></figure>';
 
 		$str.= '		<h2> Ingrédients : </h2>'."\n	".'<ul>';
 		foreach(explode('|', $this->getQuantities()) as $quantity)

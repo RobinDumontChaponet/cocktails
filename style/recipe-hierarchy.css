@@ -31,18 +31,18 @@ section.content {
 	padding: 0;
 	overflow: hidden;
 }
-.subs, .recipes, p.sad {
+div.subs, div.recipes, p.sad {
 	padding: 10px;
 	display: inline-block;
 	vertical-align: top;
 }
-.subs {
+div.subs {
 	margin-right: 10px;
 	border-right: 1px solid rgb(161, 161, 161);
 	background-color: rgba(246, 246, 246, 0.51);
 	position: relative;
 }
-.subs::after {
+div.subs::after {
 	content: "";
 	position: absolute;
 	top: 100%;

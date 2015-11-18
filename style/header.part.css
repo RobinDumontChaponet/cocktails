@@ -101,15 +101,32 @@ header li ul {
 	position: absolute;
 	display: none;
 	white-space: nowrap;
-	background: #fdfdfd;
-	border: 1px solid #A0B5D2;
+
+	padding-top: 10px;
 	width: 100%;
 	min-width: 160px;
 	top: 2.25em;
 	right: 0;
-	box-shadow: 0 0 1px #fff, 0 0 4px rgba(212, 212, 212, .5);
 	z-index: 110;
 }
+header .sub::before {
+	content: "";
+	z-index: 200;
+	position: absolute;
+	bottom: -10px;
+	left: 50%;
+	margin-left: -10px;
+	border-width: 0 10px 10px;
+	border-style: solid;
+	border-color: #FCFCFC transparent;
+	display: block;
+	width: 0;
+	opacity: 0;
+}
+header .sub:hover::before {
+	opacity: 1;
+}
+
 
 header li:hover ul {
 	display: block;
@@ -119,6 +136,11 @@ header li ul li {
 	display: block;
 	border-radius: 0!important;
 	margin: 0 0;
+	background: #fdfdfd;
+	border: 0 solid #A0B5D2;
+	border-left-width: 1px;
+	border-right-width: 1px;
+	box-shadow: 0 0 4px rgba(212, 212, 212, .5);
 }
 header .active ul li a {
 	border: 0;

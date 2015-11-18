@@ -9,6 +9,9 @@ class UserDAO {
 	}
 
 	public static function create ($user) {
+		if($user->getBirthDate()=='00/00/0000')
+			$user->setBirthDate(null);
+
 		try {
 			$statement = DB::getInstance()->prepare('INSERT INTO '.self::getTableName().' (login, password, firstName, lastName, sex, email, birthDate, address, postalCode, city, phoneNumber ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
 			$statement->bindValue(1, $user->getLogin());
@@ -30,6 +33,9 @@ class UserDAO {
 	}
 
 	public static function update ($user) {
+		if($user->getBirthDate()=='00/00/0000')
+			$user->setBirthDate(null);
+
 		try {
 			$statement = DB::getInstance()->prepare('UPDATE '.self::getTableName().' SET password=?, firstName=?, lastName=?, sex=?, email=?, birthDate=?, address=?, postalCode=?, city=?, phoneNumber=?  WHERE login=?');
 			$statement->bindValue(1, $user->getPassword());
@@ -78,7 +84,7 @@ class UserDAO {
 		$user = null;
 
 		try {
-			$statement = DB::getInstance()->prepare('SELECT * FROM '.self::getTableName().' where login=?');
+			$statement = DB::getInstance()->prepare('SELECT login, password, firstName, lastName, sex, email, DATE_FORMAT(birthDate, "%d/%m/%Y") AS birthDate, address, postalCode, city, phoneNumber FROM '.self::getTableName().' where login=?');
 			$statement->bindParam(1, $login);
 			$statement->execute();
 

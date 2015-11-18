@@ -27,3 +27,6 @@
 	display: block;
 	width: 0;
 }
+ul.subs + h2 {
+	margin-top: 15px;
+}

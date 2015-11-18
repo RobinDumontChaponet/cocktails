@@ -38,6 +38,7 @@ class Category extends Wrapper { // This class is just a wrapper to access cocta
 				$str.= '<li><a href="ingredient/'.urlencode($ingredient->getId()).'">'.$ingredient->getLabel().'</a></li>';
 			$str.= '</ul>';
 		}
+
 		$str.= '</section></article>';
 
 		return $str;

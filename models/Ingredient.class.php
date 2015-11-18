@@ -41,11 +41,13 @@ class Ingredient extends Wrapper { // This class is just a wrapper to access Ing
 
 		$str.= '<section class="content">';
 		if($subs = $this->getSubsName()) {
-			$str.= '<ul title="Sous-ingredients">';
+			$str.= '<ul class="subs" title="Sous-ingredients">';
 			foreach($subs as $sub)
 				$str.= '<li><a href="ingredient/'.urlencode($sub).'">'.$sub.'</a></li>';
 			$str.= '</ul>';
-		} elseif($recipes = RecipeDAO::getByIngredient($this)) {
+		}
+		if($recipes = RecipeDAO::getByIngredient($this)) {
+			$str.= '<h2>Recettes :</h2>';
 			$str.= '<ul title="Recettes">';
 			foreach($recipes as $recipe)
 				$str.= '<li><a href="recipe/'.$recipe->getId().'">'.$recipe->getTitle().'</a></li>';

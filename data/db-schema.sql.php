@@ -29,7 +29,7 @@ function getSqlSchema ($tablePrefix) {
 			  `email` varchar(128) DEFAULT NULL,
 			  `birthDate` date DEFAULT NULL,
 			  `address` varchar(11) DEFAULT NULL,
-			  `postalCode` int(5) DEFAULT NULL,
+			  `postalCode` varchar(5) DEFAULT NULL,
 			  `city` varchar(11) DEFAULT NULL,
 			  `phoneNumber` varchar(10) DEFAULT NULL,
 			  PRIMARY KEY (`login`)

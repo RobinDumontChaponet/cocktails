@@ -7,18 +7,19 @@ if(isset($_SESSION['cocktailsUser']))
 	$request->redirect('profile');
 
 if($_POST) {
-        if( isset($_POST['login']) && strlen($_POST['login']) >= 5  ) {
-        $existingLogin = UserDAO::getByLogin($_POST['login']);
-        if( $existingLogin != NULL ) {
-            $errorExistingLogin = true;
-        } else {
-            $errorExistingLogin = false;
-        }
-        $login = $_POST['login'];
-        $valid['login'] = true;
-    } else {
-        $valid['login'] = false;
-    }
+	if( isset($_POST['login']) && strlen($_POST['login']) >= 3  ) {
+		var_dump('tamere');
+		$existingLogin = UserDAO::getByLogin($_POST['login']);
+		if( $existingLogin != NULL ) {
+			$errorExistingLogin = true;
+		} else {
+			$errorExistingLogin = false;
+		}
+		$login = $_POST['login'];
+		$valid['login'] = true;
+	} else {
+		$valid['login'] = false;
+	}
 
     if( isset($_POST['password']) && strlen($_POST['password']) >= 5  ) {
         $password = $_POST['password'];

@@ -104,12 +104,5 @@ class User {
 	public function __toString () {
 		return 'User [ login: '.$this->login.'; , $firstName:'.$this->firstName.'; $lastName:'.$this->lastName.'; $sex:'.$this->sex.'; $email:'.$this->email.'; $birthDate:'.$this->birthDate.'; $address:'.$this->address.'; $postalCode:'.$this->postalCode.'; $city:'.$this->city.'; $phoneNumber:'.$this->phoneNumber.' ]';
 	}
-
-
-	public function randomPassword( $length = 8 ) {
-		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:?";
-		$password = substr( str_shuffle( $chars ), 0, $length );
-		return $password;
-	}
 }
 ?>

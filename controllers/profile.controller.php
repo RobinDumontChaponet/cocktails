@@ -15,7 +15,10 @@ if( $_POST ) {
 
 	Validation::validateForm (array(
 		'firstName' => function($value){ return (!Validation::contains_numeric($value))?true:'Un prénom n\'a pas de chiffres ...'; },
-		'lastName' => function($value){ return (!Validation::contains_numeric($value))?true:'Un prénom n\'a pas de chiffres ...'; }//is_valid_phoneNumber
+		'lastName' => function($value){ return (!Validation::contains_numeric($value))?true:'Un nom n\'a pas de chiffres ...'; },
+		'city' => function($value){ return (!Validation::contains_numeric($value))?true:'Une ville n\'a pas de chiffres ...'; },
+		'phoneNumber' => function($value){ return (Validation::is_valid_phoneNumber($value))?true:'Numéro de téléphone non valide'; },
+		'email' => function($value){ return (Validation::is_valid_email($value))?true:'Mail non valide'; }
 	), $_POST);
 
 	if(Validation::isFormValid()) {

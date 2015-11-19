@@ -13,16 +13,19 @@ $view->content = function ($data) { ?>
 			<input type="text" readonly="readonly" id="login" value="<?= $data['user']->getLogin() ?>" />
 
 			<label for="mail" name="email">E-mail</label>
-			<input type="email" name="email" id="mail" placeholder="exemple@exemple.com" value="<?= $data['user']->getEmail() ?>" />
+			<?= Validation::invalidMessage('email'); ?>
+			<input type="email" name="email" id="mail" placeholder="exemple@exemple.com" value="<?php if($_POST) {echo $_POST['email'];} else {echo $data['user']->getEmail();} ?>" />
 
 			<label for="lastName">Nom</label>
-			<input type="text" name="lastName" id="lastName" value="<?= $data['user']->getLastName() ?>"/>
+			<?= Validation::invalidMessage('lastName'); ?>
+			<input type="text" name="lastName" id="lastName" value="<?php if($_POST) {echo $_POST['lastName'];} else {echo $data['user']->getLastName();} ?>"/>
 
 			<label for="firstName">Prénom</label>
 			<?= Validation::invalidMessage('firstName'); ?>
-			<input type="text" name="firstName" id="firstName" value="<?= $data['user']->getFirstName() ?>"/>
+			<input type="text" name="firstName" id="firstName" value="<?php if($_POST) {echo $_POST['firstName'];} else {echo $data['user']->getFirstName();} ?>"/>
 
 			<label for="sex">Sexe</label>
+			<?= Validation::invalidMessage('sex'); ?>
 			<select name="sex" id="sex">
 				<option value='' <?php if ($data['user']->getSex() == NULL) echo 'selected'; ?>></option>
 		        <option value="m" <?php if ($data['user']->getSex() == 'm') echo 'selected'; ?>>Homme</option>
@@ -32,19 +35,24 @@ $view->content = function ($data) { ?>
 
 		<div>
 			<label for="birthDate">Date de naissance</label>
-			<input type="date" name="birthDate" id="birthDate" placeholder="jj/mm/aaaa" value="<?= $data['user']->getBirthDate() ?>"/>
+			<?= Validation::invalidMessage('birthDate'); ?>
+			<input type="date" name="birthDate" id="birthDate" placeholder="jj/mm/aaaa" value="<?php if($_POST) {echo $_POST['birthDate'];} else {$data['user']->getBirthDate();} ?>"/>
 
 			<label for="address">Adresse</label>
-			<input type="text" name="address" id="address" value="<?= $data['user']->getAddress() ?>"/>
+			<?= Validation::invalidMessage('address'); ?>
+			<input type="text" name="address" id="address" value="<?php if($_POST) {echo $_POST['address'];} else {echo $data['user']->getAddress();} ?>"/>
 
 			<label for="postalCode">Code postal</label>
-			<input type="text" name="postalCode" id="postalCode" value="<?= $data['user']->getPostalCode() ?>"/>
+			<?= Validation::invalidMessage('postalCode'); ?>
+			<input type="text" name="postalCode" id="postalCode" value="<?php if($_POST) {echo $_POST['postalCode'];} else {echo $data['user']->getPostalCode();} ?>"/>
 
 			<label for="city">Ville</label>
-			<input type="text" name="city" id="city" value="<?= $data['user']->getCity() ?>"/>
+			<?= Validation::invalidMessage('city'); ?>
+			<input type="text" name="city" id="city" value="<?php if($_POST) {echo $_POST['city'];} else {echo $data['user']->getCity();} ?>"/>
 
 			<label for="phoneNumber">Téléphone</label>
-			<input type="text" name="phoneNumber" id="phoneNumber" value="<?= $data['user']->getPhoneNumber() ?>"/>
+			<?= Validation::invalidMessage('phoneNumber'); ?>
+			<input type="text" name="phoneNumber" id="phoneNumber" value="<?php if($_POST && $_POST['phoneNumber'] == 10) {echo $_POST['phoneNumber'];} else {echo $data['user']->getPhoneNumber();} ?>"/>
 		</div>
 
 		<div>

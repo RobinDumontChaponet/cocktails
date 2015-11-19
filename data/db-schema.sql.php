@@ -23,14 +23,14 @@ function getSqlSchema ($tablePrefix) {
 			=>'CREATE TABLE `'.$tablePrefix.'User` (
 			  `login` varchar(50) NOT NULL DEFAULT \'\',
 			  `password` varchar(60) NOT NULL DEFAULT \'\',
-			  `firstName` varchar(11) DEFAULT NULL,
-			  `lastName` varchar(11) DEFAULT NULL,
+			  `firstName` varchar(20) DEFAULT NULL,
+			  `lastName` varchar(20) DEFAULT NULL,
 			  `sex` enum(\'f\',\'m\') DEFAULT NULL,
 			  `email` varchar(128) DEFAULT NULL,
 			  `birthDate` date DEFAULT NULL,
-			  `address` varchar(11) DEFAULT NULL,
+			  `address` varchar(20) DEFAULT NULL,
 			  `postalCode` varchar(5) DEFAULT NULL,
-			  `city` varchar(11) DEFAULT NULL,
+			  `city` varchar(20) DEFAULT NULL,
 			  `phoneNumber` varchar(10) DEFAULT NULL,
 			  PRIMARY KEY (`login`)
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8'

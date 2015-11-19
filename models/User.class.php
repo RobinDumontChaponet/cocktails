@@ -97,6 +97,9 @@ class User {
 		$this->city=$city;
 	}
 	public function setPhoneNumber ($phoneNumber) {
+		if ($phoneNumber == "") {
+			$this->phoneNumber= NULL;
+		}
 		$this->phoneNumber=$phoneNumber;
 	}
 

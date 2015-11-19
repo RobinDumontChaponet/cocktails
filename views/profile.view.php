@@ -53,7 +53,7 @@ $view->content = function ($data) { ?>
 
 			<label for="phoneNumber">Téléphone</label>
 			<?= Validation::invalidMessage('phoneNumber'); ?>
-			<input type="text" name="phoneNumber" id="phoneNumber" value="<?php if($_POST && $_POST['phoneNumber'] == 10) {echo $_POST['phoneNumber'];} else {echo $data['user']->getPhoneNumber();} ?>"/>
+			<input type="tel" autocomplete="off" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" name="phoneNumber" id="phoneNumber" value="<?php if($_POST && $_POST['phoneNumber'] == 10) {echo $_POST['phoneNumber'];} else {echo $data['user']->getPhoneNumber();} ?>"/>
 		</div>
 
 		<div>

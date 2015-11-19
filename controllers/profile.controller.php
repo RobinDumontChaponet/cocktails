@@ -7,7 +7,6 @@ require_once MODELS_INC.'UserDAO.class.php';
 use Transitive\Utils\Validation as Validation;
 $user = UserDAO::getByLogin($_SESSION['cocktailsUser']->getLogin());
 
-
 $formValidation = null;
 if( $_POST ) {
 	$modified = false;
@@ -17,9 +16,9 @@ if( $_POST ) {
 		'firstName' => function($value){ return (!Validation::contains_numeric($value))?true:'Un prénom n\'a pas de chiffres ...'; },
 		'lastName' => function($value){ return (!Validation::contains_numeric($value))?true:'Un nom n\'a pas de chiffres ...'; },
 		'city' => function($value){ return (!Validation::contains_numeric($value))?true:'Une ville n\'a pas de chiffres ...'; },
-		'phoneNumber' => function($value){ return (Validation::is_valid_phoneNumber($value))?true:'Numéro de téléphone non valide'; },
-		'email' => function($value){ return (Validation::is_valid_email($value))?true:'Mail non valide'; }
-		//'birthDate' => function($value){ return ($value >= )?true:'Mail non valide'; }
+		'phoneNumber' => function($value){ return (( !empty($value) && Validation::is_valid_phoneNumber($value)) || $value == "" || empty($value))?true:'Numéro de téléphone non valide'; },
+		'email' => function($value){ return (Validation::is_valid_email($value) || $value == "" || empty($value))?true:'Mail non valide'; }
+		//'birthDate' => function($value){ return ($value >= )?true:'Soyez résonnable'; }
 	), $_POST);
 
 

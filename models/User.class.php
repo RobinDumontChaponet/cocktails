@@ -18,7 +18,7 @@ class User {
 	// Constructors
 	public function __construct ($login, $password='', $firstName='', $lastName='', $sex='', $email='', $birthDate='', $address='', $postalCode='', $city='', $phoneNumber='') {
 		$this->login=$login;
-		$this->password=(empty($password))?self::randomPassword():$password;
+		$this->password=(empty($password))?Transitive\Utils\Passwords::randomPassword():$password;
 		$this->firstName=$firstName;
 		$this->lastName=$lastName;
 		$this->sex=$sex;

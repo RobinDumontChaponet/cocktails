@@ -19,7 +19,9 @@ if( $_POST ) {
 		'city' => function($value){ return (!Validation::contains_numeric($value))?true:'Une ville n\'a pas de chiffres ...'; },
 		'phoneNumber' => function($value){ return (Validation::is_valid_phoneNumber($value))?true:'Numéro de téléphone non valide'; },
 		'email' => function($value){ return (Validation::is_valid_email($value))?true:'Mail non valide'; }
+		//'birthDate' => function($value){ return ($value >= )?true:'Mail non valide'; }
 	), $_POST);
+
 
 	if(Validation::isFormValid()) {
 		if ($_POST['firstName'] != $user->getFirstName()) {

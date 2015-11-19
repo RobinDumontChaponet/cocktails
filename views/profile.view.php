@@ -36,7 +36,8 @@ $view->content = function ($data) { ?>
 		<div>
 			<label for="birthDate">Date de naissance</label>
 			<?= Validation::invalidMessage('birthDate'); ?>
-			<input type="date" name="birthDate" id="birthDate" placeholder="jj/mm/aaaa" value="<?php if($_POST) {echo $_POST['birthDate'];} else {$data['user']->getBirthDate();} ?>"/>
+			<input type="date" name="birthDate" id="birthDate" placeholder="jj/mm/aaaa" value="<?php if($_POST) {echo $_POST['birthDate'];} else {echo $data['user']->getBirthDate();} ?>"/>
+			<?php echo $data['user']->getBirthDate() ?>
 
 			<label for="address">Adresse</label>
 			<?= Validation::invalidMessage('address'); ?>

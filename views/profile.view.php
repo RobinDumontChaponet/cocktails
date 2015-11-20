@@ -57,7 +57,7 @@ $view->content = function ($data) { ?>
 
 			<label for="phoneNumber">Téléphone</label>
 			<?= Validation::invalidMessage('phoneNumber'); ?>
-			<input type="tel" autocomplete="off" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" name="phoneNumber" id="phoneNumber" value="<?php if(isset($_POST['phoneNumber'])) echo $_POST['phoneNumber']; else echo $data['user']->getPhoneNumber(); ?>"/>
+			<input type="tel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" name="phoneNumber" id="phoneNumber" value="<?php if(isset($_POST['phoneNumber'])) echo $_POST['phoneNumber']; else echo $data['user']->getPhoneNumber(); ?>"/>
 		</div>
 		<div>
 			<label for="password">Nouveau mot de passe *</label>

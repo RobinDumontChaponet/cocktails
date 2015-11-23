@@ -158,22 +158,45 @@ class View {
 		} else
 			echo 'default content';
 	}
-	public function displayJson () {
-		ob_start();
-		ob_clean();
-		$this->displayContent();
-		$content = ob_get_clean();
+	private function getContentForJson () {
+		$content = array();
+		if(isset($this->content)) {
+			if(gettype($this->content)=='array')
+				foreach($this->content as $key => $item) {
+					ob_start();
+					ob_clean();
+					$this->display($item);
+					$content[$key] = ob_get_clean();
+				}
+			else {
+				ob_start();
+				ob_clean();
+				$this->displayContent();
+				$content['content'] = ob_get_clean();
+			}
+		}
 
+		return $content;
+	}
+	public function outputJson () {
 		$array = array(
 			'metaTags' => $this->getMetaTags(),
 			'scripts' => $this->getScripts(),
 			'linkTags' => $this->getLinkTags(),
 			'style' => $this->getStyle(),
-			'title' => $this->getTitle(),
-			'content' => $content
+			'title' => $this->getTitle()
 		);
 
+		$content = $this->getContentForJson();
+		if(count($content)>1)
+			$array['content'] = $content;
+		else
+			$array['content'] = $content['content'];
+
 		echo json_encode($array);
+	}
+	public function displayJsonContent () {
+		echo json_encode($this->getContentForJson());
 	}
 }
 

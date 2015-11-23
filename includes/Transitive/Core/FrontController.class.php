@@ -81,12 +81,19 @@ class FrontController {
 		$this->request->getView()->displayContent($key);
 	}
 
-	public function displayJson () {
+	public function outputJson () {
 		if(!headers_sent()) {
 			header('Content-Type: application/json');
 		}
 
-		$this->request->getView()->displayJson();
+		$this->request->getView()->outputJson();
+	}
+	public function displayJsonContent () {
+		if(!headers_sent()) {
+			header('Content-Type: application/json');
+		}
+
+		$this->request->getView()->displayJsonContent();
 	}
 
 	public function __toString() {

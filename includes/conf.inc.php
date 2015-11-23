@@ -17,13 +17,14 @@ define('WEB_DATA', SELF.'/data/');
 /*
  * Database
  */
-Utils\Database::$dbHost = 'localhost';
-Utils\Database::$dbPort = '3306';
-Utils\Database::$dbUser = 'cocktail';
-Utils\Database::$dbPwd = 'cocktail';
-Utils\Database::$dbName = 'cocktails';
-Utils\Database::$tablePrefix = '';
-
+if(class_exists('Transitive\Core\FrontController')) {
+	Utils\Database::$dbHost = 'localhost';
+	Utils\Database::$dbPort = '3306';
+	Utils\Database::$dbUser = 'cocktail';
+	Utils\Database::$dbPwd = 'cocktail';
+	Utils\Database::$dbName = 'cocktails';
+	Utils\Database::$tablePrefix = '';
+}
 
 /*
  * Locales

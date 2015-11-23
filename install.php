@@ -79,16 +79,18 @@ define('WEB_DATA', SELF.'data/');
 /*
  * Database
  */
+if(class_exists('Transitive\Core\FrontController')) {
 EOD;
 		$config.= '
-Utils\Database::$dbHost = \''.Db::$dbHost.'\';
-Utils\Database::$dbPort = \''.Db::$dbPort.'\';
-Utils\Database::$dbUser = \''.Db::$dbUser.'\';
-Utils\Database::$dbPwd = \''.Db::$dbPwd.'\';
-Utils\Database::$dbName = \''.Db::$dbName.'\';
-Utils\Database::$tablePrefix = \''.Db::$tablePrefix.'\';
+	Utils\Database::$dbHost = \''.Db::$dbHost.'\';
+	Utils\Database::$dbPort = \''.Db::$dbPort.'\';
+	Utils\Database::$dbUser = \''.Db::$dbUser.'\';
+	Utils\Database::$dbPwd = \''.Db::$dbPwd.'\';
+	Utils\Database::$dbName = \''.Db::$dbName.'\';
+	Utils\Database::$tablePrefix = \''.Db::$tablePrefix.'\';
 ';
 		$config.= <<<'EOD'
+}
 
 
 /*

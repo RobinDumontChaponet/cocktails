@@ -49,14 +49,14 @@ class Request {
 
 	// - Extras_
 
-	function redirect ($gotoUrl, $delay=0) {
+	public function redirect ($gotoUrl, $delay=0) {
 		if(!headers_sent() && $delay<=0)
 			header('Location: '.$gotoUrl);
 		else
 			$this->view->addRawMetaTag('<meta http-equiv="refresh" content="'.$delay.'; url='.$gotoUrl.'">');
 	}
 
-	function refresh () {
+	public function refresh () {
 		$this->redirect($this->path);
 	}
 

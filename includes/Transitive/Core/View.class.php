@@ -23,14 +23,8 @@ class View {
 	public $content;
 
 	public function __construct () {
-/*
-		$this->metaTags = array();
-		$this->scriptTags = array();
-		$this->linkTags = array();
-		$this->data = array();
-*/
 		$this->script = '';
-		$this->style = '';
+		$this->style  = '';
 	}
 
 	public function getTitle () {
@@ -124,7 +118,7 @@ class View {
 		$this->data = $data;
 	}
 
-	private function display($content) {
+	private function _display($content) {
 		switch(gettype($content)) {
 			case 'string' : case 'integer' : case 'double' :
 				echo $content;
@@ -148,24 +142,24 @@ class View {
 			if(gettype($content)=='array')
 				if(isset($key)) {
 					if(isset($content[$key]))
-						$this->display($content[$key]);
+						$this->_display($content[$key]);
 				} else
 					foreach($content as $item)
-						$this->display($item);
+						$this->_display($item);
 			else
-				$this->display($content);
+				$this->_display($content);
 
 		} else
 			echo 'default content';
 	}
-	private function getContentForJson () {
+	private function _getContentForJson () {
 		$content = array();
 		if(isset($this->content)) {
 			if(gettype($this->content)=='array')
 				foreach($this->content as $key => $item) {
 					ob_start();
 					ob_clean();
-					$this->display($item);
+					$this->_display($item);
 					$content[$key] = ob_get_clean();
 				}
 			else {
@@ -187,7 +181,7 @@ class View {
 			'title' => $this->getTitle()
 		);
 
-		$content = $this->getContentForJson();
+		$content = $this->_getContentForJson();
 		if(count($content)>1)
 			$array['content'] = $content;
 		else
@@ -196,7 +190,7 @@ class View {
 		echo json_encode($array);
 	}
 	public function displayJsonContent () {
-		echo json_encode($this->getContentForJson());
+		echo json_encode($this->_getContentForJson());
 	}
 }
 

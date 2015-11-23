@@ -61,7 +61,7 @@ abstract class Passwords {
 		// format: algorithm:iterations:salt:hash
 		$salt = base64_encode(mcrypt_create_iv(self::PBKDF2_SALT_BYTE_SIZE, MCRYPT_DEV_URANDOM));
 		return self::PBKDF2_HASH_ALGORITHM . ':' . self::PBKDF2_ITERATIONS . ':' .  $salt . ':' .
-			base64_encode(self::pbkdf2(
+			base64_encode(self::_pbkdf2(
 				self::PBKDF2_HASH_ALGORITHM,
 				$password,
 				$salt,
@@ -77,9 +77,9 @@ abstract class Passwords {
 		if(count($params) < self::HASH_SECTIONS)
 			return false;
 		$pbkdf2 = base64_decode($params[self::HASH_PBKDF2_INDEX]);
-		return self::slow_equals(
+		return self::_slow_equals(
 			$pbkdf2,
-			self::pbkdf2(
+			self::_pbkdf2(
 				$params[self::HASH_ALGORITHM_INDEX],
 				$password,
 				$params[self::HASH_SALT_INDEX],
@@ -91,7 +91,7 @@ abstract class Passwords {
 	}
 
 	// Compares two strings $a and $b in length-constant time.
-	private static function slow_equals($a, $b) {
+	private static function _slow_equals($a, $b) {
 		$diff = strlen($a) ^ strlen($b);
 		for($i = 0; $i < strlen($a) && $i < strlen($b); $i++)
 	        $diff |= ord($a[$i]) ^ ord($b[$i]);
@@ -114,7 +114,7 @@ abstract class Passwords {
 	 * This implementation of PBKDF2 was originally created by https://defuse.ca
 	 * With improvements by http://www.variations-of-shadow.com
 	 */
-	private static function pbkdf2($algorithm, $password, $salt, $count, $key_length, $raw_output = false) {
+	private static function _pbkdf2($algorithm, $password, $salt, $count, $key_length, $raw_output = false) {
 		$algorithm = strtolower($algorithm);
 		if(!in_array($algorithm, hash_algos(), true))
 			trigger_error('PBKDF2 ERROR: Invalid hash algorithm.', E_USER_ERROR);

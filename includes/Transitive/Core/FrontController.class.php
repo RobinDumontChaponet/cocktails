@@ -15,7 +15,7 @@ if (!function_exists('http_response_code')) {
 }
 
 class FrontController {
-	public static $controllerIncludePath;
+	public static $presenterIncludePath;
 	public static $viewIncludePath;
 	public static $defaultRequestUrl='index';
 	private $requestUrl;
@@ -23,7 +23,7 @@ class FrontController {
 
 	public function __construct ($requestUrl='') {
 		$this->requestUrl = (!empty($requestUrl))?$requestUrl:self::$defaultRequestUrl;
-		$this->request = new Request(self::$controllerIncludePath.$this->requestUrl.'.controller.php', self::$viewIncludePath.$this->requestUrl.'.view.php');
+		$this->request = new Request(self::$presenterIncludePath.$this->requestUrl.'.presenter.php', self::$viewIncludePath.$this->requestUrl.'.view.php');
 	}
 
 	// - Getters_
@@ -50,15 +50,19 @@ class FrontController {
 
 
 	public function execute () {
-		if(!is_file($this->request->getControllerPath())) {
+		if(!is_file($this->request->getPresenterPath())) {
 			http_response_code(404);
 			$_SERVER['REDIRECT_STATUS'] = 404;
 
-			$this->request->setControllerPath(self::$controllerIncludePath.'genericHttpErrorHandler.controller.php');
+			$this->request->setPresenterPath(self::$presenterIncludePath.'genericHttpErrorHandler.presenter.php');
 			if(!is_file(self::$viewIncludePath.'genericHttpErrorHandler.view.php'))
 				$this->request->setViewPath('');
 			else
 				$this->request->setViewPath(self::$viewIncludePath.'genericHttpErrorHandler.view.php');
+		}
+		if(!$this->request->getView()->hasContent()) {
+			http_response_code(204);
+			$_SERVER['REDIRECT_STATUS'] = 404;
 		}
 		$this->request->execute();
 	}
@@ -96,18 +100,25 @@ class FrontController {
 		$this->request->getView()->displayJsonContent();
 	}
 
-	public function __toString() {
-		// @TODO
-		return 'Transitive [ vars…_ ] ';
+	public function __debugInfo() {
+		return array(
+			'presenterIncludePath' => self::$presenterIncludePath,
+			'viewIncludePath' => self::$viewIncludePath,
+			'defaultRequestUrl' => self::$defaultRequestUrl,
+			'requestUrl' => $this->requestUrl,
+			'request' => $this->request
+		);
 	}
 
 	function __destruct() {
-		if(session_status()!=PHP_SESSION_NONE && $this->getRequestUrl()!='login')
+		if(session_status()!=PHP_SESSION_NONE && $this->getRequestUrl()!='login') // @TODO better ;-)
 			$_SESSION['referrer'] = $this->getRequestUrl();
 	}
 }
 
-FrontController::$controllerIncludePath = ROOT_PATH.'/controllers/';
+/*
+FrontController::$presenterIncludePath = ROOT_PATH.'/presenters/';
 FrontController::$viewIncludePath = ROOT_PATH.'/views/';
+*/
 
 ?>

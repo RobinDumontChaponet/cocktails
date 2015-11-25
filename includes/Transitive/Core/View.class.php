@@ -20,7 +20,7 @@ class View {
 	private $style;
 	private $title;
 	public $data;
-	public $content;
+	public $content = 'No viewable content.';
 
 	public function __construct () {
 		$this->script = '';
@@ -118,7 +118,7 @@ class View {
 		$this->data = $data;
 	}
 
-	private function _display($content) {
+	private function _display($content) { // used by displayContent()
 		switch(gettype($content)) {
 			case 'string' : case 'integer' : case 'double' :
 				echo $content;
@@ -137,40 +137,36 @@ class View {
 
 	public function displayContent ($key=NULL) {
 		if(isset($this->content)) {
-			$content = $this->content;
-
-			if(gettype($content)=='array')
+			if(gettype($this->content)=='array')
 				if(isset($key)) {
-					if(isset($content[$key]))
-						$this->_display($content[$key]);
+					if(isset($this->content[$key]))
+						$this->_display($this->content[$key]);
 				} else
-					foreach($content as $item)
+					foreach($this->content as $item)
 						$this->_display($item);
 			else
-				$this->_display($content);
-
-		} else
-			echo 'default content';
+				$this->_display($this->content);
+		}
 	}
-	private function _getContentForJson () {
-		$content = array();
+	private function _getContent () { // used for json outputs and __toString
+		$contentParts = array();
 		if(isset($this->content)) {
 			if(gettype($this->content)=='array')
 				foreach($this->content as $key => $item) {
 					ob_start();
 					ob_clean();
 					$this->_display($item);
-					$content[$key] = ob_get_clean();
+					$contentParts[$key] = ob_get_clean();
 				}
 			else {
 				ob_start();
 				ob_clean();
 				$this->displayContent();
-				$content['content'] = ob_get_clean();
+				$contentParts['content'] = ob_get_clean();
 			}
 		}
 
-		return $content;
+		return $contentParts;
 	}
 	public function outputJson () {
 		$array = array(
@@ -181,7 +177,7 @@ class View {
 			'title' => $this->getTitle()
 		);
 
-		$content = $this->_getContentForJson();
+		$content = $this->_getContent();
 		if(count($content)>1)
 			$array['content'] = $content;
 		else
@@ -190,7 +186,23 @@ class View {
 		echo json_encode($array);
 	}
 	public function displayJsonContent () {
-		echo json_encode($this->_getContentForJson());
+		echo json_encode($this->_getContent());
+	}
+
+	public function hasContent () {
+		return isset($this->content);
+	}
+
+	public function __debugInfo() {
+		return array(
+			'metaTags' => $this->metaTags,
+			'scriptTags' => $this->scriptTags,
+			'script' => $this->script,
+			'linkTags' => $this->linkTags,
+			'style' => $this->style,
+			'title' => $this->title,
+			'data' => $this->data
+		);
 	}
 }
 

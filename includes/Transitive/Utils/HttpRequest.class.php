@@ -15,7 +15,6 @@ if (!function_exists('http_response_code')) {
 }
 
 abstract class HttpRequest {
-
 	public static function http_response_message () {
 		$code = http_response_code();
 		if(isset(self::$httpCustomStatusMessages[$code]))
@@ -74,6 +73,7 @@ abstract class HttpRequest {
 		424 => 'Failed Dependency',
 		425 => 'No code',
 		426 => 'Upgrade Required',
+		429 => 'Too Many Requests',
 		500 => 'Internal Server Error',
 		501 => 'Method Not Implemented',
 		502 => 'Bad Gateway',

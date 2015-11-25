@@ -21,9 +21,9 @@ $view->content = function ($data) { ?>
 		}
 		echo '</div>';
 		echo '<div class="recipes"><h2>Recettes</h2>';
-		if($recipes = RecipeDAO::getAll()) {
+		if($data['recipes']) {
 			echo '<ul title="Recettes">';
-			foreach($recipes as $recipe)
+			foreach($data['recipes'] as $recipe)
 				echo '<li><a href="recipe/'.$recipe->getId().'">'.$recipe->getTitle().'</a></li>';
 			echo '</ul>';
 		} else

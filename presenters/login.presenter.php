@@ -37,7 +37,7 @@ elseif (isset($_POST['submit'])) {
 	}
 }
 
-$controller->data['bot'] = $bot;
-$controller->data['badInput'] = $badInput;
+$presenter->data['bot'] = $bot;
+$presenter->data['badInput'] = $badInput;
 
 ?>

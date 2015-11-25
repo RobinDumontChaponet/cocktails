@@ -3,28 +3,28 @@
 namespace Transitive\Core;
 
 class Request {
-	private $controllerPath;
+	private $presenterPath;
 	private $viewPath;
-	private $controller;
+	private $presenter;
 	private $view;
 
-	public function __construct ($controllerPath='', $viewPath='') {
-		$this->controllerPath = $controllerPath;
+	public function __construct ($presenterPath='', $viewPath='') {
+		$this->presenterPath = $presenterPath;
 		$this->viewPath = $viewPath;
-		$this->controller = new Controller();
+		$this->presenter = new Presenter();
 		$this->view = new View();
 	}
 
 	// - Getters_
-	public function getControllerPath () {
-		return $this->controllerPath;
+	public function getPresenterPath () {
+		return $this->presenterPath;
 	}
 	public function getViewPath () {
 		return $this->viewPath;
 	}
 
-	public function getController () {
-		return $this->controller;
+	public function getPresenter () {
+		return $this->presenter;
 	}
 
 	public function getView () {
@@ -32,15 +32,15 @@ class Request {
 	}
 
 	// - Setters_
-	public function setControllerPath ($path) {
-		$this->controllerPath=$path;
+	public function setPresenterPath ($path) {
+		$this->presenterPath=$path;
 	}
 	public function setViewPath ($path) {
 		$this->viewPath=$path;
 	}
 
-	public function setController ($controller) {
-		$this->controller=$controller;
+	public function setPresenter ($presenter) {
+		$this->presenter=$presenter;
 	}
 
 	public function setView ($view) {
@@ -66,26 +66,30 @@ class Request {
 	}
 
 	public function execute () {
-		function includeController ($self) {
+		function includePresenter (&$self) {
 			$request = &$self;
-			$controller = $self->getController();
-			include $self->getControllerPath();
+			$presenter = $self->getPresenter();
+			include $self->getPresenterPath();
 		}
 		function includeView (&$self) {
 			if(!empty($self->getViewPath())) {
 				$view = $self->getView();
-				$view->setData($self->getController()->data);
+				$view->setData($self->getPresenter()->data);
 				include $self->getViewPath();
 			}
 		}
 
-		includeController($this);
+		includePresenter($this);
 		includeView($this);
 	}
 
-	public function __toString() {
-		// @TODO
-		return 'Request [ vars…_ ] ';
+	public function __debugInfo() {
+		return array(
+			'presenterPath' => $this->presenterPath,
+			'viewPath' => $this->viewPath,
+			'presenter' => $this->presenter,
+			'view' => $this->view
+		);
 	}
 }
 

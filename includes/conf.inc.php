@@ -13,6 +13,10 @@ define('VIEWS_INC', ROOT_PATH.'/views/');
 define('DATA_PATH', ROOT_PATH.'/data/');
 define('WEB_DATA', SELF.'/data/');
 
+if(class_exists('Transitive\Core\FrontController')) {
+	Core\FrontController::$presenterIncludePath = ROOT_PATH.'/presenters/';
+	Core\FrontController::$viewIncludePath = ROOT_PATH.'/views/';
+}
 
 /*
  * Database

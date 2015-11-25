@@ -65,6 +65,6 @@ if( $_POST ) {
 	}
 }
 
-$controller->data['user'] = &$user;
+$presenter->data['user'] = &$user;
 
 ?>

@@ -2,7 +2,7 @@
 
 namespace Transitive;
 
-class Autoloader {
+abstract class TransitiveAutoloader {
 	public static function register() {
 		spl_autoload_register(array(__CLASS__, 'autoload'));
 	}
@@ -28,6 +28,6 @@ class Autoloader {
 	}
 }
 
-Autoloader::register();
+TransitiveAutoloader::register();
 
 ?>

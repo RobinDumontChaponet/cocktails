@@ -1,10 +1,11 @@
 # @TODO
 
 - [ ] verifications (and display errors to user) in forms ;
-- [ ] beautification of everything :—) ;
-- [ ] code cleaning ;
+- [ ] CREATE DATABASE...
+- [o] beautification of everything :—) ;
+- [o] code cleaning ;
 - [x] install.php ;
-- [ ] last (crash)tests ;
+- [?] last (crash)tests ;
 - PENSER À REMPLACER "includes/conf.inc.php" par "config.beforeinstall.inc.php" à renommer en "conf.inc.php" !
 - [x] display cocktails hierarchy ;
 - [x] redirect to last page when successfully logged-in ;

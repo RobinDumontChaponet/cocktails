@@ -1,7 +1,15 @@
 <?php
 
-function getSqlSchema ($tablePrefix) {
+function getSqlSchema ($baseName, $tablePrefix) {
 	return array(
+		'base'=>array(
+			'drop'
+			=>'DROP TABLE IF EXISTS `'.$tablePrefix.'favorite`',
+
+			'create'
+			=>'CREATE' // @TODO
+		),
+
 		'favorite'=>array(
 			'drop'
 			=>'DROP TABLE IF EXISTS `'.$tablePrefix.'favorite`',

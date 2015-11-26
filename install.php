@@ -15,8 +15,8 @@ if(isset($_POST['install'])) {
 
 	Validation::validateForm (array(
 		'dbPort' => function($value){ return ($value=='' || (!empty($value) && $value!=0 && Validation::is_port_number($value)))?true:'Le numéro de port doit être compris entre 1 et 65535'; },
-		'dbUser' => function($value){ return ($value!='' && strlen($value)<=16)?true:'Le nom d\'utilisateur mySQL est requis et ne dois pas dépasser 16 caractères'; },
-		'dbName' => function($value){ return ($value!='' && strlen($value)<=64 && !Validation::contains('.\/\\', $value))?true:'Le nom de la base mySQL est requis et ne dois pas dépasser 64 caractères ou contenir "\", "/" et "."'; }
+		'dbUser' => function($value){ return ($value=='' || (!empty($value) && strlen($value)<=16))?true:'Le nom d\'utilisateur ne doit pas dépasser 16 caractères'; },
+		'dbName' => function($value){ return ($value=='' || (!empty($value) && strlen($value)<=64 && !Validation::contains('.\/\\', $value)))?true:'Le nom de la base mySQL ne doit pas dépasser 64 caractères ou contenir "\", "/" et "."'; }
 	), $_POST);
 
 	if(Validation::isFormValid()) {
@@ -42,7 +42,7 @@ if(isset($_POST['install'])) {
 
 		Db::$dbHost = (empty($_POST['dbURI']))?'localhost':$_POST['dbURI'];
 		Db::$dbPort = (empty($_POST['dbPort']))?'3306':$_POST['dbPort'];
-		Db::$dbUser = $_POST['dbUser'];
+		Db::$dbUser = (empty($_POST['dbUser']))?'root':$_POST['dbUser'];
 		Db::$dbPwd = $_POST['dbPwd'];
 		Db::$dbName = $_POST['dbName'];
 		Db::$tablePrefix = $_POST['tablePrefix'];
@@ -75,6 +75,10 @@ define('VIEWS_INC', ROOT_PATH.'/views/');
 define('DATA_PATH', ROOT_PATH.'/data/');
 define('WEB_DATA', SELF.'data/');
 
+if(class_exists('Transitive\Core\FrontController')) {
+	Core\FrontController::$presenterIncludePath = ROOT_PATH.'/presenters/';
+	Core\FrontController::$viewIncludePath = ROOT_PATH.'/views/';
+}
 
 /*
  * Database
@@ -198,20 +202,20 @@ if(!isset($_POST['install']) || !Validation::isFormValid()) {
 					<label for="dbUser">Utilisateur mySQL *</label>
 				</dt>
 				<dd>
-					<input id="dbUser" type="text" name="dbUser" value="<?php echo @$_POST['dbUser'] ?>" placeholder="(requis)" required />
+					<input id="dbUser" type="text" name="dbUser" value="<?php echo @$_POST['dbUser'] ?>" placeholder="Par défaut `root`" required />
 				</dd>
 				<dt>
 					<label for="dbPwd">Mot-de-passe de la base-de-données</label>
 				</dt>
 				<dd>
-					<input id="dbPwd" type="text" name="dbPwd" value="<?php echo @$_POST['dbPwd'] ?>" />
+					<input id="dbPwd" type="text" name="dbPwd" value="<?php echo @$_POST['dbPwd'] ?>" placeholder="Par défaut, aucun" />
 				</dd>
 				<dt>
 					<?php echo Validation::invalidMessage('dbName'); ?>
 					<label for="dbName">Nom de la base-de-données mySQL *</label>
 				</dt>
 				<dd>
-					<input id="dbName" type="text" name="dbName" value="<?php echo @$_POST['dbName'] ?>" placeholder="(requis)" required />
+					<input id="dbName" type="text" name="dbName" value="<?php echo @$_POST['dbName'] ?>" placeholder="Par défaut `cocktails`" required />
 				</dd>
 				<dt>
 					<label for="dropTables">Remplacer les tables si elles existent ?</label>

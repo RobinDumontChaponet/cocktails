@@ -9,16 +9,16 @@ $view->content = function ($data) { ?>
 	<form method="post">
 		<div>
 			<label for="login">Nom d'utilisateur  *</label>
-			<input type="text" name="login" id="login" placeholder="5 caractères minimum" value="<?= ($_POST)?$_POST['login']:'' ?>" required />
+			<input type="text" name="login" id="login" placeholder="5 caractères minimum" value="<?php echo ($_POST)?$_POST['login']:'' ?>" required />
 
 			<label name="email">E-mail</label>
-			<input type="email" name="email" id="mail" placeholder="exemple@exemple.com" value="<?= ($_POST)?$_POST['email']:'' ?>" />
+			<input type="email" name="email" id="mail" placeholder="exemple@exemple.com" value="<?php echo ($_POST)?$_POST['email']:'' ?>" />
 
 			<label for="lastName">Nom</label>
-			<input type="text" name="lastName" value="<?= ($_POST)?$_POST['lastName']:'' ?>"/>
+			<input type="text" name="lastName" value="<?php echo ($_POST)?$_POST['lastName']:'' ?>"/>
 
 			<label for="firstName">Prénom</label>
-			<input type="text" name="firstName" value="<?= ($_POST)?$_POST['firstName']:'' ?>"/>
+			<input type="text" name="firstName" value="<?php echo ($_POST)?$_POST['firstName']:'' ?>"/>
 
 			<label for="sex">Sexe</label>
 			<select name="sex">
@@ -30,19 +30,19 @@ $view->content = function ($data) { ?>
 
 		<div>
 			<label for="birthDate">Date de naissance</label>
-			<input type="date" name="birthDate" placeholder="jj/mm/aaaa" value="<?= ($_POST)?$_POST['birthDate']:'' ?>"/>
+			<input type="date" name="birthDate" placeholder="jj/mm/aaaa" value="<?php echo ($_POST)?$_POST['birthDate']:'' ?>"/>
 
 			<label for="address">Adresse</label>
-			<input type="text" name="address" value="<?= ($_POST)?$_POST['address']:'' ?>"/>
+			<input type="text" name="address" value="<?php echo ($_POST)?$_POST['address']:'' ?>"/>
 
 			<label for="postalCode">Code postal</label>
-			<input type="text" name="postalCode" value="<?= ($_POST)?$_POST['postalCode']:'' ?>"/>
+			<input type="text" name="postalCode" value="<?php echo ($_POST)?$_POST['postalCode']:'' ?>"/>
 
 			<label for="city">Ville</label>
-			<input type="text" name="city" value="<?=($_POST)?$_POST['city']:'' ?>"/>
+			<input type="text" name="city" value="<?php echo($_POST)?$_POST['city']:'' ?>"/>
 
 			<label for="phoneNumber">Téléphone</label>
-			<input type="text" name="phoneNumber" value="<?= ($_POST)?$_POST['phoneNumber']:'' ?>"/>
+			<input type="text" name="phoneNumber" value="<?php echo ($_POST)?$_POST['phoneNumber']:'' ?>"/>
 		</div>
 
 		<div>

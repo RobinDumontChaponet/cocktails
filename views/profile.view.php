@@ -14,22 +14,22 @@ $view->content = function ($data) { ?>
 		<!-- [/] fake fields are a workaround for chrome autofill getting the wrong fields -->
 		<div>
 			<label for="login">Nom d'utilisateur </label>
-			<input type="text" readonly="readonly" id="login" value="<?= $data['user']->getLogin() ?>" />
+			<input type="text" readonly="readonly" id="login" value="<?php echo $data['user']->getLogin() ?>" />
 
 			<label for="mail" name="email">E-mail</label>
-			<?= Validation::invalidMessage('email'); ?>
+			<?php echo Validation::invalidMessage('email'); ?>
 			<input type="email" name="email" id="mail" placeholder="exemple@exemple.com" value="<?php if($_POST) {echo $_POST['email'];} else {echo $data['user']->getEmail();} ?>" />
 
 			<label for="lastName">Nom</label>
-			<?= Validation::invalidMessage('lastName'); ?>
+			<?php echo Validation::invalidMessage('lastName'); ?>
 			<input type="text" name="lastName" id="lastName" value="<?php if($_POST) {echo $_POST['lastName'];} else {echo $data['user']->getLastName();} ?>"/>
 
 			<label for="firstName">Prénom</label>
-			<?= Validation::invalidMessage('firstName'); ?>
+			<?php echo Validation::invalidMessage('firstName'); ?>
 			<input type="text" name="firstName" id="firstName" value="<?php if($_POST) {echo $_POST['firstName'];} else {echo $data['user']->getFirstName();} ?>"/>
 
 			<label for="sex">Sexe</label>
-			<?= Validation::invalidMessage('sex'); ?>
+			<?php echo Validation::invalidMessage('sex'); ?>
 			<select name="sex" id="sex">
 				<option value='' <?php if ($data['user']->getSex() == NULL) echo 'selected'; ?>></option>
 		        <option value="m" <?php if ($data['user']->getSex() == 'm') echo 'selected'; ?>>Homme</option>
@@ -39,24 +39,24 @@ $view->content = function ($data) { ?>
 
 		<div>
 			<label for="birthDate">Date de naissance</label>
-			<?= Validation::invalidMessage('birthDate'); ?>
+			<?php echo Validation::invalidMessage('birthDate'); ?>
 			<input type="date" name="birthDate" id="birthDate" placeholder="jj/mm/aaaa" value="<?php if($_POST) {echo $_POST['birthDate'];} else {echo $data['user']->getBirthDate();} ?>"/>
 			<?php echo $data['user']->getBirthDate() ?>
 
 			<label for="address">Adresse</label>
-			<?= Validation::invalidMessage('address'); ?>
+			<?php echo Validation::invalidMessage('address'); ?>
 			<input type="text" name="address" id="address" value="<?php if($_POST) {echo $_POST['address'];} else {echo $data['user']->getAddress();} ?>"/>
 
 			<label for="postalCode">Code postal</label>
-			<?= Validation::invalidMessage('postalCode'); ?>
+			<?php echo Validation::invalidMessage('postalCode'); ?>
 			<input type="text" name="postalCode" id="postalCode" value="<?php if($_POST) {echo $_POST['postalCode'];} else {echo $data['user']->getPostalCode();} ?>"/>
 
 			<label for="city">Ville</label>
-			<?= Validation::invalidMessage('city'); ?>
+			<?php echo Validation::invalidMessage('city'); ?>
 			<input type="text" name="city" id="city" value="<?php if($_POST) {echo $_POST['city'];} else {echo $data['user']->getCity();} ?>"/>
 
 			<label for="phoneNumber">Téléphone</label>
-			<?= Validation::invalidMessage('phoneNumber'); ?>
+			<?php echo Validation::invalidMessage('phoneNumber'); ?>
 			<input type="tel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" name="phoneNumber" id="phoneNumber" value="<?php if(isset($_POST['phoneNumber'])) echo $_POST['phoneNumber']; else echo $data['user']->getPhoneNumber(); ?>"/>
 		</div>
 		<div>

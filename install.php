@@ -172,46 +172,46 @@ textarea {
 <body>
 <div id="wrapper">
 	<header>
-		<h1><a href="<?= $_SERVER['PHP_SELF'] ?>">~ Installation ~</a></h1>
+		<h1><a href="<?php echo $_SERVER['PHP_SELF'] ?>">~ Installation ~</a></h1>
 	</header>
 	<div id="content">
 <?php
 if(!isset($_POST['install']) || !Validation::isFormValid()) {
 ?>
-		<form method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
+		<form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
 			<dl>
 				<dt>
 					<label for="dbURI">Host URI</label>
 				</dt>
 				<dd>
-					<input id="dbURI" type="text" name="dbURI" value="<?= @$_POST['dbURI'] ?>" placeholder="Par défaut `localhost`" autofocus />
+					<input id="dbURI" type="text" name="dbURI" value="<?php echo @$_POST['dbURI'] ?>" placeholder="Par défaut `localhost`" autofocus />
 				</dd>
 				<dt>
-					<?= Validation::invalidMessage('dbPort'); ?>
+					<?php echo Validation::invalidMessage('dbPort'); ?>
 					<label for="dbPort">Port</label>
 				</dt>
 				<dd>
-					<input id="dbPort" type="text" name="dbPort" value="<?= @$_POST['dbPort'] ?>" placeholder="Par défaut `3306`" />
+					<input id="dbPort" type="text" name="dbPort" value="<?php echo @$_POST['dbPort'] ?>" placeholder="Par défaut `3306`" />
 				</dd>
 				<dt>
-					<?= Validation::invalidMessage('dbUser'); ?>
+					<?php echo Validation::invalidMessage('dbUser'); ?>
 					<label for="dbUser">Utilisateur mySQL *</label>
 				</dt>
 				<dd>
-					<input id="dbUser" type="text" name="dbUser" value="<?= @$_POST['dbUser'] ?>" placeholder="(requis)" required />
+					<input id="dbUser" type="text" name="dbUser" value="<?php echo @$_POST['dbUser'] ?>" placeholder="(requis)" required />
 				</dd>
 				<dt>
 					<label for="dbPwd">Mot-de-passe de la base-de-données</label>
 				</dt>
 				<dd>
-					<input id="dbPwd" type="text" name="dbPwd" value="<?= @$_POST['dbPwd'] ?>" />
+					<input id="dbPwd" type="text" name="dbPwd" value="<?php echo @$_POST['dbPwd'] ?>" />
 				</dd>
 				<dt>
-					<?= Validation::invalidMessage('dbName'); ?>
+					<?php echo Validation::invalidMessage('dbName'); ?>
 					<label for="dbName">Nom de la base-de-données mySQL *</label>
 				</dt>
 				<dd>
-					<input id="dbName" type="text" name="dbName" value="<?= @$_POST['dbName'] ?>" placeholder="(requis)" required />
+					<input id="dbName" type="text" name="dbName" value="<?php echo @$_POST['dbName'] ?>" placeholder="(requis)" required />
 				</dd>
 				<dt>
 					<label for="dropTables">Remplacer les tables si elles existent ?</label>
@@ -223,7 +223,7 @@ if(!isset($_POST['install']) || !Validation::isFormValid()) {
 					<label for="tablePrefix">Préfixe des tables</label>
 				</dt>
 				<dd>
-					<input id="tablePrefix" type="text" name="tablePrefix" value="<?= @$_POST['tablePrefix'] ?>" placeholder="Par défaut, aucun" />
+					<input id="tablePrefix" type="text" name="tablePrefix" value="<?php echo @$_POST['tablePrefix'] ?>" placeholder="Par défaut, aucun" />
 				</dd>
 			</dl>
 			<p class="notice">L'utilisateur SQL nécessite les droits CREATE & DROP lors de l'installation<br />puis SELECT, INSERT, UPDATE et DELETE en production</p>

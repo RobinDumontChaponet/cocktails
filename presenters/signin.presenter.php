@@ -8,7 +8,7 @@ if(isset($_SESSION['cocktailsUser']))
 
 if($_POST) {
 	if( isset($_POST['login']) && strlen($_POST['login']) >= 3  ) {
-		var_dump('tamere');
+		var_dump('test');
 		$existingLogin = UserDAO::getByLogin($_POST['login']);
 		if( $existingLogin != NULL ) {
 			$errorExistingLogin = true;

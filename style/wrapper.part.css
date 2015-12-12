@@ -159,6 +159,7 @@ th {
 .tag {
 	float: right;
 	margin-left: 20px;
+	margin-bottom: 8px;
 	padding: 0 10px 0 12px;
 	background: #F6E7DC;
 	color: #fff;

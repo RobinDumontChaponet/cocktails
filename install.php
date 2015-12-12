@@ -43,11 +43,23 @@ if(isset($_POST['install'])) {
 		Db::$dbHost = (empty($_POST['dbURI']))?'localhost':$_POST['dbURI'];
 		Db::$dbPort = (empty($_POST['dbPort']))?'3306':$_POST['dbPort'];
 		Db::$dbUser = (empty($_POST['dbUser']))?'root':$_POST['dbUser'];
-		Db::$dbPwd = $_POST['dbPwd'];
-		Db::$dbName = $_POST['dbName'];
+		Db::$dbPwd = (empty($_POST['dbPwd']))?'':$_POST['dbPwd'];
+		Db::$dbName = (empty($_POST['dbName']))?'cocktails':$_POST['dbName'];
 		Db::$tablePrefix = $_POST['tablePrefix'];
 
-		$sql = getSqlSchema(Db::$tablePrefix);
+		$sql = getSqlSchema(Db::$dbName, Db::$tablePrefix);
+
+		if(isset($_POST['createDatabase']) && $_POST['createDatabase']==true) { // create the database if needed.
+			try {
+				$dbh = new PDO('mysql:host='.Db::$dbHost.';port='.Db::$dbPort, Db::$dbUser, Db::$dbPwd);
+
+				$dbh->exec($sql['base']['create'])
+				      or die('Erreur lors de la création de la base<br />'.print_r($dbh->errorInfo(), true));
+
+			} catch (PDOException $e) {
+				die("DB ERROR: ". $e->getMessage());
+			}
+		}
 
 		if(isset($_POST['dropTables']) && $_POST['dropTables']==true) {
 			sqlExecute($sql['User']['drop']);
@@ -212,10 +224,16 @@ if(!isset($_POST['install']) || !Validation::isFormValid()) {
 				</dd>
 				<dt>
 					<?php echo Validation::invalidMessage('dbName'); ?>
-					<label for="dbName">Nom de la base-de-données mySQL *</label>
+					<label for="dbName">Nom de la base-de-données mySQL</label>
 				</dt>
 				<dd>
 					<input id="dbName" type="text" name="dbName" value="<?php echo @$_POST['dbName'] ?>" placeholder="Par défaut `cocktails`" required />
+				</dd>
+				<dt>
+					<label for="createDatabase">Créer la base-de-données si elle n'existe pas ?</label>
+				</dt>
+				<dd>
+					<input id="createDatabase" type="checkbox" name="createDatabase" checked="checked" />
 				</dd>
 				<dt>
 					<label for="dropTables">Remplacer les tables si elles existent ?</label>

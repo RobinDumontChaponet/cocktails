@@ -3,7 +3,7 @@ input, select {
 	margin-left: auto;
 	margin-right: auto;
 }
-form div {
+form > div {
 	display: inline-block;
 	vertical-align: top;
 	width: 33%;
@@ -47,4 +47,12 @@ form div {
 	border-bottom-color: lightgreen;
 	background-color: rgba(146, 238, 146, .15);
 	border-bottom-right-radius: 4px;
+}
+
+
+@media screen and (max-width: 900px) { /* Yeah, hack it away anyway ! */
+	form > div {
+		border-right: 0 none;
+		width: 100%;
+	}
 }

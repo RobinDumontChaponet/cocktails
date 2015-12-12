@@ -4,10 +4,10 @@ function getSqlSchema ($baseName, $tablePrefix) {
 	return array(
 		'base'=>array(
 			'drop'
-			=>'DROP TABLE IF EXISTS `'.$tablePrefix.'favorite`',
+			=>'DROP DATABASE IF EXISTS `'.$baseName.'`',
 
 			'create'
-			=>'CREATE' // @TODO
+			=>'CREATE DATABASE IF NOT EXISTS `'.$baseName.'`' // @TODO
 		),
 
 		'favorite'=>array(

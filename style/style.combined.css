@@ -12,7 +12,7 @@ if(isset($_GET['minify']) || !file_exists('generated/'.basename(__FILE__))) {
 	include('wrapper.part.css');
 	include('forms.part.css');
 	include('animations.css');
-	//include('queries.part.css');
+	include('queries.part.css');
 	//include('better-dateinput-polyfill.css');
 
 	/*echo $out = minify(ob_get_clean());

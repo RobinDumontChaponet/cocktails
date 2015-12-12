@@ -209,7 +209,7 @@ td input, td input[type="submit"], td input[type="button"], td .button, td butto
 input[type=checkbox] {
 	height: auto;
 }
-input[type="text"], input[type="password"], input[type="date"], input[type="number"], textarea, input[readonly]:focus, input[type="email"] {
+input[type="text"], input[type="password"], input[type="date"], input[type="number"], textarea, input[readonly]:focus, input[type="email"], input[type="tel"] {
 	padding-left: 5px;
 	padding-right: 5px;
 	-webkit-box-sizing: border-box;

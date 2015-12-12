@@ -11,7 +11,7 @@ define('CONTROLLERS_INC', ROOT_PATH.'/controllers/');
 define('MODELS_INC', ROOT_PATH.'/models/');
 define('VIEWS_INC', ROOT_PATH.'/views/');
 define('DATA_PATH', ROOT_PATH.'/data/');
-define('WEB_DATA', SELF.'data/');
+define('WEB_DATA', SELF.'/data/');
 
 if(class_exists('Transitive\Core\FrontController')) {
 	Core\FrontController::$presenterIncludePath = ROOT_PATH.'/presenters/';
@@ -29,7 +29,6 @@ if(class_exists('Transitive\Core\FrontController')) {
 	Utils\Database::$dbName = 'cocktails';
 	Utils\Database::$tablePrefix = '';
 }
-
 
 /*
  * Locales

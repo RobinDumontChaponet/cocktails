@@ -5,7 +5,10 @@ $view->linkScript('script/passwords.transit.js');
 $view->importStylesheet('style/profile.css');
 use Transitive\Utils\Validation as Validation;
 
-$view->content = function ($data) { ?>
+
+$view->content = function ($data) {
+$birthDate = explode('-', $data['user']->getBirthDate());
+?>
 <div id="content">
 	<form method="post">
 		<!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
@@ -40,8 +43,30 @@ $view->content = function ($data) { ?>
 		<div>
 			<label for="birthDate">Date de naissance</label>
 			<?php echo Validation::invalidMessage('birthDate'); ?>
-			<input type="date" name="birthDate" id="birthDate" placeholder="jj/mm/aaaa" value="<?php if($_POST) {echo $_POST['birthDate'];} else {echo $data['user']->getBirthDate();} ?>"/>
-			<?php echo $data['user']->getBirthDate() ?>
+			<select name="dBirthDate">
+				<option value=''>Jour</option>
+				<?php for($i = 1; $i <= 31; $i++) {
+					if ($i <= 9)
+						$i = '0'.$i;
+					?>
+					<option value='<?php echo $i;?>' <?php if (($_POST && $_POST['dBirthDate'] == $i) || $birthDate[2] == $i) echo 'selected'; ?>><?php echo $i?></option>
+				<?php } ?>
+			</select>
+			<select name="mBirthDate">
+				<option value=''>Mois</option>
+				<?php for($i = 1; $i <= 12; $i++) {
+					if ($i <= 9)
+						$i = '0'.$i;
+					?>
+					<option value='<?php echo $i?>' <?php if (($_POST && $_POST['mBirthDate'] == $i) || $birthDate[1] == $i) echo 'selected'; ?>><?php echo $i?></option>
+				<?php } ?>
+			</select>
+			<select name="yBirthDate">
+				<option value=''>Année</option>
+				<?php for($i = date("Y"); $i >= date("Y")-140; $i--) { ?>
+					<option value='<?php echo $i?>' <?php if (($_POST && $_POST['yBirthDate'] == $i) || $birthDate[0] == $i) echo 'selected'; ?>><?php echo $i?></option>
+				<?php } ?>
+			</select>
 
 			<label for="address">Adresse</label>
 			<?php echo Validation::invalidMessage('address'); ?>

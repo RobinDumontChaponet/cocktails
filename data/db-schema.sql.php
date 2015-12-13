@@ -35,7 +35,7 @@ function getSqlSchema ($baseName, $tablePrefix) {
 			  `lastName` varchar(20) DEFAULT NULL,
 			  `sex` enum(\'f\',\'m\') DEFAULT NULL,
 			  `email` varchar(128) DEFAULT NULL,
-			  `birthDate` date DEFAULT NULL,
+			  `birthDate` varchar(10) DEFAULT NULL,
 			  `address` varchar(20) DEFAULT NULL,
 			  `postalCode` varchar(5) DEFAULT NULL,
 			  `city` varchar(20) DEFAULT NULL,

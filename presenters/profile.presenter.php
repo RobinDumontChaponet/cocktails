@@ -18,7 +18,6 @@ if( $_POST ) {
 		'city' => function($value){ return (!Validation::contains_numeric($value))?true:'Une ville n\'a pas de chiffres ...'; },
 		'phoneNumber' => function($value){ return (( !empty($value) && Validation::is_valid_phoneNumber($value)) || $value == "" || empty($value))?true:'Numéro de téléphone non valide'; },
 		'email' => function($value){ return (Validation::is_valid_email($value) || $value == "" || empty($value))?true:'Mail non valide'; }
-		//'birthDate' => function($value){ return ($value >= )?true:'Soyez résonnable'; }
 	), $_POST);
 
 
@@ -39,6 +38,7 @@ if( $_POST ) {
 			$user->setEmail($_POST['email']);
 			$modified = true;
 		}
+		$_POST['birthDate'] = $_POST['yBirthDate'].'-'.$_POST['mBirthDate'].'-'.$_POST['dBirthDate'];
 		if ($_POST['birthDate'] != $user->getBirthDate()) {
 			$user->setBirthDate($_POST['birthDate']);
 			$modified = true;

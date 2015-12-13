@@ -84,7 +84,7 @@ class UserDAO {
 		$user = null;
 
 		try {
-			$statement = DB::getInstance()->prepare('SELECT login, password, firstName, lastName, sex, email, DATE_FORMAT(birthDate, "%d/%m/%Y") AS birthDate, address, postalCode, city, phoneNumber FROM '.self::getTableName().' where login=?');
+			$statement = DB::getInstance()->prepare('SELECT login, password, firstName, lastName, sex, email, birthDate AS birthDate, address, postalCode, city, phoneNumber FROM '.self::getTableName().' where login=?');
 			$statement->bindParam(1, $login);
 			$statement->execute();
 

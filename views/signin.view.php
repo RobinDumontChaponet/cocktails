@@ -35,30 +35,33 @@ $view->content = function ($data) { ?>
 
 		<div>
 			<label for="dBirthDate">Date de naissance</label>
-			<select name="dBirthDate">
-				<option value=''>Jour</option>
-				<?php for($i = 1; $i <= 31; $i++) {
-					if ($i <= 9)
-						$i = '0'.$i;
-					?>
-					<option value='<?php echo $i;?>' <?php if ($_POST && $_POST['dBirthDate'] == $i) echo 'selected'; ?>><?php echo $i?></option>
-				<?php } ?>
-			</select>
-			<select name="mBirthDate">
-				<option value=''>Mois</option>
-				<?php for($i = 1; $i <= 12; $i++) {
-					if ($i <= 9)
-						$i = '0'.$i;
-					?>
-					<option value='<?php echo $i?>' <?php if ($_POST && $_POST['mBirthDate'] == $i) echo 'selected'; ?>><?php echo $i?></option>
-				<?php } ?>
-			</select>
-			<select name="yBirthDate">
-				<option value=''>Année</option>
-				<?php for($i = date("Y"); $i >= date("Y")-140; $i--) { ?>
-					<option value='<?php echo $i?>' <?php if ($_POST && $_POST['yBirthDate'] == $i) echo 'selected'; ?>><?php echo $i?></option>
-				<?php } ?>
-			</select>
+			<?php echo Validation::invalidMessage('birthDate'); ?>
+			<fieldset>
+				<select name="dBirthDate">
+					<option value="" disabled selected style="display:none;">Jour</option>
+					<?php for($i = 1; $i <= 31; $i++) {
+						if ($i <= 9)
+							$i = '0'.$i;
+						?>
+						<option value='<?php echo $i;?>' <?php if ($_POST && $_POST['dBirthDate'] == $i) echo 'selected'; ?>><?php echo $i?></option>
+					<?php } ?>
+				</select>
+				<select name="mBirthDate">
+					<option value="" disabled selected style="display:none;">Mois</option>
+					<?php for($i = 1; $i <= 12; $i++) {
+						if ($i <= 9)
+							$i = '0'.$i;
+						?>
+						<option value='<?php echo $i?>' <?php if ($_POST && $_POST['mBirthDate'] == $i) echo 'selected'; ?>><?php echo $i?></option>
+					<?php } ?>
+				</select>
+				<select name="yBirthDate">
+					<option value="" disabled selected style="display:none;">Année</option>
+					<?php for($i = date("Y"); $i >= date("Y")-140; $i--) { ?>
+						<option value='<?php echo $i?>' <?php if ($_POST && $_POST['yBirthDate'] == $i) echo 'selected'; ?>><?php echo $i?></option>
+					<?php } ?>
+				</select>
+			</fieldset>
 
 			<label for="address">Adresse</label>
 			<input type="text" name="address" value="<?php echo ($_POST)?$_POST['address']:'' ?>"/>
@@ -82,6 +85,7 @@ $view->content = function ($data) { ?>
 		</div>
 
 		<input type="submit" name="signin" value="S'enregistrer"/>
+		<p class="notice">Les champs marqué d'un * sont obligatoires</p>
 	</form>
 </div>
 <script>

@@ -43,30 +43,32 @@ $birthDate = explode('-', $data['user']->getBirthDate());
 		<div>
 			<label for="birthDate">Date de naissance</label>
 			<?php echo Validation::invalidMessage('birthDate'); ?>
-			<select name="dBirthDate">
-				<option value=''>Jour</option>
-				<?php for($i = 1; $i <= 31; $i++) {
-					if ($i <= 9)
-						$i = '0'.$i;
-					?>
-					<option value='<?php echo $i;?>' <?php if (($_POST && $_POST['dBirthDate'] == $i) || $birthDate[2] == $i) echo 'selected'; ?>><?php echo $i?></option>
-				<?php } ?>
-			</select>
-			<select name="mBirthDate">
-				<option value=''>Mois</option>
-				<?php for($i = 1; $i <= 12; $i++) {
-					if ($i <= 9)
-						$i = '0'.$i;
-					?>
-					<option value='<?php echo $i?>' <?php if (($_POST && $_POST['mBirthDate'] == $i) || $birthDate[1] == $i) echo 'selected'; ?>><?php echo $i?></option>
-				<?php } ?>
-			</select>
-			<select name="yBirthDate">
-				<option value=''>Année</option>
-				<?php for($i = date("Y"); $i >= date("Y")-140; $i--) { ?>
-					<option value='<?php echo $i?>' <?php if (($_POST && $_POST['yBirthDate'] == $i) || $birthDate[0] == $i) echo 'selected'; ?>><?php echo $i?></option>
-				<?php } ?>
-			</select>
+			<fieldset>
+				<select name="dBirthDate">
+					<option value="" disabled selected style="display:none;">Jour</option>
+					<?php for($i = 1; $i <= 31; $i++) {
+						if ($i <= 9)
+							$i = '0'.$i;
+						?>
+						<option value='<?php echo $i;?>' <?php if (($_POST && $_POST['dBirthDate'] == $i) || $birthDate[2] == $i) echo 'selected'; ?>><?php echo $i?></option>
+					<?php } ?>
+				</select>
+				<select name="mBirthDate">
+					<option value="" disabled selected style="display:none;">Mois</option>
+					<?php for($i = 1; $i <= 12; $i++) {
+						if ($i <= 9)
+							$i = '0'.$i;
+						?>
+						<option value='<?php echo $i?>' <?php if (($_POST && $_POST['mBirthDate'] == $i) || $birthDate[1] == $i) echo 'selected'; ?>><?php echo $i?></option>
+					<?php } ?>
+				</select>
+				<select name="yBirthDate">
+					<option value="" disabled selected style="display:none;">Année</option>
+					<?php for($i = date("Y"); $i >= date("Y")-140; $i--) { ?>
+						<option value='<?php echo $i?>' <?php if (($_POST && $_POST['yBirthDate'] == $i) || $birthDate[0] == $i) echo 'selected'; ?>><?php echo $i?></option>
+					<?php } ?>
+				</select>
+			</fieldset>
 
 			<label for="address">Adresse</label>
 			<?php echo Validation::invalidMessage('address'); ?>
@@ -85,12 +87,13 @@ $birthDate = explode('-', $data['user']->getBirthDate());
 			<input type="tel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" name="phoneNumber" id="phoneNumber" value="<?php if(isset($_POST['phoneNumber'])) echo $_POST['phoneNumber']; else echo $data['user']->getPhoneNumber(); ?>"/>
 		</div>
 		<div>
-			<label for="password">Nouveau mot de passe *</label>
+			<label for="password">Nouveau mot de passe</label>
 			<input type="password" name="password" id="password" placeholder="5 caractères minimum" />
 			<p class="notice" id="password-notice">Un bon mot de passe doit être suffisamment long. Il doit être composé d’au moins 3 types de caractères différents parmi les quatre types de caractères existants (majuscules, minuscules, chiffres et caractères spéciaux). Il ne devrait pas avoir de lien avec son détenteur (nom, date de naissance)…<br /><a href="http://www.cnil.fr/linstitution/actualite/article/article/securite-comment-construire-un-mot-de-passe-sur-et-gerer-la-liste-de-ses-codes-dacces/" title="Plus d'info sur la CNIL.fr" target="_blank">En savoir plus</a></p>
 		</div>
 
 		<input type="submit" value="enregistrer"/>
+		<p class="notice">Les champs marqué d'un * sont obligatoires</p>
 	</form>
 </div>
 <script>

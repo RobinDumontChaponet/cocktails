@@ -1,4 +1,4 @@
-# Projet de Web Licence 3 informatique.
+# Projet de Web Licence 3 informatique
 
 ## D'après le sujet
 "L’application concerne un certain nombre de fonctionnalités détaillées ci-dessous pour accéder à des recettes de cocktails. Les données à exploiter sont celles fournies dans Projet.zip.
